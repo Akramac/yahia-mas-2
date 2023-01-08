@@ -18,8 +18,21 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->library('session');
+	}
 	public function index()
 	{
+		$this->session->set_userdata('site_lang',  "english");
+		$this->lang->load('ar','arabe');
+		//$this->lang->load('en','english');
 		$this->load->view('index');
 	}
+	/*
+		public function switchLang($language = "") {
+			$this->session->set_userdata('site_lang', $language);
+			header('Location: http://localhost/ci_multilingual_app/');
+		}*/
 }

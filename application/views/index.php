@@ -23,7 +23,7 @@
 			<div class="navigation navigation-pre clearfix">
 				<div class="row">
 					<div class="col-md-3">
-						<a href="#"><i class="icon icon-heart-pulse"></i> Help center</a>
+						<a href="#"><i class="icon icon-heart-pulse"></i> <?= lang('help_center') ?></a>
 					</div>
 					<div class="col-md-3">
 						<a href="#"><i class="icon icon-phone"></i> Contact us</a>
@@ -159,7 +159,7 @@
 								</div>
 							</div>
 						</li>-->
-<!--						<li class="nav-settings">
+						<li class="nav-settings">
 							<a href="javascript:void(0);"><span class="nav-settings-value">ENG</span> <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
 							<div class="navbar-dropdown navbar-dropdown-single">
 								<div class="navbar-box">
@@ -167,15 +167,13 @@
 										<div class="box clearfix">
 											<ul class="nav-settings-list">
 												<li><a href="javascript:void(0);">ENG</a></li>
-												<li><a href="javascript:void(0);">GER</a></li>
 												<li><a href="javascript:void(0);">لعربية</a></li>
-												<li><a href="javascript:void(0);">עִבְרִית</a></li>
 											</ul>
 										</div>
 									</div>
 								</div>
 							</div>
-						</li>-->
+						</li>
 					</ul>
 				</div>
 			</div>
