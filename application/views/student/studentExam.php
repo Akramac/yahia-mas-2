@@ -1,6 +1,7 @@
 
 <?php $this->view('partials/header')?>
 <!-- Compiled and minified CSS -->
+<link rel="stylesheet" media="all" href="https://unpkg.com/materialize-stepper@3.1.0/dist/css/mstepper.min.css" />
     <style>
 		@import url("<?php echo base_url(); ?>assets/css/materialize.css");
 		@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
@@ -257,6 +258,200 @@
 				stroke: #490a3d;
 			}
 		}
+		/*  style multi step form */
+
+		/*
+    Common
+*/
+
+		.wizard,
+		.tabcontrol
+		{
+			display: block;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.wizard a,
+		.tabcontrol a
+		{
+			outline: 0;
+		}
+
+		.wizard ul,
+		.tabcontrol ul
+		{
+			list-style: none !important;
+			padding: 0;
+			margin: 0;
+		}
+
+		.wizard ul > li,
+		.tabcontrol ul > li
+		{
+			display: block;
+			padding: 0;
+		}
+
+		/* Accessibility */
+		.wizard > .steps .current-info,
+		.tabcontrol > .steps .current-info
+		{
+			position: absolute;
+			left: -999em;
+		}
+
+		.wizard > .content > .title,
+		.tabcontrol > .content > .title
+		{
+			position: absolute;
+			left: -999em;
+		}
+
+		/*
+			Wizard
+		*/
+
+		.wizard > .steps
+		{
+			position: relative;
+			display: block;
+			width: 100%;
+		}
+
+		.wizard.vertical > .steps
+		{
+			display: inline;
+			float: left;
+			width: 30%;
+		}
+
+		.wizard > .steps .number
+		{
+			font-size: 1.429em;
+		}
+
+		.wizard > .steps > ul > li
+		{
+			width: 25%;
+		}
+
+		.wizard > .steps > ul > li,
+		.wizard > .actions > ul > li
+		{
+			float: left;
+		}
+
+		.wizard.vertical > .steps > ul > li
+		{
+			float: none;
+			width: 100%;
+		}
+
+		.wizard > .steps a,
+		.wizard > .steps a:hover,
+		.wizard > .steps a:active
+		{
+			display: block;
+			width: auto;
+			margin: 0 0.5em 0.5em;
+			padding: 1em 1em;
+			text-decoration: none;
+
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+		}
+
+		.wizard > .steps .disabled a,
+		.wizard > .steps .disabled a:hover,
+		.wizard > .steps .disabled a:active
+		{
+			background: #eee;
+			color: #aaa;
+			cursor: default;
+		}
+
+		.wizard > .steps .current a,
+		.wizard > .steps .current a:hover,
+		.wizard > .steps .current a:active
+		{
+			background: #2184be;
+			color: #fff;
+			cursor: default;
+		}
+
+		.wizard > .steps .done a,
+		.wizard > .steps .done a:hover,
+		.wizard > .steps .done a:active
+		{
+			background: #9dc8e2;
+			color: #fff;
+		}
+
+		.wizard > .steps .error a,
+		.wizard > .steps .error a:hover,
+		.wizard > .steps .error a:active
+		{
+			background: #ff3111;
+			color: #fff;
+		}
+
+		.wizard > .actions
+		{
+			position: relative;
+			display: block;
+			text-align: right;
+			width: 100%;
+		}
+
+		.wizard.vertical > .actions
+		{
+			display: inline;
+			float: right;
+			margin: 0 2.5%;
+			width: 95%;
+		}
+
+		.wizard > .actions > ul
+		{
+			display: inline-block;
+			text-align: right;
+		}
+
+		.wizard > .actions > ul > li
+		{
+			margin: 0 0.5em;
+		}
+
+		.wizard.vertical > .actions > ul > li
+		{
+			margin: 0 0 0 1em;
+		}
+
+		.wizard > .actions a,
+		.wizard > .actions a:hover,
+		.wizard > .actions a:active
+		{
+			background: #2184be;
+			color: #fff;
+			display: block;
+			padding: 0.5em 1em;
+			text-decoration: none;
+
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+		}
+
+		.wizard > .actions .disabled a,
+		.wizard > .actions .disabled a:hover,
+		.wizard > .actions .disabled a:active
+		{
+			background: #eee;
+			color: #aaa;
+		}
+
 
 	</style>
 <div class="page-loader"></div>
@@ -314,7 +509,7 @@
 
 			<!-- ==========  Main navigation ========== -->
 
-			<div class="navigation navigation-main">
+			<div class="navigation navigation-main" style="box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
 				<a href="#" class="open-login"><i class="icon icon-user"></i></a>
 				<a href="#" class="open-search"><i class="icon icon-magnifier"></i></a>
 				<a href="#" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a>
@@ -458,163 +653,6 @@
 			</div>
 
 			<!-- ==========  Cart wrapper ========== -->
-
-			<div class="cart-wrapper">
-				<div class="checkout">
-					<div class="clearfix">
-
-						<!--cart item-->
-
-						<div class="row">
-
-							<div class="cart-block cart-block-item clearfix">
-								<div class="image">
-									<a href="product.html"><img src="<?php echo base_url(); ?>assets/images/product-1.png" alt="" /></a>
-								</div>
-								<div class="title">
-									<div><a href="product.html">Product item</a></div>
-									<small>Product category</small>
-								</div>
-								<div class="quantity">
-									<input type="number" value="2" class="form-control form-quantity" />
-								</div>
-								<div class="price">
-									<span class="final">$ 1.998</span>
-									<span class="discount">$ 2.666</span>
-								</div>
-								<!--delete-this-item-->
-								<span class="icon icon-cross icon-delete"></span>
-							</div>
-
-							<!--cart item-->
-
-							<div class="cart-block cart-block-item clearfix">
-								<div class="image">
-									<a href="product.html"><img src="<?php echo base_url(); ?>assets/images/product-2.png" alt="" /></a>
-								</div>
-								<div class="title">
-									<div><a href="product.html">Product item</a></div>
-									<small>Product category</small>
-								</div>
-								<div class="quantity">
-									<input type="number" value="2" class="form-control form-quantity" />
-								</div>
-								<div class="price">
-									<span class="final">$ 1.998</span>
-									<span class="discount">$ 2.666</span>
-								</div>
-								<!--delete-this-item-->
-								<span class="icon icon-cross icon-delete"></span>
-							</div>
-
-							<!--cart item-->
-
-							<div class="cart-block cart-block-item clearfix">
-								<div class="image">
-									<a href="product.html"><img src="<?php echo base_url(); ?>assets/images/product-3.png" alt="" /></a>
-								</div>
-								<div class="title">
-									<div><a href="product.html">Product item</a></div>
-									<small>Product category</small>
-								</div>
-								<div class="quantity">
-									<input type="number" value="2" class="form-control form-quantity" />
-								</div>
-								<div class="price">
-									<span class="final">$ 1.998</span>
-									<span class="discount">$ 2.666</span>
-								</div>
-								<!--delete-this-item-->
-								<span class="icon icon-cross icon-delete"></span>
-							</div>
-
-							<!--cart item-->
-
-							<div class="cart-block cart-block-item clearfix">
-								<div class="image">
-									<a href="product.html"><img src="<?php echo base_url(); ?>assets/images/product-4.png" alt="" /></a>
-								</div>
-								<div class="title">
-									<div><a href="product.html">Product item</a></div>
-									<small>Product category</small>
-								</div>
-								<div class="quantity">
-									<input type="number" value="2" class="form-control form-quantity" />
-								</div>
-								<div class="price">
-									<span class="final">$ 1.998</span>
-									<span class="discount">$ 2.666</span>
-								</div>
-								<!--delete-this-item-->
-								<span class="icon icon-cross icon-delete"></span>
-							</div>
-						</div>
-
-						<hr />
-
-						<!--cart prices -->
-
-						<div class="clearfix">
-							<div class="cart-block cart-block-footer clearfix">
-								<div>
-									<strong>Discount 15%</strong>
-								</div>
-								<div>
-									<span>$ 159,00</span>
-								</div>
-							</div>
-
-							<div class="cart-block cart-block-footer clearfix">
-								<div>
-									<strong>Shipping</strong>
-								</div>
-								<div>
-									<span>$ 30,00</span>
-								</div>
-							</div>
-
-							<div class="cart-block cart-block-footer clearfix">
-								<div>
-									<strong>VAT</strong>
-								</div>
-								<div>
-									<span>$ 59,00</span>
-								</div>
-							</div>
-						</div>
-
-						<hr />
-
-						<!--cart final price -->
-
-						<div class="clearfix">
-							<div class="cart-block cart-block-footer clearfix">
-								<div>
-									<strong>Total</strong>
-								</div>
-								<div>
-									<div class="h4 title">$ 1259,00</div>
-								</div>
-							</div>
-						</div>
-
-
-						<!--cart navigation -->
-
-						<div class="cart-block-buttons clearfix">
-							<div class="row">
-								<div class="col-xs-6">
-									<a href="products-grid.html" class="btn btn-clean-dark">Continue shopping</a>
-								</div>
-								<div class="col-xs-6 text-right">
-									<a href="checkout-1.html" class="btn btn-main"><span class="icon icon-cart"></span> Checkout</a>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
 		</div>
 	</nav>
 
@@ -639,7 +677,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-1.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 1</figcaption>
 					</figure>
 				</a>
@@ -648,7 +686,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-2.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 2</figcaption>
 					</figure>
 				</a>
@@ -657,7 +695,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-3.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 3</figcaption>
 					</figure>
 				</a>
@@ -666,7 +704,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-4.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 4</figcaption>
 					</figure>
 				</a>
@@ -675,7 +713,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-5.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 5</figcaption>
 					</figure>
 				</a>
@@ -684,7 +722,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-6.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 6</figcaption>
 					</figure>
 				</a>
@@ -693,7 +731,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-7.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 7</figcaption>
 					</figure>
 				</a>
@@ -702,7 +740,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-8.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 8</figcaption>
 					</figure>
 				</a>
@@ -711,7 +749,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-9.png" alt="Alternate Text" />
+						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 9</figcaption>
 					</figure>
 				</a>
@@ -731,11 +769,11 @@
 
 		<!-- === Goolge map === -->
 
-		<div id="map"></div>
+		<div id="map" style="background-image:url(<?php echo base_url(); ?>assets/images/backgrounds/wall.jpg)"></div>
 
 		<div class="container">
 
-			<div class="row">
+			<!--<div class="row">
 
 				<div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
 
@@ -887,9 +925,197 @@
 							</div>
 						</div>
 
-					</div> <!--/contact-block-->
-				</div><!--col-sm-8-->
-			</div> <!--/row-->
+					</div> <--/contact-block->
+				</div>--col-sm-8->
+			</div> -/row->-->
+<!--
+			<div class="row">
+				<div class="col s12">
+					<form id="example-form">
+						<div>
+							<h3>Account</h3>
+							<section>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="input-field col s12">
+											<label for="select-quest">Materialize Select</label>
+											<select name="select-quest" id="select-quest">
+												<option value=""  disabled selected>Choose the type of question</option>
+												<option value="1">text</option>
+												<option value="2">multiple choice</option>
+												<option value="3">long text</option>
+											</select>
+
+										</div>
+									</div>
+									<div class="input-field col s6">
+										<select multiple>
+											<option value="" disabled selected>Choose style(s)</option>
+											<option value="1">Option 1</option>
+											<option value="2">Option 2</option>
+											<option value="3">Option 3</option>
+										</select>
+										<label>Styles</label>
+									</div>
+								</div>
+							</section>
+							<h3>Profile</h3>
+							<section>
+								<div class="row">
+									<div class="input-field col s6">
+										<label>Begin date</label>
+										<input id="beginDate" type="date" class="datepicker">
+
+									</div>
+									<div class="input-field col s6">
+										<label>End date</label>
+										<input id="endDate" type="date" class="datepicker">
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input placeholder="Who is organizing the event?" id="organizer" type="text" class="validate">
+										<label for="organizer">Organizer</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<label for="select-quest">Materialize Select</label>
+										<select name="select-quest" id="select-quest">
+											<option value=""  disabled selected>Choose the type of question</option>
+											<option value="1">text</option>
+											<option value="2">multiple choice</option>
+											<option value="3">long text</option>
+										</select>
+									</div>
+									<div class="input-field col s6">
+										<input placeholder="contact@myweb.com" id="email" type="text" class="validate">
+										<label for="email">Contact email</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="input-field col s12">
+										<textarea id="description" class="materialize-textarea" length="140"></textarea>
+										<label for="description">Describe the event in a tweet!</label>
+									</div>
+								</div>
+							</section>
+						</div>
+					</form>
+				</div>
+			</div>-->
+			<form id="msform">
+				<ul class="stepper horizontal " id="horizontal">
+					<li class="step active">
+						<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
+						<div class="step-content">
+							<div class="countdown" style="zoom:0.2;">
+								<svg viewBox="-50 -50 100 100" stroke-width="10">
+									<circle r="45"></circle>
+									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+								</svg>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<div class="col-md-12" >
+										<div class="form-group">
+											<label style="text-align:left">Question about polynomes :what are 1</label>
+											<input type="text" value="" class="form-control" placeholder="Your answer" required="required">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="step-actions">
+								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+							</div>
+						</div>
+					</li>
+					<li class="step">
+						<div class="step-title waves-effect waves-dark">Question 2</div>
+						<div class="step-content">
+							<div class="countdown" style="zoom:0.2;">
+								<svg viewBox="-50 -50 100 100" stroke-width="10">
+									<circle r="45"></circle>
+									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+								</svg>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<label >Who has discovered Pi ?</label>
+									<div style="margin-top: 7%;">
+										<p>
+											<label>
+												<input id="indeterminate-checkbox" type="checkbox" />
+												<span>Person 1</span>
+											</label>
+										</p>
+										<p>
+											<label>
+												<input id="indeterminate-checkbox" type="checkbox" />
+												<span>Person 2</span>
+											</label>
+										</p>
+										<p>
+											<label>
+												<input id="indeterminate-checkbox" type="checkbox" />
+												<span>Person 3</span>
+											</label>
+										</p>
+									</div>
+
+								</div>
+							</div>
+							<div class="step-actions">
+<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+-->								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+							</div>
+						</div>
+					</li>
+					<li class="step">
+						<div class="step-title waves-effect waves-dark">Question 3</div>
+						<div class="step-content">
+							<div class="countdown" style="zoom:0.2;">
+								<svg viewBox="-50 -50 100 100" stroke-width="10">
+									<circle r="45"></circle>
+									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+								</svg>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<label>Materialize Select</label>
+									<select class="browser-default" style="margin-top:7%;">
+										<option value=""  disabled selected>Choose the type of question</option>
+										<option value="1">text</option>
+										<option value="2">multiple choice</option>
+										<option value="3">long text</option>
+									</select>
+
+								</div>
+							</div>
+							<div class="step-actions">
+								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+								-->
+								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+							</div>
+						</div>
+					</li>
+					<li class="step ">
+						<div class="step-title waves-effect waves-dark">Finish</div>
+						<div class="step-content">
+							Finish!
+							<div class="step-actions">
+								<button class="waves-effect waves-dark btn blue" type="submit">SUBMIT</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</form>
+
 		</div><!--/container-->
 	</section>
 
@@ -911,9 +1137,18 @@
 
 </div> <!--/wrapper-->
 <!-- Compiled and minified JavaScript -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
+
 <script>
 	$(document).ready(function(){
+
+		var stepper = document.querySelector('.stepper');
+		var stepperInstace = new MStepper(stepper, {
+			// options
+			firstActive: 0 // this is the default
+		})
 
 	})
 </script>
