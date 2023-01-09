@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Student extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,14 +23,13 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 	}
-	public function index()
+	public function studentExam()
 	{
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
-		$this->load->view('index');
+		$this->load->view('student/studentExam');
 	}
-
 	/*
 		public function switchLang($language = "") {
 			$this->session->set_userdata('site_lang', $language);
