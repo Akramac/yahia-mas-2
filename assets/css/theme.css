@@ -6146,7 +6146,7 @@ nav .cart-wrapper.open {
     margin: 0 auto;
     overflow: hidden;
     background-color: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #ec5252;
     padding: 15px;
     -moz-border-radius: 100%;
     -webkit-border-radius: 100%;
@@ -6160,7 +6160,9 @@ nav .cart-wrapper.open {
 
 .owl-icons-wrapper .owl-icons-rounded figure:hover {
     border-width: 10px;
-    border-color: #e0e0e0;
+    /* mod border-color: #e0e0e0; */
+    border-color: #ec5252;
+
 }
 
 .owl-icons-wrapper .owl-icons-rounded figcaption {

@@ -453,6 +453,25 @@
 		}
 
 
+		/*  style colors form step */
+
+		ul.stepper .step.active::before, ul.stepper .step.done::before
+		{
+			background-color: #ec5252 !important;
+		}
+		.blue {
+			background-color: #ec5252 !important;
+		}
+
+		@media only screen and (min-width: 993px){
+			ul.stepper.horizontal .step.active .step-title::before, ul.stepper.horizontal .step.done .step-title::before
+			{
+				background-color: #ec5252;
+			}
+		}
+		 .owl-carousel .owl-item img {
+			width: 90% !important;
+		}
 	</style>
 <div class="page-loader"></div>
 
@@ -671,13 +690,13 @@
 
 		<div class="clearfix">
 
-			<div class="owl-icons owl-icons-rounded">
+			<div class="owl-icons owl-icons-rounded ">
 
 				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
+						<img  src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
 						<figcaption>Teacher 1</figcaption>
 					</figure>
 				</a>
@@ -686,7 +705,7 @@
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
+						<img class="teachers-avatar" src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 2</figcaption>
 					</figure>
 				</a>
