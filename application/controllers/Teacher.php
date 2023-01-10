@@ -28,6 +28,7 @@ class Teacher extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
+
 		$this->load->view('teacher/teacherExam');
 	}
 	/*

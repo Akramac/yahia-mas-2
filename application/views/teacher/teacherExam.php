@@ -800,27 +800,69 @@ Common
 				Make your questions by adding part by part and adding the time and also pictures
 			</p>
 			<form id="msform-teacher">
-			<div class="input-1">
+			<div class="quest-1">
 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
 			<div class="step-content">
-				<div class="countdown" style="zoom:0.2;">
-					<svg viewBox="-50 -50 100 100" stroke-width="10">
-						<circle r="45"></circle>
-						<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-					</svg>
-				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<div class="col-md-12" >
 							<div class="form-group">
-								<label style="text-align:left">Question about polynomes :what are 1</label>
-								<input type="text" value="" class="form-control" placeholder="Your answer" required="required">
+								<label style="text-align:left">Title of your question</label>
+								<input type="text" name="title-question" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick"  name="usr_time">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<p>
+								<label>
+									<input class="indeterminate-checkbox" type="checkbox" />
+									<span>Single Choice</span>
+								</label>
+							</p>
+							<p>
+								<label>
+									<input class="indeterminate-checkbox" type="checkbox" />
+									<span>Multiple choices</span>
+								</label>
+							</p>
+						</div>
+
+						<div class="col-md-12" >
+							<label style="text-align:left">Options (Max 4)</label>
+							<div class="form-group">
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-1">
+								</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-2">
+									</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-3">
+									</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-4">
+									</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: left;" >
+							<div class = "row">
+								<label>Upload Image</label>
+								<div class = "file-field input-field">
+									<div class = "btn">
+										<span>Browse</span>
+										<input type = "file" />
+									</div>
+
+									<div class = "file-path-wrapper">
+										<input class = "file-path validate" type = "text"
+											   placeholder = "Upload file" />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -834,7 +876,7 @@ Common
 					<button class=" btn blue" style="float: left;">Finish</button>
 
 					<!-- Modal Trigger -->
-					<a class="btn blue  next-inputs text-right waves-effect waves-light  modal-trigger" href="#modal-choice-inputs" style="float: right;" >Modal</a>
+					<a class="btn blue  next-inputs text-right waves-effect waves-light  modal-trigger" href="#modal-choice-inputs" style="float: right;" >Next</a>
 					<!--					<button class=" btn blue  next-inputs text-right" >CONTINUE</button>-->
 				</div>
 
@@ -880,10 +922,10 @@ Common
 				<div class="input-field col s12">
 					<select class="browser-default" id="select-type-input" style="margin-top:7%;">
 						<option value=""  disabled selected>Choose the type of question</option>
-						<option value="1">text</option>
-						<option value="2">multiple choice</option>
+						<option value="1">Multiple choices</option>
+						<option value="2">Answer with one answer</option>
 						<option value="3">long text</option>
-						<option value="4">Image</option>
+						<option value="4">Tawsil</option>
 					</select>
 
 				</div>
@@ -936,42 +978,191 @@ Common
 			onCloseEnd: function() { // Callback for Modal close
 				idInput=$('#select-type-input').children(":selected").attr("value");
 				switch (idInput) {
-					case "1":
-						$('.input-1').append(`<div class="input-2">
+					case "1": case "2":
+						$('.quest-1').append(`<div class="quest-2">
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
 			<div class="step-content">
-				<div class="countdown" style="zoom:0.2;">
-					<svg viewBox="-50 -50 100 100" stroke-width="10">
-						<circle r="45"></circle>
-						<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-					</svg>
-				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<div class="col-md-12" >
 							<div class="form-group">
-								<label style="text-align:left">Question about polynomes :what are 1</label>
-								<input type="text" value="" class="form-control" placeholder="Your answer" required="required">
+								<label style="text-align:left">Title of your question</label>
+								<input type="text" name="title-question" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" onfocus="this.showPicker()" class="time-pick"  name="usr_time">
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<p>
+								<label>
+									<input class="indeterminate-checkbox" type="checkbox" />
+									<span>Single Choice</span>
+								</label>
+							</p>
+							<p>
+								<label>
+									<input class="indeterminate-checkbox" type="checkbox" />
+									<span>Multiple choices</span>
+								</label>
+							</p>
+						</div>
+						<div class="col-md-12" >
+							<label style="text-align:left">Options (Max 4)</label>
+							<div class="form-group">
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-1">
+								</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-2">
+									</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-3">
+									</div>
+									<div class="col-md-6" >
+								<input type="text" class="form-control options-list"  name="option-4">
+									</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: left;" >
+							<div class = "row">
+								<label>Upload Image</label>
+								<div class = "file-field input-field">
+									<div class = "btn">
+										<span>Browse</span>
+										<input type = "file" />
+									</div>
+
+									<div class = "file-path-wrapper">
+										<input class = "file-path validate" type = "text"
+											   placeholder = "Upload file" />
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				</div>`);
 						break;
-					case "2":
-						day = "Tuesday";
-						break;
 					case "3":
-						alert('ii');
+						$('.quest-1').append(`<div class="quest-2">
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
+			<div class="step-content">
+				<div class="row">
+					<div class="input-field col s12">
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Title of your question</label>
+								<input type="text" name="title-question" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Duration of the question</label>
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: left;" >
+							<div class = "row">
+								<label>Upload Image</label>
+								<div class = "file-field input-field">
+									<div class = "btn">
+										<span>Browse</span>
+										<input type = "file" />
+									</div>
+
+									<div class = "file-path-wrapper">
+										<input class = "file-path validate" type = "text"
+											   placeholder = "Upload file" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>`);
 						break;
 					case "4":
-						day = "Thursday";
+						$('.quest-1').append(`<div class="quest-2">
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
+			<div class="step-content">
+				<div class="row">
+					<div class="input-field col s12">
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Title of your question</label>
+								<input type="text" name="title-question" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Duration of the question</label>
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<label style="text-align:left">Options Linked (Max 4)</label>
+							<div class="form-group">
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="option-1">
+								</div>
+								<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="link-option-1">
+									</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="option-2">
+									</div>
+									<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="link-option-2">
+									</div>
+								<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="option-3">
+								</div>
+								<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="link-option-3">
+									</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="option-3">
+									</div>
+									<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list"  name="option-4">
+									</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: left;" >
+							<div class = "row">
+								<label>Upload Image</label>
+								<div class = "file-field input-field">
+									<div class = "btn">
+										<span>Browse</span>
+										<input type = "file" />
+									</div>
+
+									<div class = "file-path-wrapper">
+										<input class = "file-path validate" type = "text"
+											   placeholder = "Upload file" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>`);
 						break;
 				}
 			}

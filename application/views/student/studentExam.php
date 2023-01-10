@@ -11,7 +11,7 @@
 			width: 140px !important;
 			height: 70px !important;
 		}
-		/* style timer */
+		/* style uploader */
 		.uploader {
 			display: block;
 			clear: both;

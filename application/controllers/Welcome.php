@@ -30,7 +30,15 @@ class Welcome extends CI_Controller {
 		//$this->lang->load('en','english');
 		$this->load->view('index');
 	}
-
+	function logout()
+	{
+		$data = $this->session->all_userdata();
+		foreach($data as $row => $rows_value)
+		{
+			$this->session->unset_userdata($row);
+		}
+		redirect('login');
+	}
 	/*
 		public function switchLang($language = "") {
 			$this->session->set_userdata('site_lang', $language);
