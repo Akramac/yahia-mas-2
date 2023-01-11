@@ -472,6 +472,40 @@
 		 .owl-carousel .owl-item img {
 			width: 90% !important;
 		}
+
+		 /* drag style  */
+		.example-parent {
+			border: 2px solid #DFA612;
+			color: black;
+			display: flex;
+			font-family: sans-serif;
+			font-weight: bold;
+		}
+
+		.example-origin {
+			flex-basis: 100%;
+			flex-grow: 1;
+			padding: 10px;
+		}
+
+		.example-draggable {
+			background-color: #4AAE9B;
+			font-weight: normal;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			padding: 10px;
+		}
+
+		.example-dropzone {
+			background-color: #6DB65B;
+			flex-basis: 50%;
+			flex-grow: 1;
+			padding: 10px;
+		}
+		ul.stepper.horizontal .step .step-content .step-actions{
+			position: relative !important;
+		}
+
 	</style>
 <div class="page-loader"></div>
 
@@ -1102,6 +1136,124 @@
 									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 								</svg>
 							</div>
+							<div class="row" >
+								<div class="input-field col s12">
+									<label >Who has discovered Pi ?</label>
+									<div style="margin-top: 7%;">
+										<div class="example-parent">
+											<div class="example-origin" hidden>
+												<div
+														id="draggable-1"
+														class="example-draggable"
+														draggable="true"
+														ondragstart="onDragStart(event);"
+												>
+													draggable
+												</div>
+
+											</div>
+											<div
+													class="example-dropzone"
+													ondragover="onDragOver(event);"
+													ondrop="onDrop(event);"
+											>
+												dropzone
+
+
+											</div>
+											<div
+													class="example-dropzone"
+											>
+												dropzone Matching
+												<div
+														class="example-draggable"
+												>
+													Post 1
+												</div>
+												<div
+														class="example-draggable"
+												>
+													Post 2
+												</div>
+												<div
+														class="example-draggable"
+												>
+													Post 3
+												</div>
+
+
+											</div>
+										</div>
+										<div class="example-parent">
+											<div class="example-origin">
+												<div
+														id="draggable-4"
+														class="example-draggable"
+														draggable="true"
+														ondragstart="onDragStart(event);"
+												>
+													draggable
+												</div>
+
+											</div>
+
+										</div>
+										<div class="example-parent">
+											<div class="example-origin">
+												<div
+														id="draggable-2"
+														class="example-draggable"
+														draggable="true"
+														ondragstart="onDragStart(event);"
+												>
+													draggable
+												</div>
+
+											</div>
+
+										</div>
+
+
+										<div class="example-parent">
+											<div class="example-origin">
+												<div
+														id="draggable-3"
+														class="example-draggable"
+														draggable="true"
+														ondragstart="onDragStart(event);"
+												>
+													draggable
+												</div>
+
+											</div>
+
+										</div>
+
+
+
+
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="step-actions">
+								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+								-->								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+							</div>
+						</div>
+					</li>
+					<li class="step">
+						<div class="step-title waves-effect waves-dark">Question 4</div>
+						<div class="step-content">
+							<div class="countdown" style="zoom:0.2;">
+								<svg viewBox="-50 -50 100 100" stroke-width="10">
+									<circle r="45"></circle>
+									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+								</svg>
+							</div>
 							<div class="row">
 								<div class="input-field col s12">
 									<label>Materialize Select</label>
@@ -1170,6 +1322,33 @@
 		})
 
 	})
+
+	function onDragStart(event) {
+		event
+			.dataTransfer
+			.setData('text/plain', event.target.id);
+
+		event
+			.currentTarget
+			.style
+			.backgroundColor = 'yellow';
+	}
+	function onDragOver(event) {
+		event.preventDefault();
+	}
+
+	function onDrop(event) {
+		const id = event
+			.dataTransfer
+			.getData('text');
+
+		const draggableElement = document.getElementById(id);
+		const dropzone = event.target;
+		dropzone.appendChild(draggableElement);
+		event
+			.dataTransfer
+			.clearData();
+	}
 </script>
 
 </html>

@@ -7,18 +7,20 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library("session");
 		if($this->session->userdata('id'))
 		{
 			redirect('private_area');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encryption');
-		$this->load->model('login_model');
+		$this->load->model('loginModel');
 	}
 
 	function index()
 	{
-		$this->load->view('login');
+		$data['title'] = 'Login';
+		$this->load->view('security/login',$data);
 	}
 
 	function validation()
@@ -27,15 +29,18 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		if($this->form_validation->run())
 		{
-			$result = $this->login_model->can_login($this->input->post('user_email'), $this->input->post('user_password'));
+			$result = $this->loginModel->can_login($this->input->post('user_email'), $this->input->post('user_password'));
 			if($result == '')
 			{
-				redirect('welcome');
+				$data['title'] = 'Yahia MAS';
+				$this->session->set_flashdata('success','You are logged in');
+				return $this->load->view('index',$data);
 			}
 			else
 			{
-				$this->session->set_flashdata('message',$result);
-				redirect('login');
+				$data['title'] = 'Login';
+				$this->session->set_flashdata('error','error login');
+				return $this->load->view('security/login',$data);
 			}
 		}
 		else

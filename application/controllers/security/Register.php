@@ -18,7 +18,8 @@ $this->load->model('registerModel');
 
 function index()
 {
-$this->load->view('security/register');
+	$data['title'] = 'Registration';
+	$this->load->view('security/register',$data);
 }
 
 function validation()

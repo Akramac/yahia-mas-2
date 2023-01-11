@@ -1,9 +1,13 @@
 
 
 
-<?php $this->view('partials/header')?>
+<?php $this->view('partials/header',)?>
 <!-- Compiled and minified CSS -->
+<head>
+</head>
 <link rel="stylesheet" media="all" href="https://unpkg.com/materialize-stepper@3.1.0/dist/css/mstepper.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
 <style>
 	@import url("<?php echo base_url(); ?>assets/css/materialize.css");
 	@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
@@ -225,51 +229,56 @@
 
 
 	<!-- ========================  Block banner category ======================== -->
-	<section class="contact section-register">
-	<div class="container">
-	<br />
-	<h3 align="center">Complete User Registration and Login System in Codeigniter</h3>
-	<br />
-	<div class="panel panel-default">
-		<div class="panel-heading">Login</div>
-		<div class="panel-body">
-			<form method="post" action="<?php echo base_url(); ?>index.php/register/validation">
-				<div class="form-group">
-					<label>Enter Your Name</label>
-					<input type="text" name="user_name" class="form-control" value="<?php echo set_value('user_name'); ?>" />
-					<span class="text-danger"><?php echo form_error('user_name'); ?></span>
+	<section class="contact section-register" style="background-color: white;">
+		<div class="container card  " style="margin-left: 20%;margin-top:5%;">
+
+			<div class="login-block login-block-signup">
+
+				<div class="h4" style="text-align: center">Login </div>
+
+				<hr />
+				<div class="row">
+
+					<form method="post" action="<?php echo base_url(); ?>index.php/login/validation">
+						<div class="form-group col-md-6 col-md-offset-3">
+							<label>Enter your email</label>
+							<input type="text" name="user_email" class="form-control" value="<?php echo set_value('user_email'); ?>" />
+							<span class="text-danger"><?php echo form_error('user_email'); ?></span>
+						</div>
+						<div class="form-group col-md-6 col-md-offset-3">
+							<label>Enter Password</label>
+							<input type="password" name="user_password" class="form-control" value="<?php echo set_value('user_password'); ?>" />
+							<span class="text-danger"><?php echo form_error('user_password'); ?></span>
+						</div>
+						<div class="form-group col-md-6 col-md-offset-3">
+							<input type="submit" name="login" value="Login" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="float:right;" href="<?php echo base_url(); ?>register">Forgot password ?</a>
+						</div>
+					</form>
+
 				</div>
-				<div class="form-group">
-					<label>Enter Your Valid Email Address</label>
-					<input type="text" name="user_email" class="form-control" value="<?php echo set_value('user_email'); ?>" />
-					<span class="text-danger"><?php echo form_error('user_email'); ?></span>
-				</div>
-				<div class="form-group">
-					<label>Enter Password</label>
-					<input type="password" name="user_password" class="form-control" value="<?php echo set_value('user_password'); ?>" />
-					<span class="text-danger"><?php echo form_error('user_password'); ?></span>
-				</div>
-				<div class="form-group">
-					<input type="submit" name="register" value="Register" class="btn btn-info" />
-				</div>
-			</form>
+			</div> <!--/signup-->
+
 		</div>
-	</div>
-</div>
 
 	</section>
 
 
+
+
+
 	<?php $this->view('partials/footer'); ?>
 
+	<div>
+		<?php
+		$this->load->view('alert');
+		?>
+	</div>
 </div> <!--/wrapper-->
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
 	$(document).ready(function(){
-
-
 
 	})
 </script>

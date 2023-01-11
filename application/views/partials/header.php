@@ -16,7 +16,7 @@
 	<link rel="icon" href="favicon.ico">
 
 	<!--Title-->
-	<title>Yahia MAS 2</title>
+	<title><?php echo $title  ?></title>
 
 	<!--CSS bundle -->
 	<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/bootstrap.css" />

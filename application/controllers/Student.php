@@ -28,7 +28,8 @@ class Student extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
-		$this->load->view('student/studentExam');
+		$data['title'] = 'Student Page';
+		$this->load->view('student/studentExam',$data);
 	}
 	/*
 		public function switchLang($language = "") {

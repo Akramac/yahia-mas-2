@@ -9,9 +9,9 @@ class LoginModel extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				if($row->is_email_verified == 'yes')
+				if($row->is_email_verified == true)
 				{
-					$store_password = $this->encrypt->decode($row->password);
+					$store_password = $this->encryption->decrypt($row->password);
 					if($password == $store_password)
 					{
 						$this->session->set_userdata('id', $row->id);

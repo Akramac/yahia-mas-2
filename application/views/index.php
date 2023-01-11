@@ -1205,7 +1205,11 @@
 
 
 <?php $this->view('partials/footer'); ?>
-
+	<div>
+		<?php
+		$this->load->view('alert');
+		?>
+	</div>
 </div> <!--/wrapper-->
 <script>
 	$(document).ready(function(){
