@@ -10,7 +10,8 @@ class Login extends CI_Controller {
 		$this->load->library("session");
 		if($this->session->userdata('id'))
 		{
-			redirect('private_area');
+			$data['title'] = 'Yahia MAS';
+			redirect('index',$data);
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encryption');
@@ -19,6 +20,7 @@ class Login extends CI_Controller {
 
 	function index()
 	{
+
 		$data['title'] = 'Login';
 		$this->load->view('security/login',$data);
 	}
@@ -32,15 +34,29 @@ class Login extends CI_Controller {
 			$result = $this->loginModel->can_login($this->input->post('user_email'), $this->input->post('user_password'));
 			if($result == '')
 			{
+				$name = $this->input->post('user_name');
+				$email = $this->input->post('user_email');
+				$level = $this->input->post('user_level');
+				$this->db->where('email', $email);
+				$query = $this->db->get('users');
+				$userType = $query->row()->user_level;
+				$sesdata = array(
+				'username'=> $name,
+				'email' => $email,
+				'level' => $level,
+				'userType' => $userType,
+				'logged_in' => TRUE
+				);
 				$data['title'] = 'Yahia MAS';
 				$this->session->set_flashdata('success','You are logged in');
+				$this->session->set_userdata('user_type',  $userType);
 				return $this->load->view('index',$data);
 			}
 			else
 			{
 				$data['title'] = 'Login';
-				$this->session->set_flashdata('error','error login');
-				return $this->load->view('security/login',$data);
+				$this->session->set_flashdata('error','error login '.$result);
+				redirect('login',$data);
 			}
 		}
 		else
@@ -48,6 +64,7 @@ class Login extends CI_Controller {
 			$this->index();
 		}
 	}
+
 
 }
 

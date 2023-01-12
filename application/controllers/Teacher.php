@@ -21,7 +21,21 @@ class Teacher extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->library('session');
+		$this->load->library("session");
+		if($this->session->userdata('id'))
+		{
+			$this->db->where('id', $this->session->userdata('id'));
+			$query = $this->db->get('users');
+			$userType = $query->row()->user_level;
+			if($userType!='ROLE_TEACHER'){
+				$data['title'] = 'Yahia MAS';
+				redirect('index',$data);
+			}
+
+		}else{
+			$data['title'] = 'Yahia MAS';
+			redirect('login',$data);
+		}
 	}
 	public function teacherExam()
 	{

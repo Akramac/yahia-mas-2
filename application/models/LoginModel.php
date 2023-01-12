@@ -9,7 +9,7 @@ class LoginModel extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				if($row->is_email_verified == true)
+				/*if($row->is_email_verified == true)
 				{
 					$store_password = $this->encryption->decrypt($row->password);
 					if($password == $store_password)
@@ -24,6 +24,15 @@ class LoginModel extends CI_Model
 				else
 				{
 					return 'First verified your email address';
+				}*/
+				$store_password = $this->encryption->decrypt($row->password);
+				if($password == $store_password)
+				{
+					$this->session->set_userdata('id', $row->id);
+				}
+				else
+				{
+					return 'Wrong Password';
 				}
 			}
 		}

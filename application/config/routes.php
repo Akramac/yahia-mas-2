@@ -50,11 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+$route['index'] = 'welcome';
 $route['student/exam'] = 'student/exam';
 $route['teacher/exam'] = 'teacher/exam';
 $route['register'] = 'security/register';
 $route['login'] = 'security/login';
+$route['change-password'] = 'security/changePassword/pageChangePassword';
+$route['change-password-treatment'] = 'security/changePassword/changePassword';
 $route['register/validation'] = 'security/register/validation';
 $route['login/validation'] = 'security/login/validation';
+$route['logout'] = 'welcome/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -243,12 +243,12 @@
 						<div class="form-group col-md-6 col-md-offset-3">
 							<label>Enter your email</label>
 							<input type="text" name="user_email" class="form-control" value="<?php echo set_value('user_email'); ?>" />
-							<span class="text-danger"><?php echo form_error('user_email'); ?></span>
+							<span class="text-danger" style="color:red;"><?php echo form_error('user_email'); ?></span>
 						</div>
 						<div class="form-group col-md-6 col-md-offset-3">
 							<label>Enter Password</label>
 							<input type="password" name="user_password" class="form-control" value="<?php echo set_value('user_password'); ?>" />
-							<span class="text-danger"><?php echo form_error('user_password'); ?></span>
+							<span class="text-danger" style="color:red;"><?php echo form_error('user_password'); ?></span>
 						</div>
 						<div class="form-group col-md-6 col-md-offset-3">
 							<input type="submit" name="login" value="Login" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="float:right;" href="<?php echo base_url(); ?>register">Forgot password ?</a>
