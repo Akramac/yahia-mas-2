@@ -506,209 +506,47 @@
 			position: relative !important;
 		}
 
+
+		/*  style drag and drop */
+		/* (A) LIST STYLES */
+		.slist, .correspList {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.slist li, .correspList li {
+			margin: 10px;
+			padding: 15px;
+			border: 1px solid #dfdfdf;
+			background: #f5f5f5;
+		}
+		.correspList li {
+			  margin: 10px;
+			  padding: 15px;
+			  border: 1px solid #ec5252;
+			  background: #f5f5f5;
+		  }
+
+		/* (B) DRAG-AND-DROP HINT */
+		.slist li.hint {
+			border: 1px solid #ffc49a;
+			background: #feffb4;
+		}
+		.slist li.active {
+			border: 1px solid #ffa5a5;
+			background: #ffe7e7;
+		}
+
+		.card-options:hover{
+			cursor: pointer;
+		}
 	</style>
 <div class="page-loader"></div>
 
 <div class="wrapper">
 
 	<!-- ======================== Navigation ======================== -->
-
-	<nav>
-
-		<div class="clearfix">
-
-			<a href="index.html" class="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Yahia-mas" width="30"/></a>
-
-			<!-- ==========  Pre navigation ========== -->
-
-			<div class="navigation navigation-pre clearfix browser-default">
-				<div class="row">
-					<div class="col-md-3">
-						<a href="#"><i class="icon icon-heart-pulse"></i> <?= lang('help_center') ?></a>
-					</div>
-					<div class="col-md-3">
-						<a href="#"><i class="icon icon-phone"></i> Contact us</a>
-					</div>
-					<div class="col-md-3">
-						<a href="#"></a>
-					</div>
-					<div class="col-md-3">
-						<a href="#"></a>
-					</div>
-				</div>
-			</div>
-
-			<!-- ==========  Top navigation ========== -->
-
-			<div class="navigation navigation-top clearfix">
-				<ul class="browser-default">
-					<!--add active class for current page-->
-					<li class="left-side"><a href="index.html" class="logo-icon"><!--<img src="<?php /*echo base_url(); */?>assets/images/icon.png" alt="Alternate Text" /></a>--></li>
-					<li class="left-side"><a href="#"><img alt="student" src="<?php echo base_url(); ?>assets/images/58_Admin.jpg" width="30" /></a></li>
-					<!--
-
-						// Use active class for current state
-
-						<li class="left-side active"><a href="#">Man</a></li>
-
-					-->
-					<li class="left-side"><a href="#"><img alt="student" src="<?php echo base_url(); ?>assets/images/57_Student.jpg" width="30" /></a></li>
-					<li class="left-side"><a href="#"><img alt="student" src="<?php echo base_url(); ?>assets/images/58_Admin.jpg" width="30" /></a></li>
-					<li><a href="javascript:void(0);" class="open-login"><i class="icon icon-user"></i></a></li>
-					<li><a href="javascript:void(0);" class="open-search"><i class="icon icon-magnifier"></i></a></li>
-					<!--<li><a href="javascript:void(0);" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a></li>-->
-				</ul>
-			</div>
-
-			<!-- ==========  Main navigation ========== -->
-
-			<div class="navigation navigation-main" style="box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
-				<a href="#" class="open-login"><i class="icon icon-user"></i></a>
-				<a href="#" class="open-search"><i class="icon icon-magnifier"></i></a>
-				<a href="#" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a>
-				<a href="#" class="open-menu"><i class="icon icon-menu"></i></a>
-				<div class="floating-menu">
-					<!--mobile toggle menu trigger-->
-					<div class="close-menu-wrapper">
-						<span class="close-menu"><i class="icon icon-cross"></i></span>
-					</div>
-					<ul>
-						<li>
-							<a href="#">Home <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul>
-												<li class="label">Homepages</li>
-
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a href="#">Pages <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul>
-												<li class="label">Single dropdown</li>
-												<li><a href="about.html">About us</a></li>
-												<li><a href="contact.html">Contact</a></li>
-												<li><a href="login.html">Login & Register</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a href="#">Questions <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul>
-												<li class="label">Questions</li>
-												<li><a href="#">Q1</a></li>
-												<li><a href="#">Q2</a></li>
-												<li><a href="#">Q3</a></li>
-												<li><a href="#">Q4</a></li>
-												<li><a href="#">Q5</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a href="#">Reviews <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul>
-												<li class="label">Blog pages</li>
-												<li><a href="#">Blog grid</a></li>
-												<li><a href="#">Blog list</a></li>
-												<li><a href="#">Blog fullpage</a></li>
-												<li><a href="#">Blog ideas</a></li>
-												<li><a href="#">Article</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-
-						<!--<li class="nav-settings">
-							<a href="javascript:void(0);"><span class="nav-settings-value">USD</span> <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul class="nav-settings-list">
-												<li><a href="javascript:void(0);">USD</a></li>
-												<li><a href="javascript:void(0);">EUR</a></li>
-												<li><a href="javascript:void(0);">GBP</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>-->
-						<li class="nav-settings">
-							<a href="javascript:void(0);"><span class="nav-settings-value">ENG</span> <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
-							<div class="navbar-dropdown navbar-dropdown-single">
-								<div class="navbar-box">
-									<div class="box-full">
-										<div class="box clearfix">
-											<ul class="nav-settings-list">
-												<li><a href="javascript:void(0);">ENG</a></li>
-												<li><a href="javascript:void(0);">لعربية</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- ==========  Search wrapper ========== -->
-
-			<div class="search-wrapper">
-				<input class="form-control" placeholder="Search..." />
-				<button class="btn btn-main">Go!</button>
-			</div>
-
-			<!-- ==========  Login wrapper ========== -->
-
-			<div class="login-wrapper">
-				<div class="h4">Sign in</div>
-				<form>
-					<div class="form-group">
-						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					</div>
-					<div class="form-group">
-						<a href="#forgotpassword" class="open-popup">Forgot password?</a>
-						<a href="#createaccount" class="open-popup">Don't have an account?</a>
-					</div>
-					<button type="submit" class="btn btn-block btn-main">Submit</button>
-				</form>
-			</div>
-
-			<!-- ==========  Cart wrapper ========== -->
-		</div>
-	</nav>
-
+	<?php $this->view('partials/menu')?>
 
 	<!-- ========================  Tabsy wrapper ======================== -->
 
@@ -1138,99 +976,39 @@
 							</div>
 							<div class="row" >
 								<div class="input-field col s12">
-									<label >Who has discovered Pi ?</label>
+									<label >Link the correct options</label>
 									<div style="margin-top: 7%;">
-										<div class="example-parent">
-											<div class="example-origin" hidden>
-												<div
-														id="draggable-1"
-														class="example-draggable"
-														draggable="true"
-														ondragstart="onDragStart(event);"
-												>
-													draggable
-												</div>
+										<div class="row">
+										<ul id="sortlist" class="col-md-6 col-xs-6">
+											<li>
+												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+												 First
+												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+											</li>
+											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+												Second
+												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+											</li>
+											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+												third
+												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+											</li>
+											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+												Fourth
+												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+											</li>
+										</ul>
 
-											</div>
-											<div
-													class="example-dropzone"
-													ondragover="onDragOver(event);"
-													ondrop="onDrop(event);"
-											>
-												dropzone
-
-
-											</div>
-											<div
-													class="example-dropzone"
-											>
-												dropzone Matching
-												<div
-														class="example-draggable"
-												>
-													Post 1
-												</div>
-												<div
-														class="example-draggable"
-												>
-													Post 2
-												</div>
-												<div
-														class="example-draggable"
-												>
-													Post 3
-												</div>
-
-
-											</div>
-										</div>
-										<div class="example-parent">
-											<div class="example-origin">
-												<div
-														id="draggable-4"
-														class="example-draggable"
-														draggable="true"
-														ondragstart="onDragStart(event);"
-												>
-													draggable
-												</div>
-
-											</div>
+										<ul id="correspList" class="correspList col-md-6 col-xs-6">
+											<li>
+												Ref 1
+											</li>
+											<li>Ref 2</li>
+											<li>Ref 3</li>
+											<li>Ref 4</li>
+										</ul>
 
 										</div>
-										<div class="example-parent">
-											<div class="example-origin">
-												<div
-														id="draggable-2"
-														class="example-draggable"
-														draggable="true"
-														ondragstart="onDragStart(event);"
-												>
-													draggable
-												</div>
-
-											</div>
-
-										</div>
-
-
-										<div class="example-parent">
-											<div class="example-origin">
-												<div
-														id="draggable-3"
-														class="example-draggable"
-														draggable="true"
-														ondragstart="onDragStart(event);"
-												>
-													draggable
-												</div>
-
-											</div>
-
-										</div>
-
-
-
 
 
 
@@ -1245,7 +1023,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="step">
+					<li class="step step-4">
 						<div class="step-title waves-effect waves-dark">Question 4</div>
 						<div class="step-content">
 							<div class="countdown" style="zoom:0.2;">
@@ -1254,14 +1032,46 @@
 									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 								</svg>
 							</div>
+							<label>Select the correct answer</label>
 							<div class="row">
-								<div class="input-field col s12">
-									<label>Materialize Select</label>
-									<select class="browser-default" style="margin-top:7%;">
+
+								<div class="col-md-6 com-xs-12">
+									<div class="card blue-grey darken-1 card-options" id="step-4" alt="1" style="height: 90px;">
+										<div class="card-content white-text">
+											<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 1</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 com-xs-12">
+									<div class="card blue-grey darken-1 card-options" id="step-4" alt="2" style="height: 90px;">
+										<div class="card-content white-text">
+											<p><img src="<?php echo base_url(); ?>assets/images/traingle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />  Option 2</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 com-xs-12">
+									<div class="card blue-grey darken-1 card-options" id="step-4" alt="3" style="height: 90px;">
+										<div class="card-content white-text">
+											<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 3</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 com-xs-12">
+									<div class="card blue-grey darken-1 card-options" id="step-4" alt="4" style="height: 90px;">
+										<div class="card-content white-text">
+											<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 4</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="input-field col s12" >
+
+									<select class="browser-default " id="select-options-cards" style="margin-top:7%;">
 										<option value=""  disabled selected>Choose the type of question</option>
 										<option value="1">text</option>
 										<option value="2">multiple choice</option>
 										<option value="3">long text</option>
+										<option value="4">choose wrong word</option>
 									</select>
 
 								</div>
@@ -1321,6 +1131,17 @@
 			firstActive: 0 // this is the default
 		})
 
+		slist(document.getElementById("sortlist"));
+
+		/* treatement card select */
+		$('.card-options').click(function (){
+			var id=$(this).attr('id');
+			var orderValue=$(this).attr('alt');
+			$('.'+id+' .card-options').removeClass('activated-card');
+			$(this).addClass('activated-card');
+			$('.'+id+' #select-options-cards option').removeAttr("selected");
+			$('.'+id+' #select-options-cards option[value='+orderValue+']').attr('selected','selected');
+		});
 	})
 
 	function onDragStart(event) {
@@ -1348,6 +1169,61 @@
 		event
 			.dataTransfer
 			.clearData();
+	}
+
+	/* drag js func */
+	function slist (target) {
+		// (A) SET CSS + GET ALL LIST ITEMS
+		target.classList.add("slist");
+		let items = target.getElementsByTagName("li"), current = null;
+
+		// (B) MAKE ITEMS DRAGGABLE + SORTABLE
+		for (let i of items) {
+			// (B1) ATTACH DRAGGABLE
+			i.draggable = true;
+
+			// (B2) DRAG START - YELLOW HIGHLIGHT DROPZONES
+			i.ondragstart = e => {
+				current = i;
+				for (let it of items) {
+					if (it != current) { it.classList.add("hint"); }
+				}
+			};
+
+			// (B3) DRAG ENTER - RED HIGHLIGHT DROPZONE
+			i.ondragenter = e => {
+				if (i != current) { i.classList.add("active"); }
+			};
+
+			// (B4) DRAG LEAVE - REMOVE RED HIGHLIGHT
+			i.ondragleave = () => i.classList.remove("active");
+
+			// (B5) DRAG END - REMOVE ALL HIGHLIGHTS
+			i.ondragend = () => { for (let it of items) {
+				it.classList.remove("hint");
+				it.classList.remove("active");
+			}};
+
+			// (B6) DRAG OVER - PREVENT THE DEFAULT "DROP", SO WE CAN DO OUR OWN
+			i.ondragover = e => e.preventDefault();
+
+			// (B7) ON DROP - DO SOMETHING
+			i.ondrop = e => {
+				e.preventDefault();
+				if (i != current) {
+					let currentpos = 0, droppedpos = 0;
+					for (let it=0; it<items.length; it++) {
+						if (current == items[it]) { currentpos = it; }
+						if (i == items[it]) { droppedpos = it; }
+					}
+					if (currentpos < droppedpos) {
+						i.parentNode.insertBefore(current, i.nextSibling);
+					} else {
+						i.parentNode.insertBefore(current, i);
+					}
+				}
+			};
+		}
 	}
 </script>
 
