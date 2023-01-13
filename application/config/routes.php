@@ -60,5 +60,7 @@ $route['change-password-treatment'] = 'security/changePassword/changePassword';
 $route['register/validation'] = 'security/register/validation';
 $route['login/validation'] = 'security/login/validation';
 $route['logout'] = 'welcome/logout';
+
+$route['teacher/add-exam'] = 'teacher/addExam';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

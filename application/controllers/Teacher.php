@@ -36,6 +36,9 @@ class Teacher extends CI_Controller {
 			$data['title'] = 'Yahia MAS';
 			redirect('login',$data);
 		}
+
+		$this->load->library('form_validation');
+		$this->load->model('examModel');
 	}
 	public function teacherExam()
 	{
@@ -44,6 +47,90 @@ class Teacher extends CI_Controller {
 		//$this->lang->load('en','english');
 
 		$this->load->view('teacher/teacherExam');
+	}
+
+	public function addExam()
+	{
+		/*$this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email');*/
+		$this->form_validation->set_rules('title-question', 'Title', 'required');
+		if($this->form_validation->run())
+		{
+			if($this->input->post('quest_mutliple')=='quest_mutliple'){
+
+				$result = $this->examModel->add_data_choices(
+					$this->session->userdata('id'),
+					$this->input->post('title-question'),
+					$this->input->post('usr_time'),
+					$this->input->post('indeterminate-checkbox-single'),
+					$this->input->post('indeterminate-checkbox-multiple'),
+					$this->input->post('option-1'),
+					$this->input->post('option-2'),
+					$this->input->post('option-3'),
+					$this->input->post('option-4'),
+					$this->input->post('file-uploaded')
+				);
+				if(isset($result) & $result!='' ){
+					$data['title'] = 'Yahia MAS';
+
+				}else
+				{
+					$data['title'] = 'Yahia MAs';
+					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+
+				}
+			}
+			if($this->input->post('quest_long_text')=='quest_long_text'){
+
+				$result = $this->examModel->add_data_long_text(
+					$this->session->userdata('id'),
+					$this->input->post('title-question'),
+					$this->input->post('usr_time'),
+					$this->input->post('file-uploaded')
+				);
+				if(isset($result) & $result!='' ){
+					$data['title'] = 'Yahia MAs';
+				}else
+				{
+
+					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+
+				}
+			}
+			if($this->input->post('quest_tawsil')=='quest_tawsil'){
+
+				$result = $this->examModel->add_data_tawsil(
+					$this->session->userdata('id'),
+					$this->input->post('title-question'),
+					$this->input->post('usr_time'),
+					$this->input->post('option-1'),
+					$this->input->post('link-option-1'),
+					$this->input->post('option-2'),
+					$this->input->post('link-option-2'),
+					$this->input->post('option-3'),
+					$this->input->post('link-option-3'),
+					$this->input->post('option-4'),
+					$this->input->post('link-option-4'),
+					$this->input->post('file-uploaded')
+				);
+				if(isset($result) & $result!='' ){
+					$data['title'] = 'Yahia MAS';
+
+				}else
+				{
+					$data['title'] = 'Yahia MAs';
+					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+
+				}
+			}
+			$data['title'] = 'Yahia MAs';
+			$this->session->set_flashdata('success','Exam added succesfully ');
+			redirect('index',$data);
+
+		}
+		else
+		{
+			redirect('teacher/teacherExam');
+		}
 	}
 	/*
 		public function switchLang($language = "") {

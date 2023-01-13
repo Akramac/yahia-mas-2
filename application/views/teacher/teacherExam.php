@@ -472,6 +472,11 @@ Common
 	.owl-carousel .owl-item img {
 		width: 90% !important;
 	}
+
+	/* style correct option */
+	input[name='option-1']{
+		border-bottom:  1px solid  #0f9d58 !important;
+	}
 </style>
 <div class="page-loader"></div>
 
@@ -604,8 +609,9 @@ Common
 			<p>
 				Make your questions by adding part by part and adding the time and also pictures
 			</p>
-			<form id="msform-teacher">
+			<form id="msform-teacher" method="POST" action="<?php echo base_url(); ?>index.php/teacher/add-exam">
 			<div class="quest-1">
+				<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
 			<div class="step-content">
 				<div class="row">
@@ -625,20 +631,20 @@ Common
 						<div class="col-md-12" >
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" type="checkbox" />
+									<input class="indeterminate-checkbox-single" name="indeterminate-checkbox-single" type="checkbox" />
 									<span>Single Choice</span>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" type="checkbox" />
+									<input class="indeterminate-checkbox-multiple" name="indeterminate-checkbox-multiple" type="checkbox" />
 									<span>Multiple choices</span>
 								</label>
 							</p>
 						</div>
 
 						<div class="col-md-12" >
-							<label style="text-align:left">Options (Max 4)</label>
+							<label style="text-align:left">Options start with the correct one (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-6" >
 								<input type="text" class="form-control options-list"  name="option-1">
@@ -660,7 +666,7 @@ Common
 								<div class = "file-field input-field">
 									<div class = "btn">
 										<span>Browse</span>
-										<input type = "file" />
+										<input name="file-uploaded" type = "file" />
 									</div>
 
 									<div class = "file-path-wrapper">
@@ -678,7 +684,7 @@ Common
 
 			</div>
 				<div class="row" style="justify-content: space-between;">
-					<button class=" btn blue" style="float: left;">Finish</button>
+					<button class=" btn blue"  type="submit" style="float: left;">Finish</button>
 
 					<!-- Modal Trigger -->
 					<a class="btn blue  next-inputs text-right waves-effect waves-light  modal-trigger" href="#modal-choice-inputs" style="float: right;" >Next</a>
@@ -731,6 +737,7 @@ Common
 						<option value="2">Answer with one answer</option>
 						<option value="3">long text</option>
 						<option value="4">Tawsil</option>
+						<option value="5">Tartib</option>
 					</select>
 
 				</div>
@@ -785,6 +792,7 @@ Common
 				switch (idInput) {
 					case "1": case "2":
 						$('.quest-1').append(`<div class="quest-2">
+			<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
 			<div class="step-content">
 				<div class="row">
@@ -854,6 +862,7 @@ Common
 						break;
 					case "3":
 						$('.quest-1').append(`<div class="quest-2">
+			<input type="text" name="quest_long_text" value="quest_long_text" hidden>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
 			<div class="step-content">
 				<div class="row">
@@ -880,7 +889,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input class = "file-path validate" type = "text"
+										<input name="file-uploaded" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -892,6 +901,7 @@ Common
 						break;
 					case "4":
 						$('.quest-1').append(`<div class="quest-2">
+			<input type="text" name="quest_tawsil" value="quest_tawsil" hidden>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
 			<div class="step-content">
 				<div class="row">
@@ -939,13 +949,13 @@ Common
 								<input type="text" class="form-control options-list"  name="link-option-3">
 									</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-3">
+								<input type="text" class="form-control options-list"  name="option-4">
 									</div>
 									<div class="col-md-2" >
 								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
 								</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-4">
+								<input type="text" class="form-control options-list"  name="link-option-4">
 									</div>
 							</div>
 						</div>
@@ -959,7 +969,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input class = "file-path validate" type = "text"
+										<input name="file-uploaded" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
