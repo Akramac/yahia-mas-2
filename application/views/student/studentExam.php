@@ -468,6 +468,14 @@
 			{
 				background-color: #ec5252;
 			}
+
+			#sortlistOrder{
+				margin-left: 20%;
+			}
+			.div-after-label{
+				margin-top: 7% !important;
+			}
+
 		}
 		 .owl-carousel .owl-item img {
 			width: 90% !important;
@@ -539,6 +547,17 @@
 
 		.card-options:hover{
 			cursor: pointer;
+		}
+
+		/* selected card choice */
+
+		.activated-card{
+			border: 3px solid #ec5252;
+			box-shadow: 0 0 5px 5px #ec5252;
+
+		}
+		.div-after-label{
+			margin-top: 15%;
 		}
 	</style>
 <div class="page-loader"></div>
@@ -900,7 +919,7 @@
 			<form id="msform">
 				<ul class="stepper horizontal " id="horizontal">
 					<li class="step active">
-						<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
+						<div data-step-label="" class="step-title waves-effect waves-dark"></div>
 						<div class="step-content">
 							<div class="countdown" style="zoom:0.2;">
 								<svg viewBox="-50 -50 100 100" stroke-width="10">
@@ -924,7 +943,7 @@
 						</div>
 					</li>
 					<li class="step">
-						<div class="step-title waves-effect waves-dark">Question 2</div>
+						<div class="step-title waves-effect waves-dark"></div>
 						<div class="step-content">
 							<div class="countdown" style="zoom:0.2;">
 								<svg viewBox="-50 -50 100 100" stroke-width="10">
@@ -935,7 +954,7 @@
 							<div class="row">
 								<div class="input-field col s12">
 									<label >Who has discovered Pi ?</label>
-									<div style="margin-top: 7%;">
+									<div  class="div-after-label">
 										<p>
 											<label>
 												<input id="indeterminate-checkbox" type="checkbox" />
@@ -966,7 +985,7 @@
 						</div>
 					</li>
 					<li class="step">
-						<div class="step-title waves-effect waves-dark">Question 3</div>
+						<div class="step-title waves-effect waves-dark"></div>
 						<div class="step-content">
 							<div class="countdown" style="zoom:0.2;">
 								<svg viewBox="-50 -50 100 100" stroke-width="10">
@@ -1024,7 +1043,7 @@
 						</div>
 					</li>
 					<li class="step step-4">
-						<div class="step-title waves-effect waves-dark">Question 4</div>
+						<div class="step-title waves-effect waves-dark"></div>
 						<div class="step-content">
 							<div class="countdown" style="zoom:0.2;">
 								<svg viewBox="-50 -50 100 100" stroke-width="10">
@@ -1037,34 +1056,34 @@
 
 								<div class="col-md-6 com-xs-12">
 									<div class="card blue-grey darken-1 card-options" id="step-4" alt="1" style="height: 90px;">
-										<div class="card-content white-text">
+										<div class="card-content white-text card-4-options">
 											<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 1</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6 com-xs-12">
 									<div class="card blue-grey darken-1 card-options" id="step-4" alt="2" style="height: 90px;">
-										<div class="card-content white-text">
+										<div class="card-content white-text card-4-options">
 											<p><img src="<?php echo base_url(); ?>assets/images/traingle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />  Option 2</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6 com-xs-12">
 									<div class="card blue-grey darken-1 card-options" id="step-4" alt="3" style="height: 90px;">
-										<div class="card-content white-text">
+										<div class="card-content white-text card-4-options">
 											<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 3</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6 com-xs-12">
 									<div class="card blue-grey darken-1 card-options" id="step-4" alt="4" style="height: 90px;">
-										<div class="card-content white-text">
+										<div class="card-content white-text card-4-options">
 											<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 4</p>
 										</div>
 									</div>
 								</div>
 
-								<div class="input-field col s12" >
+								<div class="input-field col s12" hidden>
 
 									<select class="browser-default " id="select-options-cards" style="margin-top:7%;">
 										<option value=""  disabled selected>Choose the type of question</option>
@@ -1075,6 +1094,45 @@
 									</select>
 
 								</div>
+							</div>
+							<div class="step-actions">
+								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+								-->
+								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+							</div>
+						</div>
+					</li>
+
+					<li class="step step-5">
+						<div class="step-title waves-effect waves-dark"></div>
+						<div class="step-content">
+							<div class="countdown" style="zoom:0.2;">
+								<svg viewBox="-50 -50 100 100" stroke-width="10">
+									<circle r="45"></circle>
+									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+								</svg>
+							</div>
+							<label>Oder this cards correctly :</label>
+							<div class="row justify-content-center">
+								<ul id="sortlistOrder" class="col-md-6 col-xs-12" >
+									<li>
+										First
+										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+									</li>
+									<li>
+										Second
+										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+									</li>
+									<li>
+										third
+										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+									</li>
+									<li>
+										Fourth
+										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+									</li>
+								</ul>
 							</div>
 							<div class="step-actions">
 								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
@@ -1132,6 +1190,7 @@
 		})
 
 		slist(document.getElementById("sortlist"));
+		slist(document.getElementById("sortlistOrder"));
 
 		/* treatement card select */
 		$('.card-options').click(function (){
