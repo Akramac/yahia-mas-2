@@ -610,8 +610,15 @@ Common
 				Make your questions by adding part by part and adding the time and also pictures
 			</p>
 			<form id="msform-teacher" method="POST" action="<?php echo base_url(); ?>index.php/teacher/add-exam">
-			<div class="quest-1">
+				<div class="form-group">
+					<label style="text-align:left">Duration of the whole exam</label>
+					<input type="time" class="time-pick"  name="usr_time_exam">
+				</div>
+				<div class="quest-0 quest--list">
+				</div>
+			<div class="quest-1 quest--list">
 				<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
+				<a class="btn-floating btn-large waves-effect waves-light red" style="float:right;"><i class="fa fa-times"></i></a>
 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
 			<div class="step-content">
 				<div class="row">
@@ -789,11 +796,15 @@ Common
 			dismissible: false,
 			onCloseEnd: function() { // Callback for Modal close
 				idInput=$('#select-type-input').children(":selected").attr("value");
+
+				var countSteps=$('.quest--list').length;
+				var lastStep=countSteps-1;
+				console.log(countSteps);
 				switch (idInput) {
 					case "1": case "2":
-						$('.quest-1').append(`<div class="quest-2">
+						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
 			<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
- 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
 					<div class="input-field col s12">
@@ -861,9 +872,9 @@ Common
 				</div>`);
 						break;
 					case "3":
-						$('.quest-1').append(`<div class="quest-2">
+						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
 			<input type="text" name="quest_long_text" value="quest_long_text" hidden>
- 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
 					<div class="input-field col s12">
@@ -900,9 +911,9 @@ Common
 				</div>`);
 						break;
 					case "4":
-						$('.quest-1').append(`<div class="quest-2">
+						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
 			<input type="text" name="quest_tawsil" value="quest_tawsil" hidden>
- 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 2</div>
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
 					<div class="input-field col s12">
@@ -956,6 +967,62 @@ Common
 								</div>
 									<div class="col-md-5" >
 								<input type="text" class="form-control options-list"  name="link-option-4">
+									</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: left;" >
+							<div class = "row">
+								<label>Upload Image</label>
+								<div class = "file-field input-field">
+									<div class = "btn">
+										<span>Browse</span>
+										<input type = "file" />
+									</div>
+
+									<div class = "file-path-wrapper">
+										<input name="file-uploaded" class = "file-path validate" type = "text"
+											   placeholder = "Upload file" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>`);
+						break;
+					case "5":
+						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_tartib" value="quest_tartib" hidden>
+ 			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
+			<div class="step-content">
+				<div class="row">
+					<div class="input-field col s12">
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Title of your question</label>
+								<input type="text" name="title-question" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Duration of the question</label>
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<label style="text-align:left">Options in order (Max 4)</label>
+							<div class="form-group">
+									<div class="col-md-6" >1.
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-1">
+								</div>
+									<div class="col-md-6" >2.
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-2">
+									</div>
+								<div class="col-md-6" >3.
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-3">
+								</div>
+									<div class="col-md-6" >4.
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4">
 									</div>
 							</div>
 						</div>
