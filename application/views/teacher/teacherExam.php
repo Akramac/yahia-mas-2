@@ -617,8 +617,9 @@ Common
 				<div class="quest-0 quest--list">
 				</div>
 			<div class="quest-1 quest--list">
-				<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
-				<a class="btn-floating btn-large waves-effect waves-light red" style="float:right;"><i class="fa fa-times"></i></a>
+				<input type="text" name="quest_mutliple-1" value="quest_mutliple" >
+				<input type="text" name="count-quest-mutli" value="1" >
+				<a class="btn-floating btn-large waves-effect waves-light red close-question"  id="close-1" style="float:right;"><i class="fa fa-times"></i></a>
 			<div data-step-label="" class="step-title waves-effect waves-dark">Question 1</div>
 			<div class="step-content">
 				<div class="row">
@@ -626,25 +627,25 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question" class="form-control"  required="required">
+								<input type="text" name="title-question-1" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick"  name="usr_time">
+								<input type="time" class="time-pick"  name="usr_time-1">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<p>
 								<label>
-									<input class="indeterminate-checkbox-single" name="indeterminate-checkbox-single" type="checkbox" />
+									<input class="indeterminate-checkbox-single" name="indeterminate-checkbox-single-1" type="checkbox" />
 									<span>Single Choice</span>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input class="indeterminate-checkbox-multiple" name="indeterminate-checkbox-multiple" type="checkbox" />
+									<input class="indeterminate-checkbox-multiple" name="indeterminate-checkbox-multiple-1" type="checkbox" />
 									<span>Multiple choices</span>
 								</label>
 							</p>
@@ -654,16 +655,16 @@ Common
 							<label style="text-align:left">Options start with the correct one (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-1">
+								<input type="text" class="form-control options-list"  name="option-1-1">
 								</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-2">
+								<input type="text" class="form-control options-list"  name="option-2-1">
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-3">
+								<input type="text" class="form-control options-list"  name="option-3-1">
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-4">
+								<input type="text" class="form-control options-list"  name="option-4-1">
 									</div>
 							</div>
 						</div>
@@ -673,7 +674,7 @@ Common
 								<div class = "file-field input-field">
 									<div class = "btn">
 										<span>Browse</span>
-										<input name="file-uploaded" type = "file" />
+										<input name="file-uploaded-1" type = "file" />
 									</div>
 
 									<div class = "file-path-wrapper">
@@ -776,7 +777,11 @@ Common
 
 
 	<?php $this->view('partials/footer'); ?>
-
+	<div>
+		<?php
+		$this->load->view('alert');
+		?>
+	</div>
 </div> <!--/wrapper-->
 <!-- Compiled and minified JavaScript -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
@@ -792,6 +797,7 @@ Common
 			firstActive: 0 // this is the default
 		})*/
 		$('.timepicker').timepicker();
+		var countMultiQuest=1;
 		$('.modal').modal({
 			dismissible: false,
 			onCloseEnd: function() { // Callback for Modal close
@@ -802,8 +808,11 @@ Common
 				console.log(countSteps);
 				switch (idInput) {
 					case "1": case "2":
-						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_mutliple" value="quest_mutliple" hidden>
+						countMultiQuest++;
+						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_mutliple-${countSteps}" value="quest_mutliple" >
+			<input type="text" name="count-quest-mutli" value="${countMultiQuest}" >
+				<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
@@ -811,25 +820,25 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question" class="form-control"  required="required">
+								<input type="text" name="title-question-${countSteps}" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countSteps}">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" type="checkbox" />
+									<input class="indeterminate-checkbox" name="indeterminate-checkbox-single-${countSteps}" type="checkbox" />
 									<span>Single Choice</span>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" type="checkbox" />
+									<input class="indeterminate-checkbox" name="indeterminate-checkbox-multiple-${countSteps}" type="checkbox" />
 									<span>Multiple choices</span>
 								</label>
 							</p>
@@ -838,16 +847,16 @@ Common
 							<label style="text-align:left">Options (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-1">
+								<input type="text" class="form-control options-list"  name="option-1-${countSteps}">
 								</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-2">
+								<input type="text" class="form-control options-list"  name="option-2-${countSteps}">
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-3">
+								<input type="text" class="form-control options-list"  name="option-3-${countSteps}">
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-4">
+								<input type="text" class="form-control options-list"  name="option-4-${countSteps}">
 									</div>
 							</div>
 						</div>
@@ -857,11 +866,11 @@ Common
 								<div class = "file-field input-field">
 									<div class = "btn">
 										<span>Browse</span>
-										<input type = "file" />
+										<input   type = "file" />
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input class = "file-path validate" type = "text"
+										<input name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -872,8 +881,9 @@ Common
 				</div>`);
 						break;
 					case "3":
-						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_long_text" value="quest_long_text" hidden>
+						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_long_text-${countSteps}" value="quest_long_text" hidden>
+			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
@@ -881,13 +891,13 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question" class="form-control"  required="required">
+								<input type="text" name="title-question-${countSteps}" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countSteps}">
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -900,7 +910,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded" class = "file-path validate" type = "text"
+										<input  name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -911,8 +921,9 @@ Common
 				</div>`);
 						break;
 					case "4":
-						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_tawsil" value="quest_tawsil" hidden>
+						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_tawsil-${countSteps}" value="quest_tawsil" hidden>
+			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
@@ -920,53 +931,53 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question" class="form-control"  required="required">
+								<input type="text" name="title-question-${countSteps}" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countSteps}">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<label style="text-align:left">Options Linked (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-1">
+								<input type="text" class="form-control options-list"  name="option-1-${countSteps}">
 								</div>
 								<div class="col-md-2" >
 								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
 								</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="link-option-1">
+								<input type="text" class="form-control options-list"  name="link-option-1-${countSteps}">
 									</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-2">
+								<input type="text" class="form-control options-list"  name="option-2-${countSteps}">
 									</div>
 									<div class="col-md-2" >
 								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
 								</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="link-option-2">
+								<input type="text" class="form-control options-list"  name="link-option-2-${countSteps}">
 									</div>
 								<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-3">
+								<input type="text" class="form-control options-list"  name="option-3-${countSteps}">
 								</div>
 								<div class="col-md-2" >
 								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
 								</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="link-option-3">
+								<input type="text" class="form-control options-list"  name="link-option-3-${countSteps}">
 									</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="option-4">
+								<input type="text" class="form-control options-list"  name="option-4-${countSteps}">
 									</div>
 									<div class="col-md-2" >
 								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
 								</div>
 									<div class="col-md-5" >
-								<input type="text" class="form-control options-list"  name="link-option-4">
+								<input type="text" class="form-control options-list"  name="link-option-4-${countSteps}">
 									</div>
 							</div>
 						</div>
@@ -976,11 +987,11 @@ Common
 								<div class = "file-field input-field">
 									<div class = "btn">
 										<span>Browse</span>
-										<input type = "file" />
+										<input  type = "file" />
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded" class = "file-path validate" type = "text"
+										<input name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -991,8 +1002,9 @@ Common
 				</div>`);
 						break;
 					case "5":
-						$(".quest-"+lastStep).append(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_tartib" value="quest_tartib" hidden>
+						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_tartib-${countSteps}" value="quest_tartib" hidden>
+			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
 				<div class="row">
@@ -1000,29 +1012,29 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question" class="form-control"  required="required">
+								<input type="text" name="title-question-${countSteps} " class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time">
+								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countSteps}">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<label style="text-align:left">Options in order (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-6" >1.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-1">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-1-${countSteps} ">
 								</div>
 									<div class="col-md-6" >2.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-2">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-2-${countSteps} ">
 									</div>
 								<div class="col-md-6" >3.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-3">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-3-${countSteps} ">
 								</div>
 									<div class="col-md-6" >4.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4-${countSteps} ">
 									</div>
 							</div>
 						</div>
@@ -1036,7 +1048,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded" class = "file-path validate" type = "text"
+										<input name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -1052,11 +1064,14 @@ Common
 		$( ".time-pick" ).focus(function() {
 			this.showPicker();
 		});
-		$('.next-inputs').click(function (){
 
-
-		})
 	})
+
+	$(document).on('click', '.close-question', function() {
+		attrId=$(this).attr('id');
+		id=attrId.replace('close-','');
+		$('.quest-'+id).remove();
+	}) ;
 </script>
 
 </html>

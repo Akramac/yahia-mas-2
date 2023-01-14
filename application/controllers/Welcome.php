@@ -28,8 +28,8 @@ class Welcome extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
-
-		$this->load->view('index');
+		$data['title'] = 'Yahia MAS';
+		$this->load->view('index',$data);
 	}
 	function logout()
 	{

@@ -45,40 +45,45 @@ class Teacher extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
-
-		$this->load->view('teacher/teacherExam');
+		$data['title'] = 'Teacher\'s page';
+		$this->load->view('teacher/teacherExam',$data);
 	}
 
 	public function addExam()
 	{
 		/*$this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email');*/
-		$this->form_validation->set_rules('title-question', 'Title', 'required');
+		$this->form_validation->set_rules('title-question-1', 'Title', 'required');
 		if($this->form_validation->run())
 		{
-			if($this->input->post('quest_mutliple')=='quest_mutliple'){
+			$numQuestMulti=$this->input->post('count-quest-mutli');
+			for($i=1;$i<=$numQuestMulti;$i++){
+				if($this->input->post('quest_mutliple-'.$i)=='quest_mutliple'){
 
-				$result = $this->examModel->add_data_choices(
-					$this->session->userdata('id'),
-					$this->input->post('title-question'),
-					$this->input->post('usr_time'),
-					$this->input->post('indeterminate-checkbox-single'),
-					$this->input->post('indeterminate-checkbox-multiple'),
-					$this->input->post('option-1'),
-					$this->input->post('option-2'),
-					$this->input->post('option-3'),
-					$this->input->post('option-4'),
-					$this->input->post('file-uploaded')
-				);
-				if(isset($result) & $result!='' ){
-					$data['title'] = 'Yahia MAS';
+					$result = $this->examModel->add_data_choices(
+						$this->session->userdata('id'),
+						$this->input->post('title-question-'.$i),
+						$this->input->post('usr_time-'.$i),
+						$this->input->post('indeterminate-checkbox-single-'.$i),
+						$this->input->post('indeterminate-checkbox-multiple-'.$i),
+						$this->input->post('option-1-'.$i),
+						$this->input->post('option-2-'.$i),
+						$this->input->post('option-3-'.$i),
+						$this->input->post('option-4-'.$i),
+						$this->input->post('file-uploaded-'.$i)
+					);
 
-				}else
-				{
-					$data['title'] = 'Yahia MAs';
-					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+					if(isset($result) & $result!='' ){
+						$data['title'] = 'Yahia MAS';
 
+					}else
+					{
+						$data['title'] = 'Yahia MAs';
+						$this->session->set_flashdata('error','Error Adding Exam '.$result);
+
+					}
 				}
 			}
+
 			if($this->input->post('quest_long_text')=='quest_long_text'){
 
 				$result = $this->examModel->add_data_long_text(
@@ -152,6 +157,7 @@ class Teacher extends CI_Controller {
 		}
 		else
 		{
+			$this->session->set_flashdata('error','Form not correct ');
 			redirect('teacher/teacherExam');
 		}
 	}
