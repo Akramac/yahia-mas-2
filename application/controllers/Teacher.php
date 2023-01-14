@@ -84,70 +84,78 @@ class Teacher extends CI_Controller {
 				}
 			}
 
-			if($this->input->post('quest_long_text')=='quest_long_text'){
+			$numQuestLong=$this->input->post('count-quest-long-text');
+			for($i=1;$i<=$numQuestLong;$i++){
 
-				$result = $this->examModel->add_data_long_text(
-					$this->session->userdata('id'),
-					$this->input->post('title-question'),
-					$this->input->post('usr_time'),
-					$this->input->post('file-uploaded')
-				);
-				if(isset($result) & $result!='' ){
-					$data['title'] = 'Yahia MAs';
-				}else
-				{
+				if($this->input->post('quest_long_text-'.$i)=='quest_long_text'){
 
-					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+					$result = $this->examModel->add_data_long_text(
+						$this->session->userdata('id'),
+						$this->input->post('title-question-'.$i),
+						$this->input->post('usr_time-'.$i),
+						$this->input->post('file-uploaded-'.$i)
+					);
+					if(isset($result) & $result!='' ){
+						$data['title'] = 'Yahia MAs';
+					}else
+					{
 
-				}
-			}
-			if($this->input->post('quest_tawsil')=='quest_tawsil'){
+						$this->session->set_flashdata('error','Error Adding Exam '.$result);
 
-				$result = $this->examModel->add_data_tawsil(
-					$this->session->userdata('id'),
-					$this->input->post('title-question'),
-					$this->input->post('usr_time'),
-					$this->input->post('option-1'),
-					$this->input->post('link-option-1'),
-					$this->input->post('option-2'),
-					$this->input->post('link-option-2'),
-					$this->input->post('option-3'),
-					$this->input->post('link-option-3'),
-					$this->input->post('option-4'),
-					$this->input->post('link-option-4'),
-					$this->input->post('file-uploaded')
-				);
-				if(isset($result) & $result!='' ){
-					$data['title'] = 'Yahia MAS';
-
-				}else
-				{
-					$data['title'] = 'Yahia MAs';
-					$this->session->set_flashdata('error','Error Adding Exam '.$result);
-
+					}
 				}
 			}
 
-			if($this->input->post('quest_tartib')=='quest_tartib'){
+			$numQuestTawsil=$this->input->post('count-quest-tawsil');
+			for($i=1;$i<=$numQuestTawsil;$i++) {
+				if ($this->input->post('quest_tawsil-'.$i) == 'quest_tawsil') {
 
-				$result = $this->examModel->add_data_tartib(
-					$this->session->userdata('id'),
-					$this->input->post('title-question'),
-					$this->input->post('usr_time'),
-					$this->input->post('option-to-order-1'),
-					$this->input->post('option-to-order-2'),
-					$this->input->post('option-to-order-3'),
-					$this->input->post('option-to-order-4'),
-					$this->input->post('file-uploaded')
-				);
-				if(isset($result) & $result!='' ){
-					$data['title'] = 'Yahia MAS';
+					$result = $this->examModel->add_data_tawsil(
+						$this->session->userdata('id'),
+						$this->input->post('title-question-'.$i),
+						$this->input->post('usr_time-'.$i),
+						$this->input->post('option-1-'.$i),
+						$this->input->post('link-option-1-'.$i),
+						$this->input->post('option-2-'.$i),
+						$this->input->post('link-option-2-'.$i),
+						$this->input->post('option-3-'.$i),
+						$this->input->post('link-option-3-'.$i),
+						$this->input->post('option-4-'.$i),
+						$this->input->post('link-option-4-'.$i),
+						$this->input->post('file-uploaded-'.$i)
+					);
+					if (isset($result) & $result != '') {
+						$data['title'] = 'Yahia MAS';
 
-				}else
-				{
-					$data['title'] = 'Yahia MAs';
-					$this->session->set_flashdata('error','Error Adding Exam '.$result);
+					} else {
+						$data['title'] = 'Yahia MAs';
+						$this->session->set_flashdata('error', 'Error Adding Exam ' . $result);
 
+					}
+				}
+			}
+			$numQuestTartib=$this->input->post('count-quest-tartib');
+			for($i=1;$i<=$numQuestTartib;$i++) {
+				if ($this->input->post('quest_tartib-'.$i) == 'quest_tartib') {
+
+					$result = $this->examModel->add_data_tartib(
+						$this->session->userdata('id'),
+						$this->input->post('title-question-'.$i),
+						$this->input->post('usr_time-'.$i),
+						$this->input->post('option-to-order-1-'.$i),
+						$this->input->post('option-to-order-2-'.$i),
+						$this->input->post('option-to-order-3-'.$i),
+						$this->input->post('option-to-order-4-'.$i),
+						$this->input->post('file-uploaded-'.$i)
+					);
+					if (isset($result) & $result != '') {
+						$data['title'] = 'Yahia MAS';
+
+					} else {
+						$data['title'] = 'Yahia MAs';
+						$this->session->set_flashdata('error', 'Error Adding Exam ' . $result);
+
+					}
 				}
 			}
 			$data['title'] = 'Yahia MAs';

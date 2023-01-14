@@ -798,6 +798,9 @@ Common
 		})*/
 		$('.timepicker').timepicker();
 		var countMultiQuest=1;
+		var countLongQuest=0;
+		var countTawsilQuest=0;
+		var countTartibQuest=0;
 		$('.modal').modal({
 			dismissible: false,
 			onCloseEnd: function() { // Callback for Modal close
@@ -805,11 +808,10 @@ Common
 
 				var countSteps=$('.quest--list').length;
 				var lastStep=countSteps-1;
-				console.log(countSteps);
 				switch (idInput) {
 					case "1": case "2":
 						countMultiQuest++;
-						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+						$(".quest--list").last().after(`<div class="quest-${countSteps} quest--list">
 			<input type="text" name="quest_mutliple-${countSteps}" value="quest_mutliple" >
 			<input type="text" name="count-quest-mutli" value="${countMultiQuest}" >
 				<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
@@ -881,8 +883,10 @@ Common
 				</div>`);
 						break;
 					case "3":
-						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
+						countLongQuest++;
+						$(".quest--list").last().after(`<div class="quest-${countSteps} quest--list">
 			<input type="text" name="quest_long_text-${countSteps}" value="quest_long_text" hidden>
+			<input type="text" name="count-quest-long-text" value="${countLongQuest}" >
 			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
@@ -921,8 +925,10 @@ Common
 				</div>`);
 						break;
 					case "4":
-						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_tawsil-${countSteps}" value="quest_tawsil" hidden>
+						countTawsilQuest++;
+						$(".quest--list").last().after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_tawsil-${countSteps}" value="quest_tawsil" >
+			<input type="text" name="count-quest-tawsil" value="${countTawsilQuest}" >
 			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
@@ -1002,8 +1008,10 @@ Common
 				</div>`);
 						break;
 					case "5":
-						$(".quest-"+lastStep).after(`<div class="quest-${countSteps} quest--list">
-			<input type="text" name="quest_tartib-${countSteps}" value="quest_tartib" hidden>
+						countTartibQuest++;
+						$(".quest--list").last().after(`<div class="quest-${countSteps} quest--list">
+			<input type="text" name="quest_tartib-${countSteps}" value="quest_tartib" >
+			<input type="text" name="count-quest-tartib" value="${countTartibQuest}" >
 			<a class="btn-floating btn-large waves-effect waves-light red close-question" id="close-`+countSteps+`" style="float:right;"><i class="fa fa-times"></i></a>
  			<div data-step-label="" class="step-title waves-effect waves-dark">Question ${countSteps}</div>
 			<div class="step-content">
@@ -1012,7 +1020,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-${countSteps} " class="form-control"  required="required">
+								<input type="text" name="title-question-${countSteps}" class="form-control"  required="required">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1025,16 +1033,16 @@ Common
 							<label style="text-align:left">Options in order (Max 4)</label>
 							<div class="form-group">
 									<div class="col-md-6" >1.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-1-${countSteps} ">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-1-${countSteps}">
 								</div>
 									<div class="col-md-6" >2.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-2-${countSteps} ">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-2-${countSteps}">
 									</div>
 								<div class="col-md-6" >3.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-3-${countSteps} ">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-3-${countSteps}">
 								</div>
 									<div class="col-md-6" >4.
-								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4-${countSteps} ">
+								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4-${countSteps}">
 									</div>
 							</div>
 						</div>
