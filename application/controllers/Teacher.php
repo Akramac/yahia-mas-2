@@ -55,6 +55,20 @@ class Teacher extends CI_Controller {
 		$this->form_validation->set_rules('title-question-1', 'Title', 'required');
 		if($this->form_validation->run())
 		{
+			/* add to table exam  */
+			$examId = $this->examModel->add_exam(
+				$this->session->userdata('id'),
+				$this->input->post('select-category')
+			);
+			if(isset($examId) & $examId!='' ){
+				$data['title'] = 'Yahia MAS';
+
+			}else
+			{
+				$data['title'] = 'Yahia MAs';
+				$this->session->set_flashdata('error','Error Adding Exam '.$examId);
+
+			}
 			$numQuestMulti=$this->input->post('count-quest-mutli');
 			for($i=1;$i<=$numQuestMulti;$i++){
 				if($this->input->post('quest_mutliple-'.$i)=='quest_mutliple'){
@@ -65,22 +79,33 @@ class Teacher extends CI_Controller {
 						$this->input->post('usr_time-'.$i),
 						$this->input->post('indeterminate-checkbox-single-'.$i),
 						$this->input->post('indeterminate-checkbox-multiple-'.$i),
-						$this->input->post('option-1-'.$i),
-						$this->input->post('option-2-'.$i),
-						$this->input->post('option-3-'.$i),
-						$this->input->post('option-4-'.$i),
+						$this->input->post('option-multi-1-'.$i),
+						$this->input->post('option-multi-2-'.$i),
+						$this->input->post('option-multi-3-'.$i),
+						$this->input->post('option-multi-4-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
 
 					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
-
+						$resultJunction = $this->examModel->add_mutli_choice_junction(
+							$result,
+							$examId,
+						);
+						if(isset($resultJunction) & $resultJunction=='ok' ) {
+							$data['title'] = 'Yahia MAS';
+						}else{
+							$data['title'] = 'Yahia MAs';
+							$this->session->set_flashdata('error','Error Adding Junction ');
+						}
 					}else
 					{
 						$data['title'] = 'Yahia MAs';
-						$this->session->set_flashdata('error','Error Adding Exam '.$result);
+						$this->session->set_flashdata('error','Error Adding question with choices  '.$result);
 
 					}
+
+
 				}
 			}
 
@@ -96,7 +121,18 @@ class Teacher extends CI_Controller {
 						$this->input->post('file-uploaded-'.$i)
 					);
 					if(isset($result) & $result!='' ){
-						$data['title'] = 'Yahia MAs';
+						$data['title'] = 'Yahia MAS';
+
+						$resultJunction = $this->examModel->add_long_text_junction(
+							$result,
+							$examId,
+						);
+						if(isset($resultJunction) & $resultJunction=='ok' ) {
+							$data['title'] = 'Yahia MAS';
+						}else{
+							$data['title'] = 'Yahia MAs';
+							$this->session->set_flashdata('error','Error Adding Junction ');
+						}
 					}else
 					{
 
@@ -114,19 +150,29 @@ class Teacher extends CI_Controller {
 						$this->session->userdata('id'),
 						$this->input->post('title-question-'.$i),
 						$this->input->post('usr_time-'.$i),
-						$this->input->post('option-1-'.$i),
-						$this->input->post('link-option-1-'.$i),
-						$this->input->post('option-2-'.$i),
-						$this->input->post('link-option-2-'.$i),
-						$this->input->post('option-3-'.$i),
-						$this->input->post('link-option-3-'.$i),
-						$this->input->post('option-4-'.$i),
-						$this->input->post('link-option-4-'.$i),
+						$this->input->post('option-tawsil-1-'.$i),
+						$this->input->post('link-option-tawsil-1-'.$i),
+						$this->input->post('option-tawsil-2-'.$i),
+						$this->input->post('link-option-tawsil-2-'.$i),
+						$this->input->post('option-tawsil-3-'.$i),
+						$this->input->post('link-option-tawsil-3-'.$i),
+						$this->input->post('option-tawsil-4-'.$i),
+						$this->input->post('link-option-tawsil-4-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
-					if (isset($result) & $result != '') {
+					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
 
+						$resultJunction = $this->examModel->add_tawsil_junction(
+							$result,
+							$examId,
+						);
+						if(isset($resultJunction) & $resultJunction=='ok' ) {
+							$data['title'] = 'Yahia MAS';
+						}else{
+							$data['title'] = 'Yahia MAs';
+							$this->session->set_flashdata('error','Error Adding Junction ');
+						}
 					} else {
 						$data['title'] = 'Yahia MAs';
 						$this->session->set_flashdata('error', 'Error Adding Exam ' . $result);
@@ -148,9 +194,19 @@ class Teacher extends CI_Controller {
 						$this->input->post('option-to-order-4-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
-					if (isset($result) & $result != '') {
+					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
 
+						$resultJunction = $this->examModel->add_tartib_junction(
+							$result,
+							$examId,
+						);
+						if(isset($resultJunction) & $resultJunction=='ok' ) {
+							$data['title'] = 'Yahia MAS';
+						}else{
+							$data['title'] = 'Yahia MAs';
+							$this->session->set_flashdata('error','Error Adding Junction ');
+						}
 					} else {
 						$data['title'] = 'Yahia MAs';
 						$this->session->set_flashdata('error', 'Error Adding Exam ' . $result);
@@ -158,6 +214,9 @@ class Teacher extends CI_Controller {
 					}
 				}
 			}
+
+
+
 			$data['title'] = 'Yahia MAs';
 			$this->session->set_flashdata('success','Exam added succesfully ');
 			redirect('index',$data);
