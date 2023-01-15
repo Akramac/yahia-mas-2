@@ -56,8 +56,18 @@ class Teacher extends CI_Controller {
 		if($this->form_validation->run())
 		{
 			/* add to table exam  */
+			// get teacher_id
+			$this->db->select("teachers.id");
+			$this->db->from('teachers');
+			$this->db->join('users','teachers.user_id = users.id');
+			$query = $this->db->get();
+			$teacherResult= $query->result();
+			$idTeacher='';
+			if(!empty($teacherResult)){
+				$idTeacher=$teacherResult[0]->id;
+			}
 			$examId = $this->examModel->add_exam(
-				$this->session->userdata('id'),
+				$idTeacher,
 				$this->input->post('select-category')
 			);
 			if(isset($examId) & $examId!='' ){
