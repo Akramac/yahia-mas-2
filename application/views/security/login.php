@@ -1,7 +1,7 @@
 
 
 
-<?php $this->view('partials/header',)?>
+<?php $this->view('partials/header')?>
 <!-- Compiled and minified CSS -->
 <head>
 </head>
