@@ -6,6 +6,16 @@ class RegisterModel extends CI_Model
 		$this->db->insert('users', $data);
 		return $this->db->insert_id();
 	}
+	function insertStudent($data)
+	{
+		$this->db->insert('students', $data);
+		return $this->db->insert_id();
+	}
+	function insertTeacher($data)
+	{
+		$this->db->insert('teachers', $data);
+		return $this->db->insert_id();
+	}
 
 	function verify_email($key)
 	{

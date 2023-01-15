@@ -41,6 +41,13 @@ class LoginModel extends CI_Model
 			return 'Wrong Email Address';
 		}
 	}
+
+	function getUserId() {
+		$idUser=$this->session->userdata('id');
+		$this->db->where( 'id', $idUser );
+		$query = $this->db->get('users');
+		return $query->row();
+	}
 }
 
 ?>

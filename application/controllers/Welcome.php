@@ -27,8 +27,19 @@ class Welcome extends CI_Controller {
 	{
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
+		$idUser=$this->session->userdata('id');
+		$this->db->select("users.user_level");
+		$this->db->from('users');
+		$this->db->where('users.id',$idUser);
+		$query = $this->db->get();
+		$userLevel=$query->result();
 		//$this->lang->load('en','english');
 		$data['title'] = 'Yahia MAS';
+		$data['userId'] = $idUser;
+		if(!empty($userLevel) ){
+			$data['user_role'] = $userLevel[0];
+		}
+
 		$this->load->view('index',$data);
 	}
 	function logout()

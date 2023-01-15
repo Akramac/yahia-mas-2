@@ -12,7 +12,7 @@
 
 <div class="wrapper">
 
-	<?php $this->view('partials/menu')?>
+	<?php $this->view('partials/menu' );?>
 	<!-- ========================  Tabsy wrapper ======================== -->
 
 	<section class="tabsy-wrapper tabsy-wrapper-intro">
@@ -33,7 +33,7 @@
 
 			<div class="tabsy-images">
 				<div id="idImgPrim1">
-					<div class="h1 title"><small>Category</small>Math</div>
+					<div class="h1 title"><small>Category</small>Maths</div>
 					<img src="<?php echo base_url(); ?>assets/images/sliders/math.jpg" alt="Alternate Text" />
 				</div>
 				<div id="idImgPrim2">

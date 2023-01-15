@@ -28,19 +28,21 @@ function validation()
 	$this->form_validation->set_rules('user_name', 'Name', 'required|trim');
 	$this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email|is_unique[users.email]');
 	$this->form_validation->set_rules('user_password', 'Password', 'required');
+	$this->form_validation->set_rules('user_type', 'User Type', 'required');
 	$userType=$this->input->post('user_type');
 	$userLevel='';
 	if(isset($userType) and $userType=='teacher'){
 		$userLevel='ROLE_TEACHER';
 	}
 	if(isset($userType) and $userType=='student'){
-		$userLevel='ROLE_TEACHER';
+		$userLevel='ROLE_STUDENT';
 	}
 	if(isset($userType) and $userType=='admin'){
-		$userLevel='ROLE_TEACHER';
+		$userLevel='ROLE_ADMIN';
 	}
 	if($this->form_validation->run())
 	{
+		try {
 			$verification_key = md5(rand());
 			$encrypted_password = $this->encryption->encrypt($this->input->post('user_password'));
 			$data = array(
@@ -51,16 +53,49 @@ function validation()
 				'verification_key' => $verification_key
 			);
 			$id = $this->registerModel->insert($data);
+		} catch (Exception $e) {
+			$this->session->set_flashdata('error', 'Problem registering :'.$e->getMessage());
+			$data['title'] = 'Registration';
+			$this->load->view('security/register',$data);
+		}
 
 			if($id > 0)
 			{
-				$this->session->set_flashdata('success', 'You have been registered succesfully !');
-				redirect('login');
+				$data = array(
+					'user_id'  => $id,
+					'name'  => $this->input->post('user_name'),
+					'email'  => $this->input->post('user_email'),
+				);
+				if($userLevel=='ROLE_STUDENT'){
+
+					$idStudent = $this->registerModel->insertStudent($data);
+					if($idStudent > 0)
+					{
+						$this->session->set_flashdata('success', 'You have been registered succesfully !');
+						redirect('login');
+					}else{
+						$this->session->set_flashdata('error', 'Problem registering student');
+					}
+				}elseif ($userLevel=='ROLE_TEACHER'){
+					$idTeacher = $this->registerModel->insertTeacher($data);
+					if($idTeacher > 0)
+					{
+						$this->session->set_flashdata('success', 'You have been registered succesfully !');
+						redirect('login');
+					}else{
+						$this->session->set_flashdata('error', 'Problem registering student');
+					}
+				}
+
+
 			}
 	}
 	else
 	{
-	$this->index();
+		$this->session->set_flashdata('error', 'Error Form');
+		$data['title'] = 'Registration';
+		redirect('login');
+		//$this->load->view('security/register',$data);
 	}
 	}
 

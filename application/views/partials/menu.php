@@ -67,8 +67,7 @@
 								<div class="box-full">
 									<div class="box clearfix">
 										<ul>
-											<li class="label">Homepages</li>
-
+											<a href="<?php echo base_url(); ?>index.php/index"><li class="label" >Home</li></a>
 										</ul>
 									</div>
 								</div>
@@ -83,9 +82,12 @@
 									<div class="box clearfix">
 										<ul>
 											<li class="label">Single dropdown</li>
-											<li><a href="about.html">About us</a></li>
-											<li><a href="contact.html">Contact</a></li>
-											<li><a href="login.html">Login & Register</a></li>
+											<?php if ( $this->session->userdata('user_type') === 'ROLE_TEACHER' ) : ?>
+											<li><a  style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/teacher/teacherExam">Add Exam</a></li>
+											<?php endif; ?>
+											<?php if ( $this->session->userdata('user_type') === 'ROLE_STUDENT' ) : ?>
+												<li><a style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/student/studentExam">Pass Exam</a></li>
+											<?php endif; ?>
 										</ul>
 									</div>
 								</div>

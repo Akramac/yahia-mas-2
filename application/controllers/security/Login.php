@@ -10,7 +10,10 @@ class Login extends CI_Controller {
 		$this->load->library("session");
 		if($this->session->userdata('id'))
 		{
+			$idUser=$this->session->userdata('id');
 			$data['title'] = 'Yahia MAS';
+			$data['userId'] = $idUser;
+			$this->session->set_userdata($idUser);
 			redirect('index',$data);
 		}
 		$this->load->library('form_validation');
