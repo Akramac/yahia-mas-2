@@ -918,230 +918,200 @@
 			</div>-->
 			<form id="msform">
 				<ul class="stepper horizontal " id="horizontal">
-					<li class="step active">
-						<div data-step-label="" class="step-title waves-effect waves-dark"></div>
-						<div class="step-content">
-							<div class="countdown" style="zoom:0.2;">
-								<svg viewBox="-50 -50 100 100" stroke-width="10">
-									<circle r="45"></circle>
-									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-								</svg>
+					
+					<?php foreach($listQuestionsSingleChoice as $question) { ?>
+						<li class="step step-4">
+							<div class="step-title waves-effect waves-dark"></div>
+							<div class="step-content">
+								<div class="countdown" style="zoom:0.2;">
+									<svg viewBox="-50 -50 100 100" stroke-width="10">
+										<circle r="45"></circle>
+										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+									</svg>
+								</div>
+								<h5><?php echo $question->title; ?></h5>
+								<label>Select the correct answer</label>
+								<div class="row">
+
+									<div class="col-md-6 com-xs-12">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="1" style="height: 90px;">
+											<div class="card-content white-text card-4-options">
+												<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_1; ?></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 com-xs-12">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="2" style="height: 90px;">
+											<div class="card-content white-text card-4-options">
+												<p><img src="<?php echo base_url(); ?>assets/images/traingle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />  <?php echo $question->option_2; ?></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 com-xs-12">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="3" style="height: 90px;">
+											<div class="card-content white-text card-4-options">
+												<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_3; ?></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 com-xs-12">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="4" style="height: 90px;">
+											<div class="card-content white-text card-4-options">
+												<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_4; ?></p>
+											</div>
+										</div>
+									</div>
+
+									<div class="input-field col s12" hidden>
+
+										<select class="browser-default " id="select-options-cards" style="margin-top:7%;">
+											<option value=""  disabled selected>Choose the type of question</option>
+											<option value="1">text</option>
+											<option value="2">multiple choice</option>
+											<option value="3">long text</option>
+											<option value="4">choose wrong word</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="step-actions">
+									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+									-->
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+								</div>
 							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<div class="col-md-12" >
-										<div class="form-group">
-											<label style="text-align:left">Question about polynomes :what are 1</label>
-											<input type="text" value="" class="form-control" placeholder="Your answer" required="required">
+						</li>
+					<?php } ?>
+					<?php foreach($listQuestionsLongText as $question) { ?>
+						<li class="step ">
+							<div data-step-label="" class="step-title waves-effect waves-dark"></div>
+							<div class="step-content">
+								<div class="countdown" style="zoom:0.2;">
+									<svg viewBox="-50 -50 100 100" stroke-width="10">
+										<circle r="45"></circle>
+										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+									</svg>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<div class="col-md-12" >
+											<div class="form-group">
+												<label style="text-align:left"><?php echo $question->title; ?></label>
+												<input type="text" value="" class="form-control" placeholder="Your answer" >
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="step-actions">
-								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-							</div>
-						</div>
-					</li>
-					<li class="step">
-						<div class="step-title waves-effect waves-dark"></div>
-						<div class="step-content">
-							<div class="countdown" style="zoom:0.2;">
-								<svg viewBox="-50 -50 100 100" stroke-width="10">
-									<circle r="45"></circle>
-									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-								</svg>
-							</div>
-							<div class="row">
-								<div class="input-field col s12">
-									<label >Who has discovered Pi ?</label>
-									<div  class="div-after-label">
-										<p>
-											<label>
-												<input id="indeterminate-checkbox" type="checkbox" />
-												<span>Person 1</span>
-											</label>
-										</p>
-										<p>
-											<label>
-												<input id="indeterminate-checkbox" type="checkbox" />
-												<span>Person 2</span>
-											</label>
-										</p>
-										<p>
-											<label>
-												<input id="indeterminate-checkbox" type="checkbox" />
-												<span>Person 3</span>
-											</label>
-										</p>
-									</div>
-
+								<div class="step-actions">
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
 								</div>
 							</div>
-							<div class="step-actions">
-<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
--->								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
-							</div>
-						</div>
-					</li>
-					<li class="step">
-						<div class="step-title waves-effect waves-dark"></div>
-						<div class="step-content">
-							<div class="countdown" style="zoom:0.2;">
-								<svg viewBox="-50 -50 100 100" stroke-width="10">
-									<circle r="45"></circle>
-									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-								</svg>
-							</div>
-							<div class="row" >
-								<div class="input-field col s12">
-									<label >Link the correct options</label>
-									<div style="margin-top: 7%;">
-										<div class="row">
-										<ul id="sortlist" class="col-md-6 col-xs-6">
-											<li>
-												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-												 First
-												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
-											</li>
-											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-												Second
-												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
-											</li>
-											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-												third
-												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
-											</li>
-											<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-												Fourth
-												<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
-											</li>
-										</ul>
+						</li>
+					<?php } ?>
 
-										<ul id="correspList" class="correspList col-md-6 col-xs-6">
-											<li>
-												Ref 1
-											</li>
-											<li>Ref 2</li>
-											<li>Ref 3</li>
-											<li>Ref 4</li>
-										</ul>
+					<?php foreach($listQuestionsTawsil as $question) { ?>
+						<li class="step">
+							<div class="step-title waves-effect waves-dark"></div>
+							<div class="step-content">
+								<div class="countdown" style="zoom:0.2;">
+									<svg viewBox="-50 -50 100 100" stroke-width="10">
+										<circle r="45"></circle>
+										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+									</svg>
+								</div>
+								<div class="row" >
+									<div class="input-field col s12">
+										<label >Link the correct options</label>
+										<div style="margin-top: 7%;">
+											<div class="row">
+												<ul id="sortlist" class="col-md-6 col-xs-6">
+													<li>
+														<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														First
+														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+													</li>
+													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														Second
+														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+													</li>
+													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														third
+														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+													</li>
+													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														Fourth
+														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
+													</li>
+												</ul>
+
+												<ul id="correspList" class="correspList col-md-6 col-xs-6">
+													<li>
+														Ref 1
+													</li>
+													<li>Ref 2</li>
+													<li>Ref 3</li>
+													<li>Ref 4</li>
+												</ul>
+
+											</div>
+
+
 
 										</div>
 
-
-
-									</div>
-
-								</div>
-							</div>
-							<div class="step-actions">
-								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
-								-->								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
-							</div>
-						</div>
-					</li>
-					<li class="step step-4">
-						<div class="step-title waves-effect waves-dark"></div>
-						<div class="step-content">
-							<div class="countdown" style="zoom:0.2;">
-								<svg viewBox="-50 -50 100 100" stroke-width="10">
-									<circle r="45"></circle>
-									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-								</svg>
-							</div>
-							<label>Select the correct answer</label>
-							<div class="row">
-
-								<div class="col-md-6 com-xs-12">
-									<div class="card blue-grey darken-1 card-options" id="step-4" alt="1" style="height: 90px;">
-										<div class="card-content white-text card-4-options">
-											<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 1</p>
-										</div>
 									</div>
 								</div>
-								<div class="col-md-6 com-xs-12">
-									<div class="card blue-grey darken-1 card-options" id="step-4" alt="2" style="height: 90px;">
-										<div class="card-content white-text card-4-options">
-											<p><img src="<?php echo base_url(); ?>assets/images/traingle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />  Option 2</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 com-xs-12">
-									<div class="card blue-grey darken-1 card-options" id="step-4" alt="3" style="height: 90px;">
-										<div class="card-content white-text card-4-options">
-											<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 3</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 com-xs-12">
-									<div class="card blue-grey darken-1 card-options" id="step-4" alt="4" style="height: 90px;">
-										<div class="card-content white-text card-4-options">
-											<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> Option 4</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="input-field col s12" hidden>
-
-									<select class="browser-default " id="select-options-cards" style="margin-top:7%;">
-										<option value=""  disabled selected>Choose the type of question</option>
-										<option value="1">text</option>
-										<option value="2">multiple choice</option>
-										<option value="3">long text</option>
-										<option value="4">choose wrong word</option>
-									</select>
-
+								<div class="step-actions">
+									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+									-->								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
 								</div>
 							</div>
-							<div class="step-actions">
-								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
-								-->
-								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+						</li>
+					<?php } ?>
+					<?php foreach($listQuestionsTartib as $question) { ?>
+						<li class="step step-5">
+							<div class="step-title waves-effect waves-dark"></div>
+							<div class="step-content">
+								<div class="countdown" style="zoom:0.2;">
+									<svg viewBox="-50 -50 100 100" stroke-width="10">
+										<circle r="45"></circle>
+										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
+									</svg>
+								</div>
+								<h5><?php echo $question->title; ?></h5>
+								<label>Oder this cards correctly :</label>
+								<div class="row justify-content-center">
+									<ul id="sortlistOrder" class="col-md-6 col-xs-12" >
+										<li>
+											<?php echo $question->option_to_order_1; ?>
+											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+										</li>
+										<li>
+											<?php echo $question->option_to_order_2; ?>
+											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+										</li>
+										<li>
+											<?php echo $question->option_to_order_3; ?>
+											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+										</li>
+										<li>
+											<?php echo $question->option_to_order_4; ?>
+											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
+										</li>
+									</ul>
+								</div>
+								<div class="step-actions">
+									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
+									-->
+									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
+								</div>
 							</div>
-						</div>
-					</li>
+						</li>
+					<?php } ?>
 
-					<li class="step step-5">
-						<div class="step-title waves-effect waves-dark"></div>
-						<div class="step-content">
-							<div class="countdown" style="zoom:0.2;">
-								<svg viewBox="-50 -50 100 100" stroke-width="10">
-									<circle r="45"></circle>
-									<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
-								</svg>
-							</div>
-							<label>Oder this cards correctly :</label>
-							<div class="row justify-content-center">
-								<ul id="sortlistOrder" class="col-md-6 col-xs-12" >
-									<li>
-										First
-										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
-									</li>
-									<li>
-										Second
-										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
-									</li>
-									<li>
-										third
-										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
-									</li>
-									<li>
-										Fourth
-										<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
-									</li>
-								</ul>
-							</div>
-							<div class="step-actions">
-								<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
-								-->
-								<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
-								<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
-							</div>
-						</div>
-					</li>
 					<li class="step ">
 						<div class="step-title waves-effect waves-dark">Finish</div>
 						<div class="step-content">
