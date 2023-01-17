@@ -37,6 +37,8 @@ class Student extends CI_Controller {
 			redirect('login',$data);
 		}
 		$this->load->library('session');
+		$this->load->library('form_validation');
+		$this->load->model('responsesModel');
 	}
 	public function studentExam($idExam='')
 	{
@@ -84,6 +86,15 @@ class Student extends CI_Controller {
 		$query = $this->db->get();
 		$listQuestionsTartib= $query->result();
 		$data['listQuestionsTartib'] =$listQuestionsTartib;
+
+		$data['idExam'] =$idExam;
+		$this->db->select('exams.teacher_id');
+		$this->db->from('exams');
+		$this->db->where('exams.id', $idExam);
+		$query = $this->db->get();
+		$idTeacher= $query->result();
+		$idTeacher=$idTeacher[0]->teacher_id;
+		$data['idTeacher'] =$idTeacher;
 		$this->load->view('student/studentExam',$data);
 	}
 
@@ -141,9 +152,162 @@ class Student extends CI_Controller {
 		}
 		$this->load->view('student/studentListExam',$data);
 	}
-	/*
-		public function switchLang($language = "") {
-			$this->session->set_userdata('site_lang', $language);
-			header('Location: http://localhost/ci_multilingual_app/');
+
+	public function studentaddExamToDB()
+	{
+		$this->session->set_userdata('site_lang', "english");
+		$this->lang->load('ar', 'arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page';
+
+		$idUser=$this->session->userdata('id');
+		// get id student
+		$this->db->select("students.id");
+		$this->db->from('students');
+		$this->db->join('users','students.user_id = users.id');
+		$this->db->where('users.id', $idUser);
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		$idStudent='';
+		if(!empty($studentResult)){
+			$idStudent=$studentResult[0]->id;
+		}
+
+
+		/*foreach ($_POST as $key => $value) {
+			echo "<tr>";
+			echo "<td>";
+			echo $key;
+			echo "</td>";
+			echo "<td>";
+			echo $value;
+			echo "</td>";
+			echo "</tr>";
 		}*/
+		$this->form_validation->set_rules('idExam', 'Exam Id', 'required');
+		$this->form_validation->set_rules('idTeacher', 'Teacher Id', 'required');
+		if($this->form_validation->run()) {
+		foreach ($_POST as $key => $value) {
+			$numbers = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+			$result = str_replace($numbers, "", $key);
+
+
+			// get id teacher
+			$this->db->select("exams.teacher_id");
+			$this->db->from('exams');
+			$this->db->where('exams.id', $this->input->post('idExam'));
+			$query = $this->db->get();
+			$teacherResult= $query->result();
+			$idTeacher='';
+			if(!empty($teacherResult)){
+				$idTeacher=$teacherResult[0]->teacher_id;
+			}
+			switch ($result) {
+				case 'select-options-cards-':
+
+						$pieces = explode("-", $key);
+						$idQuest=$pieces[3];
+						$id = $this->responsesModel->insert_options_choices(
+							$this->session->userdata('id'),
+							$idTeacher,
+							$idStudent,
+							$idQuest,
+							$this->input->post('idExam'),
+							$this->input->post($key),
+							$this->input->post($key),
+							$this->input->post($key),
+							$this->input->post($key));
+
+					break;
+				case 'tawsil-input-':
+					echo "i equals 1";
+					break;
+				case 'tartib-input-':
+					echo "i equals 2";
+					break;
+			}
+		}
+		}else
+		{
+			$this->session->set_flashdata('error', 'Error Form');
+			$data['title'] = 'Registration';
+			redirect('index');
+			//$this->load->view('security/register',$data);
+		}
+		exit;
+		$userType=$this->input->post('user_type');
+		$userLevel='';
+		if(isset($userType) and $userType=='teacher'){
+			$userLevel='ROLE_TEACHER';
+		}
+		if(isset($userType) and $userType=='student'){
+			$userLevel='ROLE_STUDENT';
+		}
+		if(isset($userType) and $userType=='admin'){
+			$userLevel='ROLE_ADMIN';
+		}
+		if($this->form_validation->run())
+		{
+			try {
+				$verification_key = md5(rand());
+				$encrypted_password = $this->encryption->encrypt($this->input->post('user_password'));
+				$data = array(
+					'user_level'  => $userLevel,
+					'name'  => $this->input->post('user_name'),
+					'email'  => $this->input->post('user_email'),
+					'password' => $encrypted_password,
+					'verification_key' => $verification_key
+				);
+				$id = $this->registerModel->insert($data);
+			} catch (Exception $e) {
+				$this->session->set_flashdata('error', 'Problem registering :'.$e->getMessage());
+				$data['title'] = 'Registration';
+				$this->load->view('security/register',$data);
+			}
+
+			if($id > 0)
+			{
+				$data = array(
+					'user_id'  => $id,
+					'name'  => $this->input->post('user_name'),
+					'email'  => $this->input->post('user_email'),
+				);
+				if($userLevel=='ROLE_STUDENT'){
+
+					$idStudent = $this->registerModel->insertStudent($data);
+					if($idStudent > 0)
+					{
+						$this->session->set_flashdata('success', 'You have been registered succesfully !');
+						redirect('login');
+					}else{
+						$this->session->set_flashdata('error', 'Problem registering student');
+					}
+				}elseif ($userLevel=='ROLE_TEACHER'){
+					$idTeacher = $this->registerModel->insertTeacher($data);
+					if($idTeacher > 0)
+					{
+						$this->session->set_flashdata('success', 'You have been registered succesfully !');
+						redirect('login');
+					}else{
+						$this->session->set_flashdata('error', 'Problem registering student');
+					}
+				}
+
+
+			}
+		}
+		else
+		{
+			$this->session->set_flashdata('error', 'Error Form');
+			$data['title'] = 'Registration';
+			redirect('login');
+			//$this->load->view('security/register',$data);
+		}
+
+	}
+		/*
+			public function switchLang($language = "") {
+				$this->session->set_userdata('site_lang', $language);
+				header('Location: http://localhost/ci_multilingual_app/');
+			}*/
 }

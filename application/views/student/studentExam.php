@@ -916,9 +916,12 @@
 					</form>
 				</div>
 			</div>-->
-			<form id="msform">
+			<form id="msform" method="post" action="<?php echo base_url(); ?>index.php/student/add-exam	">
+				<input type="text" value="<?php echo $idExam; ?>" name="idExam" class="form-control"  hidden>
+				<input type="text" value="<?php echo $idTeacher; ?>" name="idTeacher" class="form-control"  hidden>
+
 				<ul class="stepper horizontal " id="horizontal">
-					
+
 					<?php foreach($listQuestionsSingleChoice as $question) { ?>
 						<li class="step step-4">
 							<div class="step-title waves-effect waves-dark"></div>
@@ -934,42 +937,42 @@
 								<div class="row">
 
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 card-options" id="step-4" alt="1" style="height: 90px;">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="<?php echo $question->option_1; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_1; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 card-options" id="step-4" alt="2" style="height: 90px;">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="<?php echo $question->option_2; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/traingle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />  <?php echo $question->option_2; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 card-options" id="step-4" alt="3" style="height: 90px;">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="<?php echo $question->option_3; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_3; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 card-options" id="step-4" alt="4" style="height: 90px;">
+										<div class="card blue-grey darken-1 card-options" id="step-4" alt="<?php echo $question->option_4; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_4; ?></p>
 											</div>
 										</div>
 									</div>
 
-									<div class="input-field col s12" hidden>
+									<div class="input-field col s12" >
 
-										<select class="browser-default " id="select-options-cards" style="margin-top:7%;">
+										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;">
 											<option value=""  disabled selected>Choose the type of question</option>
-											<option value="1">text</option>
-											<option value="2">multiple choice</option>
-											<option value="3">long text</option>
-											<option value="4">choose wrong word</option>
+											<option value="<?php echo $question->option_1; ?>"><?php echo $question->option_1; ?></option>
+											<option value="<?php echo $question->option_2; ?>"><?php echo $question->option_2; ?></option>
+											<option value="<?php echo $question->option_3; ?>"><?php echo $question->option_3; ?></option>
+											<option value="<?php echo $question->option_4; ?>"><?php echo $question->option_4; ?></option>
 										</select>
 
 									</div>
@@ -998,7 +1001,7 @@
 										<div class="col-md-12" >
 											<div class="form-group">
 												<label style="text-align:left"><?php echo $question->title; ?></label>
-												<input type="text" value="" class="form-control" placeholder="Your answer" >
+												<input type="text" name="long-text-<?php echo $question->quest_long_text_id; ?>" class="form-control" placeholder="Your answer" >
 											</div>
 										</div>
 									</div>
@@ -1025,34 +1028,36 @@
 										<label >Link the correct options</label>
 										<div style="margin-top: 7%;">
 											<div class="row">
-												<ul id="sortlist" class="col-md-6 col-xs-6">
-													<li>
+												<ul id="sortlist" class="col-md-6 col-xs-6 sortlist">
+													<li alt="<?php echo $question->option_1; ?>">
 														<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-														First
+														<?php echo $question->option_1; ?>
 														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
 													</li>
-													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-														Second
+													<li alt="<?php echo $question->option_2; ?>">												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														<?php echo $question->option_2; ?>
 														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
 													</li>
-													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-														third
+													<li alt="<?php echo $question->option_3; ?>">												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														<?php echo $question->option_3; ?>
 														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
 													</li>
-													<li>												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
-														Fourth
+													<li alt="<?php echo $question->option_4; ?>">												<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;margin-right:5%;" />
+														<?php echo $question->option_4; ?>
 														<img src="<?php echo base_url(); ?>assets/images/link.png" alt="Alternate Text" style="width:25px;float:right;"/>
 													</li>
 												</ul>
 
-												<ul id="correspList" class="correspList col-md-6 col-xs-6">
+												<ul id="correspList"  class="correspList col-md-6 col-xs-6">
 													<li>
-														Ref 1
+														<?php echo $question->link_option_1; ?>
 													</li>
-													<li>Ref 2</li>
-													<li>Ref 3</li>
-													<li>Ref 4</li>
+													<li><?php echo $question->link_option_2; ?></li>
+													<li><?php echo $question->link_option_3; ?></li>
+													<li><?php echo $question->link_option_4; ?></li>
 												</ul>
+
+												<input type="text" value="1,2,3,4" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  >
 
 											</div>
 
@@ -1061,6 +1066,7 @@
 										</div>
 
 									</div>
+
 								</div>
 								<div class="step-actions">
 									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
@@ -1068,6 +1074,7 @@
 									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
 								</div>
 							</div>
+
 						</li>
 					<?php } ?>
 					<?php foreach($listQuestionsTartib as $question) { ?>
@@ -1083,24 +1090,26 @@
 								<h5><?php echo $question->title; ?></h5>
 								<label>Oder this cards correctly :</label>
 								<div class="row justify-content-center">
-									<ul id="sortlistOrder" class="col-md-6 col-xs-12" >
-										<li>
+									<ul id="sortlistOrder" class="col-md-6 col-xs-12 sortlistOrder" >
+										<li alt="<?php echo $question->option_to_order_1; ?>">
 											<?php echo $question->option_to_order_1; ?>
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
-										<li>
+										<li alt="<?php echo $question->option_to_order_2; ?>">
 											<?php echo $question->option_to_order_2; ?>
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
-										<li>
+										<li alt="<?php echo $question->option_to_order_3; ?>">
 											<?php echo $question->option_to_order_3; ?>
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
-										<li>
+										<li alt="<?php echo $question->option_to_order_4; ?>">
 											<?php echo $question->option_to_order_4; ?>
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
 									</ul>
+									<input type="text" value="1,2,3,4" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  >
+
 								</div>
 								<div class="step-actions">
 									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
@@ -1159,6 +1168,27 @@
 			firstActive: 0 // this is the default
 		})
 
+		$('.sortlist > li').mouseleave(function() {
+			var inputTawsil=$(this).parent().parent().find('.tawsil-input');
+			var listTawsil=$(this).parent().find('li');
+			var concatTawsilOrder=';'
+			listTawsil.each(function(){
+				concatTawsilOrder=concatTawsilOrder+$(this).attr('alt')+';';
+
+			});
+			inputTawsil.val(concatTawsilOrder);
+		});
+
+		$('.sortlistOrder > li').mouseleave(function() {
+			var inputTartib=$(this).parent().parent().find('.tartib-input');
+			var listTawsil=$(this).parent().find('li');
+			var concatTartibOrder=';'
+			listTawsil.each(function(){
+				concatTartibOrder=concatTartibOrder+$(this).attr('alt')+';';
+
+			});
+			inputTartib.val(concatTartibOrder);
+		});
 		slist(document.getElementById("sortlist"));
 		slist(document.getElementById("sortlistOrder"));
 
@@ -1171,6 +1201,8 @@
 			$('.'+id+' #select-options-cards option').removeAttr("selected");
 			$('.'+id+' #select-options-cards option[value='+orderValue+']').attr('selected','selected');
 		});
+
+
 	})
 
 	function onDragStart(event) {

@@ -55,12 +55,14 @@ $route['student/exam'] = 'student/exam';
 $route['student/pass/exam/(:any)'] = 'student/studentExam/$1';
 $route['student/list/exam'] = 'student/studentListExam';
 $route['student/list/exam/(:any)'] = 'student/studentListExam/$1';
+$route['student/add-exam'] = 'student/studentaddExamToDB';
 $route['teacher/exam'] = 'teacher/exam';
 $route['register'] = 'security/register';
 $route['login'] = 'security/login';
 $route['change-password'] = 'security/changePassword/pageChangePassword';
 $route['change-password-treatment'] = 'security/changePassword/changePassword';
 $route['register/validation'] = 'security/register/validation';
+
 $route['login/validation'] = 'security/login/validation';
 $route['logout'] = 'welcome/logout';
 

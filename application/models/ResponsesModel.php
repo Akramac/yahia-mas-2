@@ -1,5 +1,5 @@
 <?php
-class ExamModel extends CI_Model
+class ResponsesModel extends CI_Model
 {
 
 	function add_exam($teacherID, $categoryId)
@@ -10,7 +10,22 @@ class ExamModel extends CI_Model
 		$this->db->insert('exams', $data);
 		return $this->db->insert_id();
 	}
+	function insert_options_choices($userID,$teacherID,$studentID, $questID,$examID,$responseOption1,$responseOption2,$responseOption3,$responseOption4)
+	{
 
+		$data['user_id']=$userID;
+		$data['teacher_id']=$teacherID;
+		$data['student_id']=$studentID;
+		$data['question_multi_id']=$questID;
+		$data['exam_id']=$examID;
+		$data['response_option_1']=$responseOption1;
+		$data['response_option_2']=$responseOption2;
+		$data['response_option_3']=$responseOption3;
+		$data['response_option_4']=$responseOption4;
+
+		$this->db->insert('response_question_multi_choice', $data);
+		return $this->db->insert_id();
+	}
 	function add_data_choices($userID, $title,$timepick,$CheckUnique,$checkMultiple,$option1,$option2,$option3,$option4,$fileUrl)
 	{
 
