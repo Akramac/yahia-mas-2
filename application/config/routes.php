@@ -58,6 +58,9 @@ $route['student/list/exam/(:any)'] = 'student/studentListExam/$1';
 $route['student/add-exam'] = 'student/studentaddExamToDB';
 $route['teacher/teacher-exam'] = 'teacher/teacherExam';
 $route['teacher/exam'] = 'teacher/exam';
+
+$route['admin/administration'] = 'admin/administration';
+$route['admin/administration/(:any)'] = 'admin/administration/$1';
 $route['register'] = 'security/register';
 $route['login'] = 'security/login';
 $route['change-password'] = 'security/changePassword/pageChangePassword';

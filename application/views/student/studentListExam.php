@@ -597,7 +597,6 @@
 			</div> <!--/owl-icons-->
 		</div> <!--/container-->
 	</section>
-	<?php echo $teacher->name; ?>
 	<!-- ========================  Block banner category ======================== -->
 
 	<!-- ========================  Best seller ======================== -->
@@ -669,7 +668,7 @@
                                         <a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
                                     </span>
 										<span>
-                                        <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
+                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>" class="" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                                     </span>
 									</div>
 									<div class="figure-list">

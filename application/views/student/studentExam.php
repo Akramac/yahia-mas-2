@@ -578,88 +578,80 @@
 		<header class="hidden">
 			<h2>Product categories</h2>
 		</header>
-
+<!--
 		<div class="clearfix">
 
 			<div class="owl-icons owl-icons-rounded ">
 
-				<!-- === icon item === -->
+				<-- === icon item ===
 
 				<a href="#">
 					<figure>
-						<img  src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
+						<img  src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
 						<figcaption>Teacher 1</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img class="teachers-avatar" src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
+						<img class="teachers-avatar" src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 2</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 3</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 4</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 5</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 6</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 7</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 8</figcaption>
 					</figure>
 				</a>
 
-				<!-- === icon item === -->
 
 				<a href="#">
 					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
+						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
 						<figcaption>Teacher 9</figcaption>
 					</figure>
 				</a>
@@ -667,8 +659,8 @@
 
 
 
-			</div> <!--/owl-icons-->
-		</div> <!--/container-->
+			</div>
+		</div>-->
 	</section>
 
 	<!-- ========================  Block banner category ======================== -->
@@ -967,7 +959,7 @@
 
 									<div class="input-field col s12" >
 
-										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;" hidden>
+										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;opacity:0;" >
 											<option value=""  disabled selected>Choose the type of question</option>
 											<option value="<?php echo $question->option_1; ?>"><?php echo $question->option_1; ?></option>
 											<option value="<?php echo $question->option_2; ?>"><?php echo $question->option_2; ?></option>
@@ -1057,7 +1049,7 @@
 													<li><?php echo $question->link_option_4; ?></li>
 												</ul>
 
-												<input type="text" value="1,2,3,4" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  hidden>
+												<input type="text" value="1,2,3,4" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  style="opacity:0;">
 
 											</div>
 
@@ -1108,7 +1100,7 @@
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
 									</ul>
-									<input type="text" value="1,2,3,4" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  hidden>
+									<input type="text" value="1,2,3,4" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  style="opacity:0;">
 
 								</div>
 								<div class="step-actions">

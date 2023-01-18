@@ -105,6 +105,7 @@ class Welcome extends CI_Controller {
 			}
 			if(isset($userLevel) and $userLevel=='ROLE_ADMIN'){
 				$userType='administrateur';
+				redirect('admin/administration');
 			}
 			$data['user_type'] = $userType;
 			$data['user_name'] = $userResult[0]->name;

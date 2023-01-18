@@ -126,7 +126,7 @@
 			<div class="owl-icons owl-icons-rounded">
 
 				<!-- === icon item  for student === -->
-				<?php if($_SESSION['user_type_role']=='Student')  : ?>
+				<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Student')  : ?>
 					<?php foreach($teachers_by_student as $teacher) { ?>
 					<a href="#">
 						<figure>
@@ -137,7 +137,7 @@
 					<?php } ?>
 				<?php endif ;?>
 
-				<?php if($_SESSION['user_type_role']=='Teacher')  : ?>
+				<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Teacher')  : ?>
 					<?php foreach($students_by_teacher as $student) { ?>
 						<a href="#">
 							<figure>
@@ -495,7 +495,7 @@
 		<ul class="stretcher">
 
 			<!-- === stretcher item === -->
-			<?php if($_SESSION['user_type_role']=='Student')  : ?>
+			<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Student')  : ?>
 			<?php foreach($exams_by_student as $exam) { ?>
 				<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
 					<!--logo-item-->

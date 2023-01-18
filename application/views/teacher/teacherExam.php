@@ -612,7 +612,7 @@ Common
 			<form id="msform-teacher" method="POST" action="<?php echo base_url(); ?>index.php/teacher/add-exam">
 				<div class="form-group">
 					<label style="text-align:left">Duration of the whole exam</label>
-					<input type="time" class="time-pick"  name="usr_time_exam">
+					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
 					<select class="browser-default" name="select-category" style="margin-top:7%;" required>
@@ -837,7 +837,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countMultiQuest}">
+								<input type="time" class="time-pick"  onfocus="this.showPicker()" name="usr_time-${countMultiQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
