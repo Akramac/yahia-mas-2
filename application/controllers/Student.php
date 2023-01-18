@@ -219,12 +219,114 @@ class Student extends CI_Controller {
 							$this->input->post($key));
 
 					break;
+				case 'long-text-':
+					$pieces = explode("-", $key);
+					$idQuest=$pieces[2];
+
+					// get id teacher
+					$this->db->select();
+					$this->db->from('question_long_text');
+					$this->db->where('question_long_text.id', $idQuest);
+					$query = $this->db->get();
+					$questLongTextResult= $query->result();
+					if(!empty($questLongTextResult)){
+						$correctOption1=$questLongTextResult[0]->title;
+
+
+						$id = $this->responsesModel->insert_long_text(
+							$this->session->userdata('id'),
+							$idTeacher,
+							$idStudent,
+							$idQuest,
+							$this->input->post('idExam'),
+							$correctOption1,
+							$this->input->post($key));
+
+					}
+
+					break;
 				case 'tawsil-input-':
-					echo "i equals 1";
+					$pieces = explode("-", $key);
+					$idQuest=$pieces[2];
+
+					// get id teacher
+					$this->db->select();
+					$this->db->from('question_tawsil');
+					$this->db->where('question_tawsil.id', $idQuest);
+					$query = $this->db->get();
+					$questTawsilResult= $query->result();
+					if(!empty($questTawsilResult)){
+						$correctOption1=$questTawsilResult[0]->option_1;
+						$correctOption2=$questTawsilResult[0]->option_2;
+						$correctOption3=$questTawsilResult[0]->option_3;
+						$correctOption4=$questTawsilResult[0]->option_4;
+						// get order of choices
+					$pieces = explode(";", $this->input->post($key));
+						$option1=$pieces[1];
+						$option2=$pieces[2];
+						$option3=$pieces[3];
+						$option4=$pieces[4];
+
+					$id = $this->responsesModel->insert_tawsil(
+						$this->session->userdata('id'),
+						$idTeacher,
+						$idStudent,
+						$idQuest,
+						$this->input->post('idExam'),
+						$correctOption1,
+						$option1,
+						$correctOption2,
+						$option2,
+						$correctOption3,
+						$option3,
+						$correctOption4,
+						$option4);
+
+					}
+
 					break;
 				case 'tartib-input-':
-					echo "i equals 2";
+
+					$pieces = explode("-", $key);
+					$idQuest=$pieces[2];
+
+					// get id teacher
+					$this->db->select();
+					$this->db->from('question_tartib');
+					$this->db->where('question_tartib.id', $idQuest);
+					$query = $this->db->get();
+					$questTartibResult= $query->result();
+					if(!empty($questTartibResult)){
+						$correctOption1=$questTartibResult[0]->option_to_order_1;
+						$correctOption2=$questTartibResult[0]->option_to_order_2;
+						$correctOption3=$questTartibResult[0]->option_to_order_3;
+						$correctOption4=$questTartibResult[0]->option_to_order_4;
+						// get order of choices
+						$pieces = explode(";", $this->input->post($key));
+						$option1=$pieces[1];
+						$option2=$pieces[2];
+						$option3=$pieces[3];
+						$option4=$pieces[4];
+
+						$id = $this->responsesModel->insert_tartib(
+							$this->session->userdata('id'),
+							$idTeacher,
+							$idStudent,
+							$idQuest,
+							$this->input->post('idExam'),
+							$correctOption1,
+							$option1,
+							$correctOption2,
+							$option2,
+							$correctOption3,
+							$option3,
+							$correctOption4,
+							$option4);
+
+					}
+
 					break;
+
 			}
 		}
 		}else
@@ -234,80 +336,10 @@ class Student extends CI_Controller {
 			redirect('index');
 			//$this->load->view('security/register',$data);
 		}
-		exit;
-		$userType=$this->input->post('user_type');
-		$userLevel='';
-		if(isset($userType) and $userType=='teacher'){
-			$userLevel='ROLE_TEACHER';
-		}
-		if(isset($userType) and $userType=='student'){
-			$userLevel='ROLE_STUDENT';
-		}
-		if(isset($userType) and $userType=='admin'){
-			$userLevel='ROLE_ADMIN';
-		}
-		if($this->form_validation->run())
-		{
-			try {
-				$verification_key = md5(rand());
-				$encrypted_password = $this->encryption->encrypt($this->input->post('user_password'));
-				$data = array(
-					'user_level'  => $userLevel,
-					'name'  => $this->input->post('user_name'),
-					'email'  => $this->input->post('user_email'),
-					'password' => $encrypted_password,
-					'verification_key' => $verification_key
-				);
-				$id = $this->registerModel->insert($data);
-			} catch (Exception $e) {
-				$this->session->set_flashdata('error', 'Problem registering :'.$e->getMessage());
-				$data['title'] = 'Registration';
-				$this->load->view('security/register',$data);
-			}
 
-			if($id > 0)
-			{
-				$data = array(
-					'user_id'  => $id,
-					'name'  => $this->input->post('user_name'),
-					'email'  => $this->input->post('user_email'),
-				);
-				if($userLevel=='ROLE_STUDENT'){
+		$this->session->set_flashdata('success', 'You have  registered your exam succesfully !');
+		redirect('index');
 
-					$idStudent = $this->registerModel->insertStudent($data);
-					if($idStudent > 0)
-					{
-						$this->session->set_flashdata('success', 'You have been registered succesfully !');
-						redirect('login');
-					}else{
-						$this->session->set_flashdata('error', 'Problem registering student');
-					}
-				}elseif ($userLevel=='ROLE_TEACHER'){
-					$idTeacher = $this->registerModel->insertTeacher($data);
-					if($idTeacher > 0)
-					{
-						$this->session->set_flashdata('success', 'You have been registered succesfully !');
-						redirect('login');
-					}else{
-						$this->session->set_flashdata('error', 'Problem registering student');
-					}
-				}
-
-
-			}
-		}
-		else
-		{
-			$this->session->set_flashdata('error', 'Error Form');
-			$data['title'] = 'Registration';
-			redirect('login');
-			//$this->load->view('security/register',$data);
-		}
 
 	}
-		/*
-			public function switchLang($language = "") {
-				$this->session->set_userdata('site_lang', $language);
-				header('Location: http://localhost/ci_multilingual_app/');
-			}*/
 }

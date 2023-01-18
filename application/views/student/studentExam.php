@@ -967,7 +967,7 @@
 
 									<div class="input-field col s12" >
 
-										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;">
+										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;" hidden>
 											<option value=""  disabled selected>Choose the type of question</option>
 											<option value="<?php echo $question->option_1; ?>"><?php echo $question->option_1; ?></option>
 											<option value="<?php echo $question->option_2; ?>"><?php echo $question->option_2; ?></option>
@@ -1057,7 +1057,7 @@
 													<li><?php echo $question->link_option_4; ?></li>
 												</ul>
 
-												<input type="text" value="1,2,3,4" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  >
+												<input type="text" value="1,2,3,4" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  hidden>
 
 											</div>
 
@@ -1108,7 +1108,7 @@
 											<img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>
 										</li>
 									</ul>
-									<input type="text" value="1,2,3,4" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  >
+									<input type="text" value="1,2,3,4" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  hidden>
 
 								</div>
 								<div class="step-actions">
