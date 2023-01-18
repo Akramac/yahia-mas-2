@@ -81,7 +81,7 @@
 								<div class="box-full">
 									<div class="box clearfix">
 										<ul>
-											<li class="label">Single dropdown</li>
+											<li class="label">Exams</li>
 											<?php if ( $this->session->userdata('user_type') === 'ROLE_TEACHER' ) : ?>
 											<li><a  style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/teacher/teacherExam">Add Exam</a></li>
 											<?php endif; ?>
@@ -205,10 +205,10 @@
 							<div class="front__bkg-photo"></div>
 							<div class="front__face-photo"></div>
 							<div class="front__text">
-								<h3 class="front__text-header"><?php echo $user_name; ?></h3>
-								<p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i><?php echo $user_email; ?></p>
+								<h3 class="front__text-header"><?php echo $_SESSION['user_name']; ?></h3>
+								<p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i><?php echo $_SESSION['user_email']; ?></p>
 
-								<span class="front__text-hover"><?php echo $user_type; ?></span>
+								<span class="front__text-hover"><?php echo $_SESSION['user_type_role']; ?></span>
 							</div>
 						</div>
 						<div class="back">

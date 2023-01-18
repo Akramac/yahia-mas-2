@@ -5,7 +5,9 @@
 			width: 140px !important;
 			height: 70px !important;
 		}
-
+		.owl-carousel .owl-item img {
+			width: 90% !important;
+		}
 
 	</style>
 <div class="page-loader"></div>
@@ -123,86 +125,29 @@
 
 			<div class="owl-icons owl-icons-rounded">
 
-				<!-- === icon item === -->
+				<!-- === icon item  for student === -->
+				<?php if($_SESSION['user_type_role']=='Student')  : ?>
+					<?php foreach($teachers_by_student as $teacher) { ?>
+					<a href="#">
+						<figure>
+							<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $teacher->id % 4; ?>.jpg" alt="Alternate Text" />
+							<figcaption><?php echo $teacher->name; ?></figcaption>
+						</figure>
+					</a>
+					<?php } ?>
+				<?php endif ;?>
 
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-1.png" alt="Alternate Text" />
-						<figcaption>Teacher 1</figcaption>
-					</figure>
-				</a>
+				<?php if($_SESSION['user_type_role']=='Teacher')  : ?>
+					<?php foreach($students_by_teacher as $student) { ?>
+						<a href="#">
+							<figure>
+								<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $student->id % 4; ?>.jpg" alt="Alternate Text" />
+								<figcaption><?php echo $student->name; ?></figcaption>
+							</figure>
+						</a>
+					<?php } ?>
+				<?php endif ;?>
 
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-2.png" alt="Alternate Text" />
-						<figcaption>Teacher 2</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-3.png" alt="Alternate Text" />
-						<figcaption>Teacher 3</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-4.png" alt="Alternate Text" />
-						<figcaption>Teacher 4</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-5.png" alt="Alternate Text" />
-						<figcaption>Teacher 5</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-6.png" alt="Alternate Text" />
-						<figcaption>Teacher 6</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-7.png" alt="Alternate Text" />
-						<figcaption>Teacher 7</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-8.png" alt="Alternate Text" />
-						<figcaption>Teacher 8</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/product-9.png" alt="Alternate Text" />
-						<figcaption>Teacher 9</figcaption>
-					</figure>
-				</a>
 
 
 
@@ -550,85 +495,25 @@
 		<ul class="stretcher">
 
 			<!-- === stretcher item === -->
-
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
-				<div class="stretcher-logo">
-					<div class="text">
-						<span class="text-intro">Exam 12-2022</span>
+			<?php if($_SESSION['user_type_role']=='Student')  : ?>
+			<?php foreach($exams_by_student as $exam) { ?>
+				<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
+					<!--logo-item-->
+					<div class="stretcher-logo">
+						<div class="text">
+							<span class="text-intro">Exam  : <?php echo date('d/m/Y',strtotime($exam->date_created)); ?></span>
+						</div>
 					</div>
-				</div>
-				<!--main text-->
-				<figure>
-					<h4>Exam 1</h4>
-					<figcaption>Collection of questions</figcaption>
-				</figure>
-				<!--anchor-->
-				<a href="#">Anchor link</a>
-			</li>
+					<!--main text-->
+					<figure>
+						<h4>Exam <?php echo $exam->id ?></h4>
+					</figure>
+					<!--anchor-->
+					<a href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ?>">Anchor link</a>
+				</li>
+			<?php } ?>
+			<?php  endif ;?>
 
-			<!-- === stretcher item === -->
-
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
-				<div class="stretcher-logo">
-					<div class="text">
-						<span class="text-intro">Exam 03-2022</span>
-					</div>
-				</div>
-				<!--main text-->
-				<figure>
-					<h4>Exam 2</h4>
-					<figcaption>Collection of questions</figcaption>
-				</figure>
-				<!--anchor-->
-				<a href="#">Anchor link</a>
-			</li>
-
-			<!-- === stretcher item === -->
-
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
-				<div class="stretcher-logo">
-					<div class="text">
-						<span class="text-intro">Exam 05-2022</span>
-					</div>
-				</div>
-				<!--main text-->
-				<figure>
-					<h4>Exam 3</h4>
-					<figcaption>Collection of questions</figcaption>
-				</figure>
-				<!--anchor-->
-				<a href="#">Anchor link</a>
-			</li>
-
-			<!-- === stretcher item === -->
-
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
-				<div class="stretcher-logo">
-					<div class="text">
-						<span class="text-intro">Exam 11-2022</span>
-					</div>
-				</div>
-				<!--main text-->
-				<figure>
-					<h4>Exam 4</h4>
-					<figcaption>Collection of questions</figcaption>
-				</figure>
-				<!--anchor-->
-				<a href="#">Anchor link</a>
-			</li>
-
-			<!-- === stretcher item more=== -->
-
-			<li class="stretcher-item more">
-				<div class="more-icon">
-					<span data-title-show="Show more" data-title-hide="+"></span>
-				</div>
-				<a href="#"></a>
-			</li>
 
 		</ul>
 	</section>

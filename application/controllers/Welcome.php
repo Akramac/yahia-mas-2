@@ -40,16 +40,78 @@ class Welcome extends CI_Controller {
 			$userLevel=$userResult[0]->user_level;
 			if(isset($userLevel) and $userLevel=='ROLE_TEACHER'){
 				$userType='Teacher';
+
+				//get id student
+				$this->db->select("teachers.id");
+				$this->db->from('teachers');
+				$this->db->where('teachers.user_id',$idUser);
+				$query = $this->db->get();
+				$teacherResult= $query->result();
+				$idTeacher='';
+				if(!empty($teacherResult)){
+					$idTeacher=$teacherResult[0]->id;
+				}
+				$this->db->distinct();
+				$this->db->select("students.id,students.name");
+				$this->db->from('students');
+				$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = students.id');
+				$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
+				$this->db->where('teachers.id',$idTeacher);
+				$query = $this->db->get();
+				$studentResult= $query->result();
+				$data['students_by_teacher'] = $studentResult;
+				//list of exams
+				/*foreach ($studentResult as $student) {
+					$this->db->select();
+					$this->db->from('exams');
+					$this->db->where('exams.teacher_id',$teach->id);
+					$query = $this->db->get();
+					$examsResult= $query->result();
+					$data['exams_by_student'] = $examsResult;
+				}*/
 			}
 			if(isset($userLevel) and $userLevel=='ROLE_STUDENT'){
 				$userType='Student';
+				//get id student
+				$this->db->select("students.id");
+				$this->db->from('students');
+				$this->db->join('users','students.user_id = users.id');
+				$this->db->where('users.id',$idUser);
+				$query = $this->db->get();
+				$studentResult= $query->result();
+				$idStudent='';
+				if(!empty($studentResult)){
+					$idStudent=$studentResult[0]->id;
+				}
+				$this->db->select("teachers.id,teachers.name");
+				$this->db->from('teachers');
+				$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = teachers.id');
+				$this->db->join('students', 'students.id = student_teacher_junction.student_id');
+				$this->db->where('students.id',$idStudent);
+				$query = $this->db->get();
+				$teacherResult= $query->result();
+				$data['teachers_by_student'] = $teacherResult;
+
+				//list of exams
+				foreach ($teacherResult as $teach) {
+					$this->db->select();
+					$this->db->from('exams');
+					$this->db->where('exams.teacher_id',$teach->id);
+					$query = $this->db->get();
+					$examsResult= $query->result();
+					$data['exams_by_student'] = $examsResult;
+				}
+
 			}
 			if(isset($userLevel) and $userLevel=='ROLE_ADMIN'){
-				$userType='administarteur';
+				$userType='administrateur';
 			}
 			$data['user_type'] = $userType;
 			$data['user_name'] = $userResult[0]->name;
 			$data['user_email'] = $userResult[0]->email;
+			$this->session->set_userdata('user_name',  $userResult[0]->name);
+			$this->session->set_userdata('user_email',  $userResult[0]->email);
+			$this->session->set_userdata('user_type_role',  $userType);
 		}
 
 		$this->load->view('index',$data);

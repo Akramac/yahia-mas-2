@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 				$data['title'] = 'Yahia MAS';
 				$this->session->set_flashdata('success','You are logged in');
 				$this->session->set_userdata('user_type',  $userType);
-				return $this->load->view('index',$data);
+				redirect('login',$data);
 			}
 			else
 			{

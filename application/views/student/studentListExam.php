@@ -583,94 +583,21 @@
 
 			<div class="owl-icons owl-icons-rounded ">
 
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img  src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
-						<figcaption>Teacher 1</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img class="teachers-avatar" src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 2</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 3</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 4</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 5</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 6</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 7</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 8</figcaption>
-					</figure>
-				</a>
-
-				<!-- === icon item === -->
-
-				<a href="#">
-					<figure>
-						<img src="<?php echo base_url(); ?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 9</figcaption>
-					</figure>
-				</a>
-
+				<?php foreach($listTeachers as $teacher) { ?>
+					<a href="#">
+						<figure>
+							<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $teacher->id % 4; ?>.jpg" alt="Alternate Text" />
+							<figcaption><?php echo $teacher->name; ?></figcaption>
+						</figure>
+					</a>
+				<?php } ?>
 
 
 
 			</div> <!--/owl-icons-->
 		</div> <!--/container-->
 	</section>
-
+	<?php echo $teacher->name; ?>
 	<!-- ========================  Block banner category ======================== -->
 
 	<!-- ========================  Best seller ======================== -->
@@ -744,9 +671,6 @@
 										<span>
                                         <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                                     </span>
-									</div>
-									<div class="btn btn-add">
-										<i class="icon icon-cart"></i>
 									</div>
 									<div class="figure-list">
 										<div class="image">
