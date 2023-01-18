@@ -100,7 +100,7 @@ class Teacher extends CI_Controller {
 						$data['title'] = 'Yahia MAS';
 						$resultJunction = $this->examModel->add_mutli_choice_junction(
 							$result,
-							$examId,
+							$examId
 						);
 						if(isset($resultJunction) & $resultJunction=='ok' ) {
 							$data['title'] = 'Yahia MAS';
@@ -135,7 +135,7 @@ class Teacher extends CI_Controller {
 
 						$resultJunction = $this->examModel->add_long_text_junction(
 							$result,
-							$examId,
+							$examId
 						);
 						if(isset($resultJunction) & $resultJunction=='ok' ) {
 							$data['title'] = 'Yahia MAS';
@@ -175,7 +175,7 @@ class Teacher extends CI_Controller {
 
 						$resultJunction = $this->examModel->add_tawsil_junction(
 							$result,
-							$examId,
+							$examId
 						);
 						if(isset($resultJunction) & $resultJunction=='ok' ) {
 							$data['title'] = 'Yahia MAS';
@@ -209,7 +209,7 @@ class Teacher extends CI_Controller {
 
 						$resultJunction = $this->examModel->add_tartib_junction(
 							$result,
-							$examId,
+							$examId
 						);
 						if(isset($resultJunction) & $resultJunction=='ok' ) {
 							$data['title'] = 'Yahia MAS';
@@ -235,7 +235,7 @@ class Teacher extends CI_Controller {
 		else
 		{
 			$this->session->set_flashdata('error','Form not correct ');
-			redirect('teacher/teacherExam');
+			redirect('teacher/teacher-exam');
 		}
 	}
 	/*
