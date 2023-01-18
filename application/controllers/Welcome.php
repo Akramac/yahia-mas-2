@@ -28,16 +28,28 @@ class Welcome extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		$idUser=$this->session->userdata('id');
-		$this->db->select("users.user_level");
+		$this->db->select("users.user_level,users.name,users.email");
 		$this->db->from('users');
 		$this->db->where('users.id',$idUser);
 		$query = $this->db->get();
-		$userLevel=$query->result();
+		$userResult=$query->result();
 		//$this->lang->load('en','english');
 		$data['title'] = 'Yahia MAS';
 		$data['userId'] = $idUser;
-		if(!empty($userLevel) ){
-			$data['user_role'] = $userLevel[0];
+		if(!empty($userResult) ){
+			$userLevel=$userResult[0]->user_level;
+			if(isset($userLevel) and $userLevel=='ROLE_TEACHER'){
+				$userType='Teacher';
+			}
+			if(isset($userLevel) and $userLevel=='ROLE_STUDENT'){
+				$userType='Student';
+			}
+			if(isset($userLevel) and $userLevel=='ROLE_ADMIN'){
+				$userType='administarteur';
+			}
+			$data['user_type'] = $userType;
+			$data['user_name'] = $userResult[0]->name;
+			$data['user_email'] = $userResult[0]->email;
 		}
 
 		$this->load->view('index',$data);

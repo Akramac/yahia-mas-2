@@ -86,7 +86,7 @@
 											<li><a  style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/teacher/teacherExam">Add Exam</a></li>
 											<?php endif; ?>
 											<?php if ( $this->session->userdata('user_type') === 'ROLE_STUDENT' ) : ?>
-												<li><a style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/student/studentExam">Pass Exam</a></li>
+												<li><a style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/student/list/exam">List Exams</a></li>
 											<?php endif; ?>
 										</ul>
 									</div>
@@ -205,10 +205,10 @@
 							<div class="front__bkg-photo"></div>
 							<div class="front__face-photo"></div>
 							<div class="front__text">
-								<h3 class="front__text-header">Bobby Korec</h3>
-								<p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i>Seattle</p>
+								<h3 class="front__text-header"><?php echo $user_name; ?></h3>
+								<p class="front__text-para"><i class="fas fa-map-marker-alt front-icons"></i><?php echo $user_email; ?></p>
 
-								<span class="front__text-hover">Hover to Find Me</span>
+								<span class="front__text-hover"><?php echo $user_type; ?></span>
 							</div>
 						</div>
 						<div class="back">
