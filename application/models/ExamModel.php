@@ -8,7 +8,13 @@ class ExamModel extends CI_Model
 		$data['teacher_id']=$teacherID;
 		$data['categorie_id']=$categoryId;
 		$this->db->insert('exams', $data);
-		return $this->db->insert_id();
+		$idExam=$this->db->insert_id();
+
+		$dataJunction['teacher_id']=$teacherID;
+		$dataJunction['exam_id']=$this->db->insert_id();
+		$this->db->insert('exams_teachers_junction', $dataJunction);
+
+		return $idExam;
 	}
 
 	function add_data_choices($userID, $title,$timepick,$CheckUnique,$checkMultiple,$option1,$option2,$option3,$option4,$fileUrl)
@@ -111,6 +117,23 @@ class ExamModel extends CI_Model
 		$data['exam_id']=$examId;
 		$this->db->insert('exam_quest_tartib_junction', $data);
 		return 'ok';
+	}
+
+	public function isDuplicateExamTeacherJunction($data)
+	{
+		$sql = "SELECT teacher_id, exam_id
+    FROM exams_teachers_junction
+    WHERE teacher_id = ? AND exam_id = ? 
+    ";
+		$query = $this->db->query($sql, array($data['teacher_id'], $data['exam_id']));
+		//$query->result();
+
+		//If there are rows, means this review is duplicated
+		if($query->num_rows() > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 }
 

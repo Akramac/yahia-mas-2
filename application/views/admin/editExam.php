@@ -607,126 +607,43 @@ Common
 
 		<div id="map" style="background-image:url(<?php echo base_url(); ?>assets/images/backgrounds/wall.jpg)"></div>
 
-		<div class="container products">
+		<div class="container ">
 			<div class="row row-clean">
 
 				<!-- === product-filters === -->
-
-				<div class="col-md-3 col-xs-12">
-					<div class="filters">
-						<!--Teachers-->
-						<div class="filter-box active">
-							<div class="title">
-								Teachers List
-							</div>
-							<div class="filter-content">
-								<?php foreach($listTeachersByAdmin as $teacher) { ?>
-									<span class="checkbox">
-										<input type="radio" class="check-teacher" name="teacher<?php echo $teacher->id; ?>" id="teacher<?php echo $teacher->id; ?>">
-										<label for="teacher<?php echo $teacher->id; ?>"><?php echo $teacher->name; ?> <i></i></label>
-                                	</span>
-								<?php } ?>
-
-								<span class="checkbox">
-                                    <input type="checkbox" id="allTeachers">
-                                    <label for="allTeachers">All Professors <i></i></label>
-                                </span>
-							</div>
-						</div> <!--/filter-box-->
-						<!--close filters on mobile / update filters class removed .toggle-filters-close-->
-						<div type="button" class=" btn btn-main" id="submit-search-by-teachers">
-							Update search
-						</div>
-
-					</div> <!--/filters-->
-				</div>
+				<br><br><br>
 
 				<!-- === product items === -->
 
-				<div class="col-md-9 col-xs-12">
+				<div class="col-md-12 col-xs-12">
 
-					<div class="sort-bar clearfix">
-						<div class="sort-options pull-right">
-							<span class="hidden-xs">List of Exams of all teachers</span>
+					<div class=" clearfix">
+						<div class="">
+							<span  style="float:left !important;">List of Teachers by Exam N°: <?php echo $examId; ?></span>
 							<!--Grid-list view-->
 							<span class="grid-list" hidden>
                                 <a href="products-grid.html" > <i class="fa fa-th-large"></i></a>
                             </span>
 						</div>
 					</div>
+					<form id="example-form" method="POST" action="<?php echo base_url(); ?>index.php/admin/update/teachers-by-exam">
+						<input type="text" name="exam-id" value="<?php echo $examId; ?>" hidden>
+						<div class="input-field col offset-s3 s6">
+						<select name="teachers-select[]"  id="teachers-select" multiple>
+							<?php foreach($listTeachersByExam as $teacher) { ?>
+								<option   value="<?php echo $teacher->id; ?>" selected><?php echo $teacher->name; ?></option>
+							<?php } ?>
+							<?php foreach($listTeachersByAdmin as $teacher) { ?>
+								<option   value="<?php echo $teacher->id; ?>" ><?php echo $teacher->name; ?></option>
+							<?php } ?>
+						</select>
+						<label>List of Teachers by Exam N°: <?php echo $examId; ?></label>
 
-					<div class="row row-clean pagination-container">
+							<button class=" btn blue"  type="submit" style="float: left;">Submit</button>
+					</form>
+					</div>
+				</div>
 
-						<!--product-item-->
-
-						<?php foreach($listExamsByAdmin as $exam) { ?>
-							<div class="col-md-12 ">
-
-								<article data-page="<?php echo ($exam->id % 5)+1; ?>"  >
-									<div class="info">
-										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/edit/exam/<?php echo $exam->id ; ?>" class="" data-title="Edit"><i class="icon icon-pencil"></i></a>
-                                    </span>
-										<span>
-                                        <a target="_blank" href="#" class="" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
-                                    </span>
-									</div>
-									<div class="figure-list">
-										<div class="image">
-											<a  target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>" class="mfp-open">
-												<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
-											</a>
-										</div>
-										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam</a></h2>
-											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup>
-											<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
-											-->										</div>
-									</div>
-								</article>
-
-
-							</div>
-						<?php } ?>
-
-
-						<br><br><br>
-						<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
-							<ul class="page_control ">
-								<li data-page="-" ><a href="#" >&lt;</a></li>
-								<li class="active" data-page="1">
-									<a href="#" >1</a>
-								</li>
-								<li data-page="2"><a href="#" >2</a></li>
-								<li data-page="3"><a href="#" >3</a></li>
-								<li data-page="4"><a href="#" >4</a></li>
-								<li data-page="5"><a href="#" >5</a></li>
-								<li data-page="+"><a href="#" >&gt;</a></li>
-							</ul>
-						</div>
-					</div><!--/row-->
-					<!--Pagination-->
-					<!--<div class="pagination-wrapper">
-						<ul class="pagination">
-							<li>
-								<a href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-								<a href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</div>-->
-
-				</div> <!--/product items-->
 
 			</div><!--/row-->
 		</div><!--/container-->
@@ -747,11 +664,6 @@ Common
 
 
 	<?php $this->view('partials/footer'); ?>
-	<div>
-		<?php
-		$this->load->view('alert');
-		?>
-	</div>
 
 </div> <!--/wrapper-->
 <!-- Compiled and minified JavaScript -->
@@ -760,81 +672,9 @@ Common
 <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
 
 <script>
-	var paginationHandler = function(){
-		// store pagination container so we only select it once
-		var $paginationContainer = $(".pagination-container"),
-			$pagination = $paginationContainer.find('.pagination ul');
+	var paginationHandler = function() {
 
-
-		// click event
-		$pagination.find("li a").on('click.pageChange',function(e){
-			e.preventDefault();
-			// get parent li's data-page attribute and current page
-			var parentLiPage = $(this).parent('li').data("page"),
-				currentPage = parseInt( $(".pagination-container article[data-page]:visible").data('page') ),
-				numPages = $paginationContainer.find("article[data-page]").length;
-
-			// make sure they aren't clicking the current page
-			if ( parseInt(parentLiPage) !== parseInt(currentPage) ) {
-				// hide the current page
-				$paginationContainer.find("article[data-page]:visible").hide();
-
-				if ( parentLiPage === '+' ) {
-					// next page
-					$paginationContainer.find("article[data-page="+( currentPage+1>numPages ? numPages : currentPage+1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else if ( parentLiPage === '-' ) {
-					// previous page
-					$paginationContainer.find("article[data-page="+( currentPage-1<1 ? 1 : currentPage-1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else {
-					// specific page
-					$paginationContainer.find("article[data-page="+parseInt(parentLiPage)+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				}
-
-			}
-		});
-
-		$('.check-teacher').change(function(){
-			if(this.checked) {
-				$('.check-teacher').prop('checked',false);
-				$(this).prop('checked',true);
-			}
-
-		});
-		$('#allTeachers').change(function(){
-			if(this.checked) {
-				$('.check-teacher').prop('checked',false);
-			}else{
-				$('.check-teacher').prop('checked',false);
-			}
-
-		});
-		$('#submit-search-by-teachers').click(function(){
-			$(".check-teacher:radio").each(function(){
-				var $this = $(this);
-
-				if($this.is(":checked")){
-					idTeacher=$this.attr('id').replace('teacher','');
-					window.location.href="<?php echo base_url(); ?>index.php/admin/administration/"+idTeacher;
-				}else{
-					console.log('unchecker');
-				}
-			});
-			$("#allTeachers:checkbox").each(function(){
-				var $this = $(this);
-
-				if($this.is(":checked")){
-					window.location.href="<?php echo base_url(); ?>index.php/admin/administration/all";
-				}else{
-					console.log('unchecker');
-				}
-			});
-		});
+		$('select').formSelect();
 	};
 	$( document ).ready( paginationHandler );
 

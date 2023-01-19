@@ -36,6 +36,8 @@ class Admin extends CI_Controller {
 			redirect('login',$data);
 		}
 		$this->load->library('session');
+		$this->load->model('examModel');
+		$this->load->library('form_validation');
 	}
 	public function administration($idTeacher='')
 	{
@@ -47,6 +49,15 @@ class Admin extends CI_Controller {
 		$this->db->where('users.id',$idUser);
 		$query = $this->db->get();
 		$userResult=$query->result();
+
+		$userLevel=$userResult[0]->user_level;
+		if(isset($userLevel) and $userLevel=='ROLE_ADMIN') {
+			$userType = 'Administrateur';
+		}
+		$this->session->set_userdata('user_name',  $userResult[0]->name);
+		$this->session->set_userdata('user_email',  $userResult[0]->email);
+		$this->session->set_userdata('user_type_role',  $userType);
+
 		//$this->lang->load('en','english');
 		$data['title'] = 'Yahia MAS';
 		$data['userId'] = $idUser;
@@ -82,4 +93,107 @@ class Admin extends CI_Controller {
 
 		$this->load->view('admin/administration',$data);
 	}
+
+	public function editExam($idExam='')
+	{
+		$this->session->set_userdata('site_lang',  "english");
+		$this->lang->load('ar','arabe');
+		$idUser=$this->session->userdata('id');
+		$this->db->select("users.user_level,users.name,users.email");
+		$this->db->from('users');
+		$this->db->where('users.id',$idUser);
+		$query = $this->db->get();
+		$userResult=$query->result();
+
+		//$this->lang->load('en','english');
+		$data['title'] = 'Yahia MAS';
+		$data['userId'] = $idUser;
+		$data['examId'] = $idExam;
+
+
+		// get teachers by exam
+
+		$this->db->distinct();
+		$this->db->select("teachers.id,teachers.name");
+		$this->db->from('teachers');
+		$this->db->join('exams_teachers_junction','teachers.id = exams_teachers_junction.teacher_id');
+		$this->db->where('exams_teachers_junction.exam_id', $idExam);
+		$query = $this->db->get();
+			$teacherResultByExam= $query->result();
+		$arrayTeachersByExam=array();
+		foreach ($teacherResultByExam as $teacher){
+			$arrayTeachersByExam[]=$teacher->id;
+		}
+		$this->db->select();
+		$this->db->from('teachers');
+		if(!empty($arrayTeachersByExam)){
+
+			$this->db->where_not_in('teachers.id', $arrayTeachersByExam);
+		}
+		$query = $this->db->get();
+		$teachersResult=$query->result();
+		$data['listTeachersByAdmin']=$teachersResult;
+		$data['listTeachersByExam']=$teacherResultByExam;
+
+		/*
+		$idTeacher='';
+		if(!empty($teacherResult)){
+			$idTeacher=$teacherResult[0]->id;
+		}*/
+
+
+
+		$this->load->view('admin/editExam',$data);
+	}
+
+	public function updateTeachersByExam()
+	{
+		$this->form_validation->set_rules('exam-id', 'Exam ID', 'required');
+		if($this->form_validation->run())
+		{
+			$idExam=$this->input->post('exam-id');
+			$arrayTeachersToExam=$this->input->post('teachers-select');
+			//delete junction teachers exams
+			//array to string convertion
+			if(isset($arrayTeachersToExam)){
+				$listTeachersToExam=implode(",", $arrayTeachersToExam);
+			}
+			if(!empty($listTeachersToExam)){
+				$query='DELETE exams_teachers_junction.*
+						FROM exams_teachers_junction 
+						INNER JOIN teachers ON exams_teachers_junction.teacher_id=teachers.id
+						WHERE exams_teachers_junction.exam_id = '.$idExam.'
+						AND  teachers.id NOT IN ('.$listTeachersToExam.')';
+				/*$query='DELETE FROM `exams_teachers_junction` WHERE `exams_teachers_junction`.`teacher_id`  =2
+				and  `exams_teachers_junction`.`teacher_id` ='.$idExam;*/
+				$this->db->query($query);
+				foreach ($arrayTeachersToExam as $item){
+
+					$data['teacher_id']=$item;
+					$data['exam_id']=$idExam;
+
+					$isDuplicated = $this->examModel->isDuplicateExamTeacherJunction($data);
+					if(!($isDuplicated)){
+						//Insert data into Review Table
+						$this->db->insert('exams_teachers_junction', $data);
+					}
+
+				}
+
+			}else{
+				$query='DELETE exams_teachers_junction.*
+						FROM exams_teachers_junction 
+						INNER JOIN teachers ON exams_teachers_junction.teacher_id=teachers.id
+						WHERE exams_teachers_junction.exam_id = '.$idExam;
+				/*$query='DELETE FROM `exams_teachers_junction` WHERE `exams_teachers_junction`.`teacher_id`  =2
+				and  `exams_teachers_junction`.`teacher_id` ='.$idExam;*/
+				$this->db->query($query);
+			}
+			$data['title'] = 'Yahia MAs';
+			$this->session->set_flashdata('success','Affectation successfully !');
+			redirect('admin/administration',$data);
+
+		}
+	}
+
 }

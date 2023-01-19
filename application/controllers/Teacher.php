@@ -60,6 +60,7 @@ class Teacher extends CI_Controller {
 			$this->db->select("teachers.id");
 			$this->db->from('teachers');
 			$this->db->join('users','teachers.user_id = users.id');
+			$this->db->where('users.id', $this->session->userdata('id'));
 			$query = $this->db->get();
 			$teacherResult= $query->result();
 			$idTeacher='';
