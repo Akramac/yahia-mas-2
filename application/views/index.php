@@ -494,7 +494,7 @@
 
 		<ul class="stretcher">
 
-			<!-- === stretcher item === -->
+			<!-- === if student === -->
 			<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Student')  : ?>
 			<?php foreach($exams_by_student as $exam) { ?>
 				<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
@@ -512,6 +512,25 @@
 					<a href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ?>">Anchor link</a>
 				</li>
 			<?php } ?>
+			<?php  endif ;?>
+			<!-- === if teacher === -->
+			<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Teacher')  : ?>
+				<?php foreach($exams_by_student as $exam) { ?>
+					<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
+						<!--logo-item-->
+						<div class="stretcher-logo">
+							<div class="text">
+								<span class="text-intro">Exam  : <?php echo $exam->title; ?> || <?php echo date('d/m/Y',strtotime($exam->date_created)); ?></span>
+							</div>
+						</div>
+						<!--main text-->
+						<figure>
+							<h4>Exam <?php echo $exam->exam_id ?></h4>
+						</figure>
+						<!--anchor-->
+						<a href="#">Anchor link</a>
+					</li>
+				<?php } ?>
 			<?php  endif ;?>
 
 

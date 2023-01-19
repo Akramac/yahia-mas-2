@@ -678,7 +678,7 @@ Common
 											</a>
 										</div>
 										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam</a></h2>
+											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title; ?></a></h2>
 											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup>
 											<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
 											-->										</div>

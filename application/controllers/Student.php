@@ -109,6 +109,7 @@ class Student extends CI_Controller {
 		$this->db->select("students.id");
 		$this->db->from('students');
 		$this->db->join('users','students.user_id = users.id');
+		$this->db->where('users.id', $this->session->userdata('id'));
 		$query = $this->db->get();
 		$studentResult= $query->result();
 		$idStudent='';

@@ -46,6 +46,11 @@ class Teacher extends CI_Controller {
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
 		$data['title'] = 'Teacher\'s page';
+		$this->db->select();
+		$this->db->from('categories');
+		$query = $this->db->get();
+		$categoriesResult= $query->result();
+		$data['categories'] = $categoriesResult;
 		$this->load->view('teacher/teacherExam',$data);
 	}
 
@@ -67,7 +72,9 @@ class Teacher extends CI_Controller {
 			if(!empty($teacherResult)){
 				$idTeacher=$teacherResult[0]->id;
 			}
+			$titleExam=$this->input->post('title_exam');
 			$examId = $this->examModel->add_exam(
+				$titleExam,
 				$idTeacher,
 				$this->input->post('select-category')
 			);

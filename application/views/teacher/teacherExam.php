@@ -611,15 +611,19 @@ Common
 			</p>
 			<form id="msform-teacher" method="POST" action="<?php echo base_url(); ?>index.php/teacher/add-exam">
 				<div class="form-group">
+					<label style="text-align:left">Title of the exam</label>
+					<input type="text"  name="title_exam" required>
+				</div>
+				<div class="form-group">
 					<label style="text-align:left">Duration of the whole exam</label>
 					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
 					<select class="browser-default" name="select-category" style="margin-top:7%;" required>
 						<option value=""  disabled selected>Choose the category</option>
-						<option value="1">Mathematics</option>
-						<option value="2">Physics</option>
-						<option value="3">Arabe</option>
+						<?php foreach($categories as $categorie) { ?>
+						<option value="<?php echo $categorie->id; ?>"><?php echo $categorie->name; ?></option>
+						<?php } ?>
 					</select>
 
 				</div>

@@ -69,6 +69,16 @@ class Welcome extends CI_Controller {
 					$examsResult= $query->result();
 					$data['exams_by_student'] = $examsResult;
 				}*/
+
+				$this->db->distinct();
+				$this->db->select();
+				$this->db->from('exams');
+				$this->db->join('exams_teachers_junction','exams_teachers_junction.exam_id = exams.id');
+				$this->db->join('teachers', 'teachers.id = exams_teachers_junction.teacher_id');
+				$this->db->where('teachers.id',$idTeacher);
+				$query = $this->db->get();
+				$examsResult= $query->result();
+				$data['exams_by_student'] = $examsResult;
 			}
 			if(isset($userLevel) and $userLevel=='ROLE_STUDENT'){
 				$userType='Student';
