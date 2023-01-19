@@ -96,7 +96,6 @@ class Teacher extends CI_Controller {
 						$this->input->post('title-question-'.$i),
 						$this->input->post('usr_time-'.$i),
 						$this->input->post('indeterminate-checkbox-single-'.$i),
-						$this->input->post('indeterminate-checkbox-multiple-'.$i),
 						$this->input->post('option-multi-1-'.$i),
 						$this->input->post('option-multi-2-'.$i),
 						$this->input->post('option-multi-3-'.$i),

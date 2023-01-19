@@ -90,7 +90,11 @@ class Admin extends CI_Controller {
 			$examByTeacherResult = $this->db->get()->result();
 			$data['listExamsByAdmin']=$examByTeacherResult;
 		}
-
+		$this->db->select();
+		$this->db->from('categories');
+		$query = $this->db->get();
+		$categoriesResult= $query->result();
+		$data['categories'] = $categoriesResult;
 		$this->load->view('admin/administration',$data);
 	}
 
@@ -194,6 +198,31 @@ class Admin extends CI_Controller {
 			redirect('admin/administration',$data);
 
 		}
+	}
+
+	public function addCategory()
+	{
+		$this->form_validation->set_rules('category', 'category', 'required');
+		if($this->form_validation->run())
+		{
+
+			$categoryId = $this->examModel->add_category(
+				$this->input->post('category')
+			);
+
+			if(isset($categoryId) & $categoryId!='' ){
+				$data['title'] = 'Yahia MAS';
+				$this->session->set_flashdata('success','Added CAtegory Succesfully !');
+			}else
+			{
+				$data['title'] = 'Yahia MAs';
+				$this->session->set_flashdata('error','Error Adding Category ');
+
+			}
+			redirect('admin/administration');
+
+		}
+
 	}
 
 }

@@ -616,7 +616,7 @@ Common
 				</div>
 				<div class="form-group">
 					<label style="text-align:left">Duration of the whole exam</label>
-					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" name="usr_time_exam">
+					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" step="2" name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
 					<select class="browser-default" name="select-category" style="margin-top:7%;" required>
@@ -646,19 +646,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick"  name="usr_time-1">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  name="usr_time-1">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<p>
 								<label>
-									<input class="indeterminate-checkbox-single" name="indeterminate-checkbox-single-1" type="checkbox" />
+									<input class="indeterminate-checkbox-single" name="indeterminate-checkbox-single-1" value="single" type="radio" />
 									<span>Single Choice</span>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input class="indeterminate-checkbox-multiple" name="indeterminate-checkbox-multiple-1" type="checkbox" />
+									<input class="indeterminate-checkbox-multiple" name="indeterminate-checkbox-single-1" value="multiple" type="radio" />
 									<span>Multiple choices</span>
 								</label>
 							</p>
@@ -754,8 +754,7 @@ Common
 				<div class="input-field col s12">
 					<select class="browser-default" id="select-type-input" style="margin-top:7%;">
 						<option value=""  disabled selected>Choose the type of question</option>
-						<option value="1">Multiple choices</option>
-						<option value="2">Answer with one answer</option>
+						<option value="2">Answer with one answer / Multiple choices</option>
 						<option value="3">long text</option>
 						<option value="4">Tawsil</option>
 						<option value="5">Tartib</option>
@@ -841,19 +840,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick"  onfocus="this.showPicker()" name="usr_time-${countMultiQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  onfocus="this.showPicker()" name="usr_time-${countMultiQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" name="indeterminate-checkbox-single-${countMultiQuest}" type="checkbox" />
+									<input class="indeterminate-checkbox" value="single" name="indeterminate-checkbox-single-${countMultiQuest}" type="radio" />
 									<span>Single Choice</span>
 								</label>
 							</p>
 							<p>
 								<label>
-									<input class="indeterminate-checkbox" name="indeterminate-checkbox-multiple-${countMultiQuest}" type="checkbox" />
+									<input class="indeterminate-checkbox" value="multiple" name="indeterminate-checkbox-single-${countMultiQuest}" type="radio" />
 									<span>Multiple choices</span>
 								</label>
 							</p>
@@ -914,7 +913,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countSteps}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countSteps}">
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -956,7 +955,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countTawsilQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countTawsilQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1039,7 +1038,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" onfocus="this.showPicker()" name="usr_time-${countTartibQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countTartibQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >

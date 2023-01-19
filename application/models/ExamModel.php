@@ -18,16 +18,15 @@ class ExamModel extends CI_Model
 		return $idExam;
 	}
 
-	function add_data_choices($userID, $title,$timepick,$CheckUnique,$checkMultiple,$option1,$option2,$option3,$option4,$fileUrl)
+	function add_data_choices($userID, $title,$timepick,$CheckUnique,$option1,$option2,$option3,$option4,$fileUrl)
 	{
 
 		$data['user_id']=$userID;
 		$data['title']=$title;
 		$data['duration']=$timepick;
-		if(isset($CheckUnique) & $CheckUnique=='on'){
+		if(isset($CheckUnique) & $CheckUnique=='single'){
 			$data['is_single_choice']=1;
-		}
-		if(isset($checkMultiple) & $checkMultiple=='on'){
+		}else{
 			$data['is_single_choice']=0;
 		}
 
@@ -135,6 +134,15 @@ class ExamModel extends CI_Model
 		}else{
 			return FALSE;
 		}
+	}
+
+	function add_category($categoryName)
+	{
+
+		$data['name']=$categoryName;
+		$this->db->insert('categories', $data);
+		$idCategory=$this->db->insert_id();
+		return $idCategory;
 	}
 }
 

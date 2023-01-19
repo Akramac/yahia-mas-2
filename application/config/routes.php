@@ -64,6 +64,8 @@ $route['admin/administration/(:any)'] = 'admin/administration/$1';
 $route['admin/edit/exam/(:any)'] = 'admin/editExam/$1';
 $route['admin/update/teachers-by-exam'] = 'admin/updateTeachersByExam';
 
+$route['admin/add-category'] = 'admin/addCategory';
+
 $route['register'] = 'security/register';
 $route['login'] = 'security/login';
 $route['change-password'] = 'security/changePassword/pageChangePassword';

@@ -639,6 +639,35 @@ Common
 						</div>
 
 					</div> <!--/filters-->
+
+					<div class="filters">
+						<!--Teachers-->
+						<form method="POST" action="<?php echo base_url(); ?>index.php/admin/add-category">
+						<div class="filter-box active">
+							<div class="title">
+								Categories List
+							</div>
+							<div class="filter-content">
+								<?php foreach($categories as $key => $categorie) { ?>
+									<span class="checkbox">
+										<label><?php echo $key+1 ; ?> . <?php echo $categorie->name; ?> <i></i></label>
+                                	</span>
+								<?php } ?>
+
+								<span class="checkbox">
+
+                                    <label for="category">Add new Category</label>
+
+											<input type="text" placeholder="Write name of category"  id="category" name="category" >
+
+                                </span>
+							</div>
+						</div> <!--/filter-box-->
+						<!--close filters on mobile / update filters class removed .toggle-filters-close-->
+						<input type="submit" class=" btn btn-main" value="Add Category" id="submit-category">
+						</form>
+
+					</div> <!--/filters-->
 				</div>
 
 				<!-- === product items === -->
@@ -762,42 +791,8 @@ Common
 <script>
 	var paginationHandler = function(){
 		// store pagination container so we only select it once
-		var $paginationContainer = $(".pagination-container"),
-			$pagination = $paginationContainer.find('.pagination ul');
 
 
-		// click event
-		$pagination.find("li a").on('click.pageChange',function(e){
-			e.preventDefault();
-			// get parent li's data-page attribute and current page
-			var parentLiPage = $(this).parent('li').data("page"),
-				currentPage = parseInt( $(".pagination-container article[data-page]:visible").data('page') ),
-				numPages = $paginationContainer.find("article[data-page]").length;
-
-			// make sure they aren't clicking the current page
-			if ( parseInt(parentLiPage) !== parseInt(currentPage) ) {
-				// hide the current page
-				$paginationContainer.find("article[data-page]:visible").hide();
-
-				if ( parentLiPage === '+' ) {
-					// next page
-					$paginationContainer.find("article[data-page="+( currentPage+1>numPages ? numPages : currentPage+1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else if ( parentLiPage === '-' ) {
-					// previous page
-					$paginationContainer.find("article[data-page="+( currentPage-1<1 ? 1 : currentPage-1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else {
-					// specific page
-					$paginationContainer.find("article[data-page="+parseInt(parentLiPage)+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				}
-
-			}
-		});
 
 		$('.check-teacher').change(function(){
 			if(this.checked) {
@@ -835,6 +830,7 @@ Common
 				}
 			});
 		});
+
 	};
 	$( document ).ready( paginationHandler );
 
