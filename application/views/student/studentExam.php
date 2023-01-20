@@ -469,8 +469,8 @@
 				background-color: #ec5252;
 			}
 
-			#sortlistOrder{
-				margin-left: 20%;
+			.sortlistOrder{
+				margin-left: 20% !important;
 			}
 			.div-after-label{
 				margin-top: 7% !important;
@@ -1118,7 +1118,7 @@
 								<h5><?php echo $question->title; ?></h5>
 								<label>Oder this cards correctly :</label>
 								<div class="row justify-content-center"><img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:45px;float:right;"/>
-									<ul id="sortlistOrder" class="col-md-6 col-xs-12 sortlistOrder" >
+									<ul id="sortlistOrder<?php echo $question->quest_tartib_id; ?>" class="col-md-6 col-xs-12 sortlistOrder" >
 										<!--<img src="<?php /*echo base_url(); */?>assets/images/dragg.png" alt="Alternate Text" style="width:25px;float:right;"/>-->
 										<li alt="<?php echo $question->option_to_order_1; ?>">
 											<?php echo $question->option_to_order_1; ?>
@@ -1229,8 +1229,25 @@
 			});
 			inputTartib.val(concatTartibOrder);
 		});
-		slist(document.getElementById("sortlist"));
-		slist(document.getElementById("sortlistOrder"));
+		$('.sortlistOrder').each(function (){
+			id=$(this).attr('id');
+			slist(document.getElementById(id));
+		});
+		$('.sortlist').each(function (){
+			idSort=$(this).attr('id');
+			slist(document.getElementById(idSort));
+		});
+
+
+		$('.sortlistOrder').each(function (){
+			id=$(this).attr('id');
+			htmlShuffle('#'+id);
+		});
+		$('.sortlist').each(function (){
+			idSort=$(this).attr('id');
+			htmlShuffle('#'+idSort);
+		});
+
 
 		/* treatement card select */
 		$('.card-options-multiple').click(function (){
@@ -1257,8 +1274,13 @@
 			$('.'+id+' #select-options-cards option[value='+orderValue+']').attr('selected','selected');
 		});
 
-		htmlShuffle('.sortlistOrder');
-		htmlShuffle('.sortlist');
+		/*$('.sortlistOrder').each(function (){
+			id=$(this).attr('id');
+			console.log(id);
+			htmlShuffle(id);
+		});
+
+		htmlShuffle('.sortlist');*/
 	})
 
 	function onDragStart(event) {
