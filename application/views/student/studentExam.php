@@ -559,6 +559,32 @@
 		.div-after-label{
 			margin-top: 15%;
 		}
+
+		/*   style timer */
+		ul#global {
+			list-style: none;
+			margin: 50px 0;
+			padding: 0;
+			display: block;
+			text-align: center;
+		}
+		ul#global li {
+			display: inline-block;
+		}
+		ul#global li span {
+			font-size: 80px;
+			font-weight: 300;
+			line-height: 80px;
+		}
+		ul#global li.seperator {
+			font-size: 80px;
+			line-height: 70px;
+			vertical-align: top;
+		}
+		ul#global li p {
+			color: #a7abb1;
+			font-size: 25px;
+		}
 	</style>
 <div class="page-loader"></div>
 
@@ -578,89 +604,100 @@
 		<header class="hidden">
 			<h2>Product categories</h2>
 		</header>
-<!--
-		<div class="clearfix">
-
-			<div class="owl-icons owl-icons-rounded ">
-
-				<-- === icon item ===
-
-				<a href="#">
-					<figure>
-						<img  src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
-						<figcaption>Teacher 1</figcaption>
-					</figure>
-				</a>
+		<ul id="global" >
+			<li><span class="days">00</span><p class="days_text">Days</p></li>
+			<li class="seperator">:</li>
+			<li><span class="hours">00</span><p class="hours_text">Hours</p></li>
+			<li class="seperator">:</li>
+			<li><span class="minutes">00</span><p class="minutes_text">Minutes</p></li>
+			<li class="seperator">:</li>
+			<li><span class="seconds">00</span><p class="seconds_text">Seconds</p></li>
+		</ul>
 
 
-				<a href="#">
-					<figure>
-						<img class="teachers-avatar" src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 2</figcaption>
-					</figure>
-				</a>
+		<!--
+				<div class="clearfix">
+
+					<div class="owl-icons owl-icons-rounded ">
+
+						<-- === icon item ===
+
+						<a href="#">
+							<figure>
+								<img  src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text"/>
+								<figcaption>Teacher 1</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 3</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img class="teachers-avatar" src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 2</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 4</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 3</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 5</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 4</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 6</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher3.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 5</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 7</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher4.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 6</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 8</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 7</figcaption>
+							</figure>
+						</a>
 
 
-				<a href="#">
-					<figure>
-						<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
-						<figcaption>Teacher 9</figcaption>
-					</figure>
-				</a>
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher1.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 8</figcaption>
+							</figure>
+						</a>
+
+
+						<a href="#">
+							<figure>
+								<img src="<?php /*echo base_url(); */?>assets/images/avatars/teacher2.jpg" alt="Alternate Text" />
+								<figcaption>Teacher 9</figcaption>
+							</figure>
+						</a>
 
 
 
 
-			</div>
-		</div>-->
+					</div>
+				</div>-->
 	</section>
 
 	<!-- ========================  Block banner category ======================== -->
@@ -976,7 +1013,7 @@
 									<?php endif ?>
 									<div class="input-field col s12" >
 
-										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?><?php if($question->is_single_choice==false) :?>[]<?php endif ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;" <?php if($question->is_single_choice==false) :?>multiple<?php endif ?>>
+										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?><?php if($question->is_single_choice==false) :?>[]<?php endif ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;opacity:0;" <?php if($question->is_single_choice==false) :?>multiple<?php endif ?>>
 											<option value=""  disabled selected>Choose the type of question</option>
 											<option value="<?php echo $question->option_1; ?>"><?php echo $question->option_1; ?></option>
 											<option value="<?php echo $question->option_2; ?>"><?php echo $question->option_2; ?></option>
@@ -1085,7 +1122,7 @@
 													<?php endif;?>
 												</ul>
 
-												<input type="text" value="1,2,3,4,5,6" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  style="">
+												<input type="text" value="1,2,3,4,5,6" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  style="opacity:0;">
 
 											</div>
 
@@ -1148,7 +1185,7 @@
 										</li>
 										<?php endif ;?>
 									</ul>
-									<input type="text" value="1,2,3,4,5,6" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  style="">
+									<input type="text" value="1,2,3,4,5,6" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  style="opacity:0;">
 
 								</div>
 								<div class="step-actions">
@@ -1281,7 +1318,29 @@
 		});
 
 		htmlShuffle('.sortlist');*/
-	})
+		<?php
+		$date = date("m/d/Y H:i:s");
+		$newDate = date('m/d/Y H:i:s', strtotime($date. ' +3600 seconds'));
+		?>
+		$('#global').countdown({
+			date: '<?php echo $newDate;?>',
+			offset: +1,
+			day: 'Day',
+			days: 'Days',
+			hideOnComplete: true
+		}, function (container) {
+			alert('Done!');
+		});
+		$('#example2').countdown({
+			date: '07/27/2025 17:00:00',
+			offset: +2,
+			day: 'Day',
+			days: 'Days',
+			hideOnComplete: true
+		}, function (container) {
+			alert('Done!');
+		});
+	});
 
 	function onDragStart(event) {
 		event

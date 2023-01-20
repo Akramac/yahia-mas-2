@@ -88,4 +88,6 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery.owl.carousel.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.ion.rangeSlider.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.countdown.min.js"></script>
+
 </body>

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/owl.carousel.css" />
 	<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/ion-range-slider.css" />
 	<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/theme.css" />
-
+	<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/jquery.countdown.css" />
 	<!--Google fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
