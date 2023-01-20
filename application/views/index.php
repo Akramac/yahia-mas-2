@@ -501,7 +501,8 @@
 					<!--logo-item-->
 					<div class="stretcher-logo">
 						<div class="text">
-							<span class="text-intro">Exam  : <?php echo date('d/m/Y',strtotime($exam->date_created)); ?></span>
+							<span class="text-intro">Exam  : <?php echo $exam->title; ?><br>
+								<?php echo date('d/m/Y h:i:s',strtotime($exam->date_created)); ?></span>
 						</div>
 					</div>
 					<!--main text-->
@@ -520,7 +521,8 @@
 						<!--logo-item-->
 						<div class="stretcher-logo">
 							<div class="text">
-								<span class="text-intro">Exam  : <?php echo $exam->title; ?> || <?php echo date('d/m/Y',strtotime($exam->date_created)); ?></span>
+								<span class="text-intro">Exam  : <?php echo $exam->title; ?> <br>
+									<?php echo date('d/m/Y h:i:s',strtotime($exam->date_created)); ?></span>
 							</div>
 						</div>
 						<!--main text-->

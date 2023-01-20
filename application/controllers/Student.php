@@ -205,7 +205,7 @@ class Student extends CI_Controller {
 			}
 			switch ($result) {
 				case 'select-options-cards-':
-
+					if(!is_array($this->input->post($key))){
 						$pieces = explode("-", $key);
 						$idQuest=$pieces[3];
 						$id = $this->responsesModel->insert_options_choices(
@@ -217,7 +217,50 @@ class Student extends CI_Controller {
 							$this->input->post($key),
 							$this->input->post($key),
 							$this->input->post($key),
+							$this->input->post($key),
+							$this->input->post($key),
 							$this->input->post($key));
+					}else{
+						$pieces = explode("-", $key);
+						$idQuest=$pieces[3];
+						$reponse1='';
+						$reponse2='';
+						$reponse3='';
+						$reponse4='';
+						$reponse4='';
+						$reponse6='';
+						$reponse1=$this->input->post($key)[0];
+						if(count($this->input->post($key))>1){
+							$reponse2=$this->input->post($key)[1];
+						}
+						if(count($this->input->post($key))>2){
+							$reponse3=$this->input->post($key)[2];
+						}
+						if(count($this->input->post($key))>3){
+							$reponse4=$this->input->post($key)[3];
+						}
+						if(count($this->input->post($key))>4){
+							$reponse5=$this->input->post($key)[4];
+						}
+						if(count($this->input->post($key))>5){
+							$reponse6=$this->input->post($key)[5];
+						}
+
+
+						$id = $this->responsesModel->insert_options_choices(
+							$this->session->userdata('id'),
+							$idTeacher,
+							$idStudent,
+							$idQuest,
+							$this->input->post('idExam'),
+							$reponse1,
+							$reponse2,
+							$reponse3,
+							$reponse4,
+							$reponse5,
+							$reponse6);
+					}
+
 
 					break;
 				case 'long-text-':
@@ -261,12 +304,16 @@ class Student extends CI_Controller {
 						$correctOption2=$questTawsilResult[0]->option_2;
 						$correctOption3=$questTawsilResult[0]->option_3;
 						$correctOption4=$questTawsilResult[0]->option_4;
+						$correctOption5=$questTawsilResult[0]->option_5;
+						$correctOption6=$questTawsilResult[0]->option_6;
 						// get order of choices
 					$pieces = explode(";", $this->input->post($key));
 						$option1=$pieces[1];
 						$option2=$pieces[2];
 						$option3=$pieces[3];
 						$option4=$pieces[4];
+						$option5=$pieces[5];
+						$option6=$pieces[6];
 
 					$id = $this->responsesModel->insert_tawsil(
 						$this->session->userdata('id'),
@@ -281,7 +328,11 @@ class Student extends CI_Controller {
 						$correctOption3,
 						$option3,
 						$correctOption4,
-						$option4);
+						$option4,
+						$correctOption5,
+						$option5,
+						$correctOption6,
+						$option6);
 
 					}
 
@@ -302,12 +353,16 @@ class Student extends CI_Controller {
 						$correctOption2=$questTartibResult[0]->option_to_order_2;
 						$correctOption3=$questTartibResult[0]->option_to_order_3;
 						$correctOption4=$questTartibResult[0]->option_to_order_4;
+						$correctOption5=$questTartibResult[0]->option_to_order_5;
+						$correctOption6=$questTartibResult[0]->option_to_order_6;
 						// get order of choices
 						$pieces = explode(";", $this->input->post($key));
 						$option1=$pieces[1];
 						$option2=$pieces[2];
 						$option3=$pieces[3];
 						$option4=$pieces[4];
+						$option5=$pieces[5];
+						$option6=$pieces[6];
 
 						$id = $this->responsesModel->insert_tartib(
 							$this->session->userdata('id'),
@@ -322,7 +377,11 @@ class Student extends CI_Controller {
 							$correctOption3,
 							$option3,
 							$correctOption4,
-							$option4);
+							$option4,
+							$correctOption5,
+							$option5,
+							$correctOption6,
+							$option6);
 
 					}
 

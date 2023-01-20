@@ -493,10 +493,10 @@ Common
 
 	<!-- ========================  Icons slider ======================== -->
 
-
+<!--
 	<section class="stretcher-wrapper">
 
-		<!-- === stretcher header === -->
+		s
 
 		<header>
 			<div class="row">
@@ -509,83 +509,82 @@ Common
 			</div>
 		</header>
 
-		<!-- === stretcher === -->
+
 
 		<ul class="stretcher">
 
-			<!-- === stretcher item === -->
 
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
+			<li class="stretcher-item" style="background-image:url(<?php /*echo base_url(); */?>assets/images/assesment.png);">
+
 				<div class="stretcher-logo">
 					<div class="text">
 						<span class="text-intro">Exam 12-2022</span>
 					</div>
 				</div>
-				<!--main text-->
+
 				<figure>
 					<h4>Exam 1</h4>
 					<figcaption>Collection of questions</figcaption>
 				</figure>
-				<!--anchor-->
+
 				<a href="#">Anchor link</a>
 			</li>
 
-			<!-- === stretcher item === -->
 
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
+
+			<li class="stretcher-item" style="background-image:url(<?php /*echo base_url(); */?>assets/images/assesment.png);">
+
 				<div class="stretcher-logo">
 					<div class="text">
 						<span class="text-intro">Exam 03-2022</span>
 					</div>
 				</div>
-				<!--main text-->
+
 				<figure>
 					<h4>Exam 2</h4>
 					<figcaption>Collection of questions</figcaption>
 				</figure>
-				<!--anchor-->
+
 				<a href="#">Anchor link</a>
 			</li>
 
-			<!-- === stretcher item === -->
 
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
+
+			<li class="stretcher-item" style="background-image:url(<?php /*echo base_url(); */?>assets/images/assesment.png);">
+
 				<div class="stretcher-logo">
 					<div class="text">
 						<span class="text-intro">Exam 05-2022</span>
 					</div>
 				</div>
-				<!--main text-->
+
 				<figure>
 					<h4>Exam 3</h4>
 					<figcaption>Collection of questions</figcaption>
 				</figure>
-				<!--anchor-->
+
 				<a href="#">Anchor link</a>
 			</li>
 
-			<!-- === stretcher item === -->
 
-			<li class="stretcher-item" style="background-image:url(<?php echo base_url(); ?>assets/images/assesment.png);">
-				<!--logo-item-->
+
+			<li class="stretcher-item" style="background-image:url(<?php /*echo base_url(); */?>assets/images/assesment.png);">
+
 				<div class="stretcher-logo">
 					<div class="text">
 						<span class="text-intro">Exam 11-2022</span>
 					</div>
 				</div>
-				<!--main text-->
+
 				<figure>
 					<h4>Exam 4</h4>
 					<figcaption>Collection of questions</figcaption>
 				</figure>
-				<!--anchor-->
+
 				<a href="#">Anchor link</a>
 			</li>
 
-			<!-- === stretcher item more=== -->
+
 
 			<li class="stretcher-item more">
 				<div class="more-icon">
@@ -595,7 +594,7 @@ Common
 			</li>
 
 		</ul>
-	</section>
+	</section>-->
 
 	<!-- ========================  Block banner category ======================== -->
 
