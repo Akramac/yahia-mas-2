@@ -18,7 +18,7 @@ class ExamModel extends CI_Model
 		return $idExam;
 	}
 
-	function add_data_choices($userID, $title,$timepick,$CheckUnique,$option1,$option2,$option3,$option4,$fileUrl)
+	function add_data_choices($userID, $title,$timepick,$CheckUnique,$option1,$correctOption1,$option2,$correctOption2,$option3,$correctOption3,$option4,$correctOption4,$option5,$option6,$fileUrl)
 	{
 
 		$data['user_id']=$userID;
@@ -31,9 +31,15 @@ class ExamModel extends CI_Model
 		}
 
 		$data['option_1']=$option1;
+		$data['correct_option_1']=$correctOption1;
 		$data['option_2']=$option2;
+		$data['correct_option_2']=$correctOption2;
 		$data['option_3']=$option3;
+		$data['correct_option_3']=$correctOption3;
 		$data['option_4']=$option4;
+		$data['correct_option_4']=$correctOption4;
+		$data['option_5']=$option5;
+		$data['option_6']=$option6;
 		$data['file_url']=$fileUrl;
 		$this->db->insert('question_multi_choice', $data);
 		return $this->db->insert_id();
@@ -67,7 +73,7 @@ class ExamModel extends CI_Model
 		$this->db->insert('exam_quest_long_text_junction', $data);
 		return 'ok';
 	}
-	function add_data_tawsil($userID, $title,$timepick,$option1,$linkOption1,$option2,$linkOption2,$option3,$linkOption3,$option4,$linkOption4,$fileUrl)
+	function add_data_tawsil($userID, $title,$timepick,$option1,$linkOption1,$option2,$linkOption2,$option3,$linkOption3,$option4,$linkOption4,$option5,$linkOption5,$option6,$linkOption6,$fileUrl)
 	{
 
 		$data['user_id']=$userID;
@@ -82,6 +88,10 @@ class ExamModel extends CI_Model
 		$data['link_option_3']=$linkOption3;
 		$data['option_4']=$option4;
 		$data['link_option_4']=$linkOption4;
+		$data['option_5']=$option5;
+		$data['link_option_5']=$linkOption5;
+		$data['option_6']=$option6;
+		$data['link_option_6']=$linkOption6;
 		$data['file_url']=$fileUrl;
 		$this->db->insert('question_tawsil', $data);
 		return $this->db->insert_id();
@@ -95,7 +105,7 @@ class ExamModel extends CI_Model
 		$this->db->insert('exam_quest_tawsil_junction', $data);
 		return 'ok';
 	}
-	function add_data_tartib($userID, $title,$timepick,$option1,$option2,$option3,$option4,$fileUrl)
+	function add_data_tartib($userID, $title,$timepick,$option1,$option2,$option3,$option4,$option5,$option6,$fileUrl)
 	{
 
 		$data['user_id']=$userID;
@@ -106,6 +116,8 @@ class ExamModel extends CI_Model
 		$data['option_to_order_2']=$option2;
 		$data['option_to_order_3']=$option3;
 		$data['option_to_order_4']=$option4;
+		$data['option_to_order_5']=$option5;
+		$data['option_to_order_6']=$option6;
 		$data['file_url']=$fileUrl;
 		$this->db->insert('question_tartib', $data);
 		return $this->db->insert_id();

@@ -477,6 +477,9 @@ Common
 	input[name='option-1']{
 		border-bottom:  1px solid  #0f9d58 !important;
 	}
+	.tawsil-grised{
+		background-color: #D3D3D3 !important;
+	}
 </style>
 <div class="page-loader"></div>
 
@@ -665,20 +668,38 @@ Common
 						</div>
 
 						<div class="col-md-12" >
-							<label style="text-align:left">Options start with the correct one (Max 4)</label>
+							<label style="text-align:left">Options (Max 6) </label>
 							<div class="form-group">
 									<div class="col-md-6" >
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
 								<input type="text" class="form-control options-list"  name="option-multi-1-1">
+								<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-1-1">
 								</div>
 									<div class="col-md-6" >
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
 								<input type="text" class="form-control options-list"  name="option-multi-2-1">
+								<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-2-1">
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-multi-3-1">
+										<a class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
+										<input type="text" class="form-control options-list"  name="option-multi-3-1">
+										<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-3-1">
 									</div>
 									<div class="col-md-6" >
+										<a class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
 								<input type="text" class="form-control options-list"  name="option-multi-4-1">
+								<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-4-1">
 									</div>
+								<div class="col-md-6" >
+									<input type="text"  value="" style="display:none;" class="form-control options-list"  name="option-multi-5-1"><a class="btn-floating btn-small waves-effect waves-light red add-option-btn" > <i class="fa fa-plus"></i></a>
+									<a style="display: none;" class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+								</div>
+								<div class="col-md-6" >
+									<input type="text"   value=""  style="display:none;" class="form-control options-list"  name="option-multi-6-1"><a class="btn-floating btn-small waves-effect waves-light red add-option-btn" > <i class="fa fa-plus"></i></a>
+									<a style="display: none;" class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -858,20 +879,44 @@ Common
 							</p>
 						</div>
 						<div class="col-md-12" >
-							<label style="text-align:left">Options (Max 4)</label>
+							<label style="text-align:left">Options (Max 6) </label>
 							<div class="form-group">
 									<div class="col-md-6" >
+
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
 								<input type="text" class="form-control options-list"  name="option-multi-1-${countMultiQuest}">
+								<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-1-${countMultiQuest}">
+
 								</div>
 									<div class="col-md-6" >
+<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
 								<input type="text" class="form-control options-list"  name="option-multi-2-${countMultiQuest}">
+								<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-2-${countMultiQuest}">
+
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-multi-3-${countMultiQuest}">
+<a class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
+										<input type="text" class="form-control options-list"  name="option-multi-3-${countMultiQuest}">
+										<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-3-${countMultiQuest}">
+
 									</div>
 									<div class="col-md-6" >
-								<input type="text" class="form-control options-list"  name="option-multi-4-${countMultiQuest}">
+
+										<a class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
+										<input type="text" class="form-control options-list"  name="option-multi-4-${countMultiQuest}">
+										<input type="text" style="display: none;" class="form-control correct-options-list"  name="correct-option-multi-4-${countMultiQuest}">
+
 									</div>
+								<div class="col-md-6" >
+									<input type="text"  value="" style="display:none;" class="form-control options-list"  name="option-multi-5-${countMultiQuest}"><a class="btn-floating btn-small waves-effect waves-light red add-option-btn" > <i class="fa fa-plus"></i></a>
+									<a style="display: none;" class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+								</div>
+								<div class="col-md-6" >
+									<input type="text"   value=""  style="display:none;" class="form-control options-list"  name="option-multi-6-${countMultiQuest}"><a class="btn-floating btn-small waves-effect waves-light red add-option-btn" > <i class="fa fa-plus"></i></a>
+									<a style="display: none;" class="btn-floating btn-small waves-effect waves-light red remove-option-btn" > <i class="fa fa-minus"></i></a>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -959,7 +1004,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<label style="text-align:left">Options Linked (Max 4)</label>
+							<label style="text-align:left">Options Linked (Max 6)</label>
 							<div class="form-group">
 									<div class="col-md-5" >
 								<input type="text" class="form-control options-list"  name="option-tawsil-1-${countTawsilQuest}">
@@ -997,6 +1042,28 @@ Common
 									<div class="col-md-5" >
 								<input type="text" class="form-control options-list"  name="link-option-tawsil-4-${countTawsilQuest}">
 									</div>
+								<div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list tawsil-grised"  name="option-tawsil-5-${countTawsilQuest}">
+								</div>
+								<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list tawsil-grised"  name="link-option-tawsil-5-${countTawsilQuest}">
+									</div>
+								</div>
+								<div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list tawsil-grised"  name="option-tawsil-6-${countTawsilQuest}">
+								</div>
+								<div class="col-md-2" >
+								<img src="<?php echo base_url(); ?>assets/images/links-icon.png" style="width:30px;    margin-left: 40%;"/>
+								</div>
+									<div class="col-md-5" >
+								<input type="text" class="form-control options-list tawsil-grised"  name="link-option-tawsil-6-${countTawsilQuest}">
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -1056,6 +1123,13 @@ Common
 									<div class="col-md-6" >4.
 								<input type="text" class="form-control options-to-order-list"  name="option-to-order-4-${countTartibQuest}">
 									</div>
+
+								<div class="col-md-6" >5. optional
+								<input type="text" class="form-control options-to-order-list tawsil-grised"  name="option-to-order-5-${countTartibQuest}">
+									</div>
+								<div class="col-md-6" >6. optional
+								<input type="text" class="form-control options-to-order-list tawsil-grised"  name="option-to-order-6-${countTartibQuest}">
+									</div>
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -1085,12 +1159,55 @@ Common
 			this.showPicker();
 		});
 
+		/*$('.correct-option-btn').click(function (){
+
+			var correctInput=$(this).parent().find('.correct-options-list');
+			var input=$(this).parent().find('.options-list');
+			correctInput.val('correct')
+		});
+		$('.add-option-btn').click(function (){
+
+			var input=$(this).parent().find('.options-list');
+			var minus=$(this).parent().find('.remove-option-btn');
+			input.show();
+			input.val('');
+			$(this).hide();
+			minus.show();
+		});
+		$('.remove-option-btn').click(function (){
+
+			var inputs=$(this).parent().hide();
+			inputs.find('.options-list').val('')
+		});*/
+
 	})
 
 	$(document).on('click', '.close-question', function() {
 		attrId=$(this).attr('id');
 		id=attrId.replace('close-','');
 		$('.quest-'+id).remove();
+	}) ;
+	$(document).on('click', '.correct-option-btn', function() {
+
+		var correctInput=$(this).parent().find('.correct-options-list');
+		var input=$(this).parent().find('.options-list');
+		correctInput.val('correct')
+	}) ;
+
+	$(document).on('click', '.add-option-btn', function() {
+		var input=$(this).parent().find('.options-list');
+		var minus=$(this).parent().find('.remove-option-btn');
+		input.show();
+		input.val('');
+		$(this).hide();
+		minus.show();
+	}) ;
+	$(document).on('click', '.remove-option-btn', function() {
+		var inputs=$(this).parent().hide();
+		inputs.find('.options-list').val('')
+	}) ;
+	$(document).on('keydown', '.tawsil-grised', function() {
+		$(this).removeClass("tawsil-grised");
 	}) ;
 </script>
 

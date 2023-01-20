@@ -97,9 +97,15 @@ class Teacher extends CI_Controller {
 						$this->input->post('usr_time-'.$i),
 						$this->input->post('indeterminate-checkbox-single-'.$i),
 						$this->input->post('option-multi-1-'.$i),
+						$this->input->post('correct-option-multi-1-'.$i),
 						$this->input->post('option-multi-2-'.$i),
+						$this->input->post('correct-option-multi-2-'.$i),
 						$this->input->post('option-multi-3-'.$i),
+						$this->input->post('correct-option-multi-3-'.$i),
 						$this->input->post('option-multi-4-'.$i),
+						$this->input->post('correct-option-multi-4-'.$i),
+						$this->input->post('option-multi-5-'.$i),
+						$this->input->post('option-multi-6-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
 
@@ -175,6 +181,10 @@ class Teacher extends CI_Controller {
 						$this->input->post('link-option-tawsil-3-'.$i),
 						$this->input->post('option-tawsil-4-'.$i),
 						$this->input->post('link-option-tawsil-4-'.$i),
+						$this->input->post('option-tawsil-5-'.$i),
+						$this->input->post('link-option-tawsil-5-'.$i),
+						$this->input->post('option-tawsil-6-'.$i),
+						$this->input->post('link-option-tawsil-6-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
 					if(isset($result) & $result!='' ){
@@ -209,6 +219,8 @@ class Teacher extends CI_Controller {
 						$this->input->post('option-to-order-2-'.$i),
 						$this->input->post('option-to-order-3-'.$i),
 						$this->input->post('option-to-order-4-'.$i),
+						$this->input->post('option-to-order-5-'.$i),
+						$this->input->post('option-to-order-6-'.$i),
 						$this->input->post('file-uploaded-'.$i)
 					);
 					if(isset($result) & $result!='' ){
