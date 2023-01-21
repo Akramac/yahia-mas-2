@@ -61,7 +61,7 @@
 							<span class="text-danger" style="color:red;"><?php echo form_error('user_new_password'); ?></span>
 						</div>
 						<div class="form-group col-md-6 col-md-offset-3">
-							<input type="submit" name="login" value="Login" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a style="float:right;" href="<?php echo base_url(); ?>register">Forgot password ?</a>
+							<input type="submit" name="login" value="Submit" class="btn btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<a style="float:right;" href="<?php /*echo base_url(); */?>register">Forgot password ?</a>-->
 						</div>
 					</form>
 

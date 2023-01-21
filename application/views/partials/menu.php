@@ -4,7 +4,7 @@
 
 	<div class="clearfix">
 
-		<a href="index.html" class="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Yahia-mas" width="30"/></a>
+		<a href="<?php echo base_url(); ?>index.php/index" class="logo"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Yahia-mas" width="30"/></a>
 
 		<!-- ==========  Pre navigation ========== -->
 
@@ -68,7 +68,9 @@
 									<div class="box clearfix">
 										<ul>
 											<li class="" ><a href="<?php echo base_url(); ?>index.php/index">Home</a></li>
+											<?php $id= $this->session->userdata('id'); if ( !isset($id)  ) : ?>
 											<li class="" ><a href="<?php echo base_url(); ?>index.php/login">Login</a></li>
+											<?php endif ?>
 										</ul>
 									</div>
 								</div>
@@ -114,7 +116,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<!--<li>
 						<a href="#">Reviews <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
 						<div class="navbar-dropdown navbar-dropdown-single">
 							<div class="navbar-box">
@@ -132,7 +134,7 @@
 								</div>
 							</div>
 						</div>
-					</li>
+					</li>-->
 
 					<!--<li class="nav-settings">
 						<a href="javascript:void(0);"><span class="nav-settings-value">USD</span> <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>

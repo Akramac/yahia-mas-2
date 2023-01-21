@@ -586,7 +586,7 @@ Common
 				<?php foreach($listTeachersByAdmin as $teacher) { ?>
 					<a href="#">
 						<figure>
-							<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $teacher->id % 4; ?>.jpg" alt="Alternate Text" />
+							<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $teacher->id % 4 +1; ?>.jpg" alt="Alternate Text" />
 							<figcaption><?php echo $teacher->name; ?></figcaption>
 						</figure>
 					</a>

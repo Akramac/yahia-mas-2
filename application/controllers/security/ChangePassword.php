@@ -19,8 +19,8 @@ class ChangePassword extends CI_Controller {
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
-
-		$this->load->view('security/changePassword');
+		$data['title'] = 'Change Password';
+		$this->load->view('security/changePassword',$data);
 	}
 	function changePassword()
 	{

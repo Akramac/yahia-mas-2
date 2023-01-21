@@ -120,9 +120,9 @@
 		<header>
 			<div class="row">
 				<div class="col-md-offset-2 col-md-8 text-center">
-					<h2 class="title">Questions</h2>
+					<h2 class="title">Results</h2>
 					<div class="text">
-						<p>Most relevant</p>
+						<p>Most recent</p>
 					</div>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Question Polynomes</a><br>
+								<a href="#">Exam Polynomes</a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -183,7 +183,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Questions WW2 </a><br>
+								<a href="#">Exam WW2 </a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -212,7 +212,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Questions Planets</a><br>
+								<a href="#">Exam Planets</a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -242,7 +242,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Questions Vocabulary</a><br>
+								<a href="#">Exam Vocabulary</a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -271,7 +271,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Question Religion</a><br>
+								<a href="#">Exam Religion</a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -300,7 +300,7 @@
 						</div>
 						<div class="text">
 							<h2 class="title h5">
-								<a href="#">Question Odd numbers</a><br>
+								<a href="#">Exam Odd numbers</a><br>
 								<img src="<?php echo base_url(); ?>assets/images/5-stars.png" alt="" width="150"  style="margin-top: -30px !important;"/>
 							</h2>
 							<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
@@ -364,7 +364,7 @@
 					<div class="more-icon">
 						<span data-title-show="Show more" data-title-hide="+"></span>
 					</div>
-					<a href="#"></a>
+					<a href="<?php echo base_url(); ?>index.php/student/list/exam"></a>
 				</li>
 			<?php  endif ;?>
 			<!-- === if teacher === -->
@@ -383,7 +383,7 @@
 							<h4>Exam <?php echo $exam->exam_id ?></h4>
 						</figure>
 						<!--anchor-->
-						<a href="#">Anchor link</a>
+						<a href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher/<?php echo $exam->id ?>">Anchor link</a>
 					</li>
 				<?php } ?>
 				<!-- === stretcher exams more=== -->
@@ -392,7 +392,7 @@
 					<div class="more-icon">
 						<span data-title-show="Show more" data-title-hide="+"></span>
 					</div>
-					<a href="#"></a>
+					<a href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher"></a>
 				</li>
 			<?php  endif ;?>
 
