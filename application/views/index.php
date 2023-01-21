@@ -34,22 +34,13 @@
 			<!-- === tabsy images === -->
 
 			<div class="tabsy-images">
-				<div id="idImgPrim1">
-					<div class="h1 title"><small>Category</small>Maths</div>
+
+				<?php foreach($allCategories as $key => $cat) { ?>
+				<div id="idImgPrim<?php echo $key+1;?>">
+					<div class="h1 title"><small>Category</small> <?php echo $cat->name; ?></div>
 					<img src="<?php echo base_url(); ?>assets/images/sliders/math.jpg" alt="Alternate Text" />
 				</div>
-				<div id="idImgPrim2">
-					<div class="h1 title"><small>Category</small>Physics</div>
-					<img src="<?php echo base_url(); ?>assets/images/sliders/physics.jpg" alt="Alternate Text" />
-				</div>
-				<div id="idImgPrim3">
-					<div class="h1 title"><small>Category</small>English</div>
-					<img src="<?php echo base_url(); ?>assets/images/sliders/math.jpg" alt="Alternate Text" />
-				</div>
-				<div id="idImgPrim4">
-					<div class="h1 title"><small>Category</small> Arabic</div>
-					<img src="<?php echo base_url(); ?>assets/images/sliders/physics.jpg" alt="Alternate Text" />
-				</div>
+				<?php } ?>
 			</div>
 
 			<!-- === tabsy links === -->
@@ -57,54 +48,16 @@
 			<div class="tabsy-links">
 
 				<div class="row">
-
-					<figure class="col-xs-6 col-sm-6 col-md-2 current" data-image="idImgPrim1">
+					<?php foreach($allCategories as $key => $cat) { ?>
+						<figure class="col-xs-6 col-sm-6 col-md-2 current" data-image="idImgPrim<?php echo $key+1;?>">
 						<a href="#" class="link">Anchor link</a>
 						<figcaption>
-							<span class="h4 title">Maths</span>
+							<span class="h4 title"><?php echo $cat->name; ?></span>
 							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
 						</figcaption>
 					</figure>
+					<?php } ?>
 
-					<figure class="col-xs-6 col-sm-6 col-md-2" data-image="idImgPrim2">
-						<a href="#" class="link">Anchor link</a>
-						<figcaption>
-							<span class="h4 title">Physics</span>
-							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
-						</figcaption>
-					</figure>
-
-					<figure class="col-xs-6 col-sm-6 col-md-2" data-image="idImgPrim3">
-						<a href="#" class="link">Anchor link</a>
-						<figcaption>
-							<span class="h4 title">English</span>
-							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
-						</figcaption>
-					</figure>
-
-					<figure class="col-xs-6 col-sm-6 col-md-2" data-image="idImgPrim4">
-						<a href="#" class="link">Anchor link</a>
-						<figcaption>
-							<span class="h4 title">Arabic</span>
-							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
-						</figcaption>
-					</figure>
-
-					<figure class="col-xs-6 col-sm-6 col-md-2" data-image="idImgPrim3">
-						<a href="#" class="link">Anchor link</a>
-						<figcaption>
-							<span class="h4 title">Geography</span>
-							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
-						</figcaption>
-					</figure>
-
-					<figure class="col-xs-6 col-sm-6 col-md-2" data-image="idImgPrim4">
-						<a href="#" class="link">Anchor link</a>
-						<figcaption>
-							<span class="h4 title">History</span>
-							<span class="desc">You’ve finally reached this point in your life- you’ve bought your first home, moved into your very own apartment...</span>
-						</figcaption>
-					</figure>
 				</div> <!--/row-->
 			</div> <!--/tabsy-links-->
 		</div> <!--/tabsy--> <!--/container-->
@@ -139,7 +92,7 @@
 
 				<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Teacher')  : ?>
 					<?php foreach($students_by_teacher as $student) { ?>
-						<a href="#">
+						<a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher/<?php echo $student->id; ?>">
 							<figure>
 								<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $student->id % 4; ?>.jpg" alt="Alternate Text" />
 								<figcaption><?php echo $student->name; ?></figcaption>
@@ -189,9 +142,9 @@
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
 					</div>
-					<div class="btn btn-add">
+					<!--<div class="btn btn-add">
 						<i class="icon icon-cart"></i>
-					</div>
+					</div>-->
 					<div class="figure-grid">
 						<div class="image">
 							<a href="#productid1" class="mfp-open">
@@ -220,9 +173,6 @@
 						<span>
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
-					</div>
-					<div class="btn btn-add">
-						<i class="icon icon-cart"></i>
 					</div>
 					<div class="figure-grid">
 						<span class="label label-danger">-</span>
@@ -254,9 +204,6 @@
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
 					</div>
-					<div class="btn btn-add">
-						<i class="icon icon-cart"></i>
-					</div>
 					<div class="figure-grid">
 						<div class="image">
 							<a href="#productid1" class="mfp-open">
@@ -285,9 +232,6 @@
 						<span>
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
-					</div>
-					<div class="btn btn-add">
-						<i class="icon icon-cart"></i>
 					</div>
 					<div class="figure-grid">
 						<span class="label label-info">--</span>
@@ -319,9 +263,6 @@
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
 					</div>
-					<div class="btn btn-add">
-						<i class="icon icon-cart"></i>
-					</div>
 					<div class="figure-grid">
 						<div class="image">
 							<a href="#productid1" class="mfp-open">
@@ -351,9 +292,6 @@
                                 <a href="#productid1" class="mfp-open" data-title="Quick wiew"><i class="icon icon-eye"></i></a>
                             </span>
 					</div>
-					<div class="btn btn-add">
-						<i class="icon icon-cart"></i>
-					</div>
 					<div class="figure-grid">
 						<div class="image">
 							<a href="#productid1" class="mfp-open">
@@ -379,97 +317,6 @@
 		</div>
 
 		<!-- ========================  Product info popup - quick view ======================== -->
-
-		<div class="popup-main mfp-hide" id="productid1">
-
-			<!-- === product popup === -->
-
-			<div class="product">
-
-				<!-- === popup-title === -->
-
-				<div class="popup-title">
-					<div class="h1 title">
-						Headphones Wireless
-						<small>product category</small>
-					</div>
-				</div>
-
-				<!-- === product gallery === -->
-
-				<div class="owl-product-gallery">
-					<img src="<?php echo base_url(); ?>assets/images/product-10.png" alt="" width="640" />
-					<img src="<?php echo base_url(); ?>assets/images/product-10a.png" alt="" width="640" />
-				</div>
-
-				<!-- === product-popup-info === -->
-
-				<div class="popup-content">
-					<div class="product-info-wrapper">
-						<div class="row">
-
-							<!-- === left-column === -->
-
-							<div class="col-sm-6">
-								<div class="info-box">
-									<strong>Maifacturer</strong>
-									<span>Brand name</span>
-								</div>
-								<div class="info-box">
-									<strong>Materials</strong>
-									<span>Wood, Leather, Acrylic</span>
-								</div>
-								<div class="info-box">
-									<strong>Availability</strong>
-									<span><i class="fa fa-check-square-o"></i> in stock</span>
-								</div>
-							</div>
-
-							<!-- === right-column === -->
-
-							<div class="col-sm-6">
-								<div class="info-box">
-									<strong>Available Colors</strong>
-									<div class="product-colors clearfix">
-										<span class="color-btn color-btn-red"></span>
-										<span class="color-btn color-btn-blue checked"></span>
-										<span class="color-btn color-btn-green"></span>
-										<span class="color-btn color-btn-gray"></span>
-										<span class="color-btn color-btn-biege"></span>
-									</div>
-								</div>
-								<div class="info-box">
-									<strong>Choose size</strong>
-									<div class="product-colors clearfix">
-										<span class="color-btn color-btn-biege">S</span>
-										<span class="color-btn color-btn-biege checked">M</span>
-										<span class="color-btn color-btn-biege">XL</span>
-										<span class="color-btn color-btn-biege">XXL</span>
-									</div>
-								</div>
-							</div>
-
-						</div> <!--/row-->
-					</div> <!--/product-info-wrapper-->
-				</div> <!--/popup-content-->
-				<!-- === product-popup-footer === -->
-
-				<div class="popup-table">
-					<div class="popup-cell">
-						<div class="price">
-							<span class="h3">$ 1999,00 <small>$ 2999,00</small></span>
-						</div>
-					</div>
-					<div class="popup-cell">
-						<div class="popup-buttons">
-							<a href="product.html"><span class="icon icon-eye"></span> <span class="hidden-xs">View more</span></a>
-							<a href="javascript:void(0);"><span class="icon icon-cart"></span> <span class="hidden-xs">Buy</span></a>
-						</div>
-					</div>
-				</div>
-
-			</div> <!--/product-->
-		</div> <!--popup-main--> <!--/container-->
 
 	</section>
 
@@ -533,6 +380,14 @@
 						<a href="#">Anchor link</a>
 					</li>
 				<?php } ?>
+				<!-- === stretcher exams more=== -->
+
+				<li class="stretcher-item more">
+					<div class="more-icon">
+						<span data-title-show="Show more" data-title-hide="+"></span>
+					</div>
+					<a href="#"></a>
+				</li>
 			<?php  endif ;?>
 
 

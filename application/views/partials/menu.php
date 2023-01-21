@@ -40,8 +40,8 @@
 
 				-->
 				<li class="left-side"><a href="<?php echo base_url(); ?>index.php/register?user=student"><img alt="student" src="<?php echo base_url(); ?>assets/images/57_Student.jpg" width="30" /></a></li>
-				<li class="left-side"><a href="<?php echo base_url(); ?>index.php/register?user=admin"><img alt="admin" src="<?php echo base_url(); ?>assets/images/58_Admin.jpg" width="30" /></a></li>
-				<li><a href="javascript:void(0);" class="open-login"><i class="icon icon-user"></i></a></li>
+<!--				<li class="left-side"><a href="<?php /*echo base_url(); */?>index.php/register?user=admin"><img alt="admin" src="<?php /*echo base_url(); */?>assets/images/58_Admin.jpg" width="30" /></a></li>
+-->				<li><a href="javascript:void(0);" class="open-login"><i class="icon icon-user"></i></a></li>
 				<li><a href="javascript:void(0);" class="open-search"><i class="icon icon-magnifier"></i></a></li>
 				<!--<li><a href="javascript:void(0);" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a></li>-->
 			</ul>
@@ -52,8 +52,8 @@
 		<div class="navigation navigation-main">
 			<a href="#" class="open-login"><i class="icon icon-user"></i></a>
 			<a href="#" class="open-search"><i class="icon icon-magnifier"></i></a>
-			<a href="#" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a>
-			<a href="#" class="open-menu"><i class="icon icon-menu"></i></a>
+<!--			<a href="#" class="open-cart"><i class="icon icon-cart"></i> <span>4</span></a>
+-->			<a href="#" class="open-menu"><i class="icon icon-menu"></i></a>
 			<div class="floating-menu">
 				<!--mobile toggle menu trigger-->
 				<div class="close-menu-wrapper">
@@ -67,7 +67,8 @@
 								<div class="box-full">
 									<div class="box clearfix">
 										<ul>
-											<a href="<?php echo base_url(); ?>index.php/index"><li class="label" >Home</li></a>
+											<li class="" ><a href="<?php echo base_url(); ?>index.php/index">Home</a></li>
+											<li class="" ><a href="<?php echo base_url(); ?>index.php/login">Login</a></li>
 										</ul>
 									</div>
 								</div>

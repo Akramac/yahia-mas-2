@@ -257,9 +257,48 @@ class Teacher extends CI_Controller {
 			redirect('teacher/teacher-exam');
 		}
 	}
-	/*
-		public function switchLang($language = "") {
-			$this->session->set_userdata('site_lang', $language);
-			header('Location: http://localhost/ci_multilingual_app/');
-		}*/
+	public function studentListExamByTeacher($idStudent='')
+	{
+		$this->session->set_userdata('site_lang',  "english");
+		$this->lang->load('ar','arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page By Teacher';
+
+		// id teacher
+		// get teacher_id
+		$this->db->select("teachers.id");
+		$this->db->from('teachers');
+		$this->db->join('users','teachers.user_id = users.id');
+		$this->db->where('users.id', $this->session->userdata('id'));
+		$query = $this->db->get();
+		$teacherResult= $query->result();
+		$idTeacher='';
+		if(!empty($teacherResult)){
+			$idTeacher=$teacherResult[0]->id;
+		}
+		// list of exams by student
+
+
+
+		$this->db->select("teachers.id,teachers.name");
+		$this->db->from('teachers');
+		$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = teachers.id');
+		$this->db->join('students', 'students.id = student_teacher_junction.student_id');
+		$this->db->where('students.id',$idStudent);
+		$query = $this->db->get();
+		$teacherResult= $query->result();
+		$data['teachers_by_student'] = $teacherResult;
+		//list of exams
+		$data['exams_by_student']=array();
+		foreach ($teacherResult as $teach) {
+			$this->db->select();
+			$this->db->from('exams');
+			$this->db->where('exams.teacher_id',$teach->id);
+			$query = $this->db->get();
+			$examsResult= $query->result();
+			$data['exams_by_student'] = $examsResult;
+		}
+		$this->load->view('teacher/studentListExamByTeacher',$data);
+	}
+
 }

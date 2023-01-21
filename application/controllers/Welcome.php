@@ -76,6 +76,8 @@ class Welcome extends CI_Controller {
 				$this->db->join('exams_teachers_junction','exams_teachers_junction.exam_id = exams.id');
 				$this->db->join('teachers', 'teachers.id = exams_teachers_junction.teacher_id');
 				$this->db->where('teachers.id',$idTeacher);
+				$this->db->order_by("exams.date_created", "desc");
+				$this->db->limit(4);
 				$query = $this->db->get();
 				$examsResult= $query->result();
 				$data['exams_by_student'] = $examsResult;
@@ -125,6 +127,13 @@ class Welcome extends CI_Controller {
 			$this->session->set_userdata('user_type_role',  $userType);
 		}
 
+		// get category
+		$this->db->select();
+		$this->db->from('categories');
+		$this->db->limit(6);
+		$query = $this->db->get();
+		$allCategories= $query->result();
+		$data['allCategories'] = $allCategories;
 		$this->load->view('index',$data);
 	}
 	function logout()
