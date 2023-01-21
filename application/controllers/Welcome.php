@@ -54,7 +54,7 @@ class Welcome extends CI_Controller {
 				$this->db->distinct();
 				$this->db->select("students.id,students.name");
 				$this->db->from('students');
-				$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = students.id');
+				$this->db->join('student_teacher_junction','student_teacher_junction.student_id = students.id');
 				$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
 				$this->db->where('teachers.id',$idTeacher);
 				$query = $this->db->get();

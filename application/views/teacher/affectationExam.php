@@ -607,54 +607,51 @@
 					</div>
 
 					<div class="row row-clean pagination-container">
-
-						<!--product-item-->
-
-						<?php foreach($exams_by_student as $exam) { ?>
-						<div class="col-md-12 ">
-
-								<article data-page="<?php echo ($exam->id % 5)+1; ?>"  >
-									<div class="info">
-                                    <!--<span class="add-favorite">
-                                        <a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
-                                    </span>-->
-										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="" data-title="Affect the exam"><i class="icon icon-pointer-right"></i></a>
-                                    </span>
+						<div class="col-md-12 col-xs-12">
+							<div class="filters">
+								<!--Teachers-->
+								<div class="filter-box active">
+									<div class="title">
+										Exam Informations
 									</div>
-									<div class="figure-list">
-										<div class="image">
-											<a  target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="mfp-open">
-												<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
-											</a>
-										</div>
-										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title; ?></a></h2>
-											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup>
-<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
--->										</div>
+									<div class="filter-content">
+										<h5>Exam N° : <?php echo $exam->id; ?></h5>
+										<p>Title : <?php echo $exam->title; ?></p>
+										<p>Date : <?php echo $exam->date_created; ?></p>
 									</div>
-								</article>
+								</div> <!--/filter-box-->
+
+							</div> <!--/filters-->
+							<div class="filters">
+								<!--Teachers-->
+								<div class="filter-box active">
+									<div class="title">
+										students List for affectation
+									</div>
+									<div class="filter-content">
+										<?php foreach($students_by_teacher as $student) { ?>
+											<span class="checkbox">
+										<input type="checkbox" class="check-teacher" name="teacher<?php echo $student->id; ?>" id="teacher<?php echo $student->id; ?>">
+										<label for="teacher<?php echo $student->id; ?>"><?php echo $student->name; ?> <i></i></label>
+                                	</span>
+										<?php } ?>
+
+										<span class="checkbox">
+                                    <input type="checkbox" id="allTeachers">
+                                    <label for="allTeachers">All students <i></i></label>
+                                </span>
+									</div>
+								</div> <!--/filter-box-->
+								<!--close filters on mobile / update filters class removed .toggle-filters-close-->
+								<div type="button" class=" btn btn-main" id="submit-search-by-teachers">
+									Affect
+								</div>
+
+							</div> <!--/filters-->
 
 
 						</div>
-						<?php } ?>
 
-
-						<br><br><br>
-						<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
-							<ul class="page_control ">
-								<li data-page="-" ><a href="#" >&lt;</a></li>
-								<li class="active" data-page="1">
-									<a href="#" >1</a>
-								</li>
-								<li data-page="2"><a href="#" >2</a></li>
-								<li data-page="3"><a href="#" >3</a></li>
-								<li data-page="4"><a href="#" >4</a></li>
-								<li data-page="5"><a href="#" >5</a></li>
-								<li data-page="+"><a href="#" >&gt;</a></li>
-							</ul>
-						</div>
 					</div><!--/row-->
 					<!--Pagination-->
 					<!--<div class="pagination-wrapper">
@@ -744,42 +741,34 @@
 
 			}
 		});
-
+/*
 		$('.check-teacher').change(function(){
 			if(this.checked) {
 				$('.check-teacher').prop('checked',false);
 				$(this).prop('checked',true);
 			}
 
-		});
+		});*/
 		$('#allTeachers').change(function(){
 			if(this.checked) {
-				$('.check-teacher').prop('checked',false);
+				$('.check-teacher').prop('checked',true);
 			}else{
 				$('.check-teacher').prop('checked',false);
 			}
 
 		});
 		$('#submit-search-by-teachers').click(function(){
-			$(".check-teacher:radio").each(function(){
-				var $this = $(this);
+			var arrayStudentToAffect= [];
 
+			$(".check-teacher:checkbox").each(function(){
+				var $this = $(this);
 				if($this.is(":checked")){
 					    idTeacher=$this.attr('id').replace('teacher','');
-						window.location.href="<?php echo base_url(); ?>index.php/student/list/exam/"+idTeacher;
-				}else{
-					console.log('unchecker');
-				}
-			});
-			$("#allTeachers:checkbox").each(function(){
-				var $this = $(this);
+					arrayStudentToAffect.push(idTeacher);
 
-				if($this.is(":checked")){
-						window.location.href="<?php echo base_url(); ?>index.php/student/list/exam/all";
-				}else{
-					console.log('unchecker');
 				}
 			});
+
 		});
 	};
 	$( document ).ready( paginationHandler );

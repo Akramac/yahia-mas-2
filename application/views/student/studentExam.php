@@ -1114,10 +1114,10 @@
 													<li><?php echo $question->link_option_2; ?></li>
 													<li><?php echo $question->link_option_3; ?></li>
 													<li><?php echo $question->link_option_4; ?></li>
-													<?php if(!empty($question->option_5)) :?>
+													<?php if(!empty($question->link_option_5)) :?>
 													<li><?php echo $question->link_option_5; ?></li>
 													<?php endif;?>
-													<?php if(!empty($question->option_6)) :?>
+													<?php if(!empty($question->link_option_6)) :?>
 													<li><?php echo $question->link_option_6; ?></li>
 													<?php endif;?>
 												</ul>

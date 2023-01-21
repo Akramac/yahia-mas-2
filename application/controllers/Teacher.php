@@ -301,4 +301,103 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/studentListExamByTeacher',$data);
 	}
 
+	public function studentResultExamByTeacher($idStudent='',$idExam='')
+	{
+		$this->session->set_userdata('site_lang', "english");
+		$this->lang->load('ar', 'arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page By Teacher';
+		// get id teacher
+		$this->db->select("teachers.id");
+		$this->db->from('teachers');
+		$this->db->join('users','teachers.user_id = users.id');
+		$this->db->where('users.id', $this->session->userdata('id'));
+		$query = $this->db->get();
+		$teacherResult= $query->result();
+		$idTeacher='';
+		if(!empty($teacherResult)){
+			$idTeacher=$teacherResult[0]->id;
+		}
+		// get all students by teacher connected
+		$this->db->distinct();
+		$this->db->select();
+		$this->db->from('students');
+		$this->db->join('student_teacher_junction','student_teacher_junction.student_id = students.id');
+		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
+		$this->db->where('teachers.id',$idTeacher);
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		$data['students_by_teacher'] = $studentResult;
+
+		// get data student and exam in one table
+		/*$this->db->distinct();
+		$this->db->select("students.id,students.name");
+		$this->db->from('students');
+		$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = students.id');
+		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
+		$this->db->where('teachers.id',$idTeacher);
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		foreach ($studentResult as $student){
+
+		}
+		$data['students_by_teacher'] = $studentResult;*/
+		$this->load->view('teacher/studentResultExamByTeacher.php',$data);
+
+	}
+
+	public function affectExamByTeacher($idExam='')
+	{
+		$this->session->set_userdata('site_lang', "english");
+		$this->lang->load('ar', 'arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page By Teacher';
+		// get id teacher
+		$this->db->select("teachers.id");
+		$this->db->from('teachers');
+		$this->db->join('users','teachers.user_id = users.id');
+		$this->db->where('users.id', $this->session->userdata('id'));
+		$query = $this->db->get();
+		$teacherResult= $query->result();
+		$idTeacher='';
+		if(!empty($teacherResult)){
+			$idTeacher=$teacherResult[0]->id;
+		}
+		// get all students by teacher connected
+		$this->db->distinct();
+		$this->db->select("students.id,students.name");
+		$this->db->from('students');
+		$this->db->join('student_teacher_junction','student_teacher_junction.student_id = students.id');
+		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
+		$this->db->where('teachers.id',$idTeacher);
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		$data['students_by_teacher'] = $studentResult;
+
+		// get data student and exam in one table
+		/*$this->db->distinct();
+		$this->db->select("students.id,students.name");
+		$this->db->from('students');
+		$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = students.id');
+		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
+		$this->db->where('teachers.id',$idTeacher);
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		foreach ($studentResult as $student){
+
+		}
+		$data['students_by_teacher'] = $studentResult;*/
+
+		// get Exam
+		$this->db->select();
+		$this->db->limit(1);
+		$this->db->from('exams');
+		$this->db->where('exams.id', $idExam);
+		$query = $this->db->get();
+		$examResult= $query->result();
+
+		$data['exam'] = $examResult[0];
+		$this->load->view('teacher/affectationExam.php',$data);
+
+	}
 }

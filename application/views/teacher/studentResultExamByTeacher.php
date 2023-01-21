@@ -2,7 +2,8 @@
 <?php $this->view('partials/header')?>
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" media="all" href="https://unpkg.com/materialize-stepper@3.1.0/dist/css/mstepper.min.css" />
-    <style>
+<link rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/css/dataTables.bootstrap.min.css" />
+<style>
 		@import url("<?php echo base_url(); ?>assets/css/materialize.css");
 		@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 		@import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -571,8 +572,6 @@
 
 	<!-- ========================  Icons slider ======================== -->
 
-	<!-- ========================  Block banner category ======================== -->
-
 	<!-- ========================  Best seller ======================== -->
 
 	<section class="contact section-questions">
@@ -589,6 +588,27 @@
 				<div class="col-md-3 col-xs-12">
 					<div class="filters">
 
+						<div class="filter-box active">
+							<div class="title">
+								Students List
+							</div>
+							<div class="filter-content">
+								<?php foreach($students_by_teacher as $student) { ?>
+									<span class="checkbox">
+										<input type="radio" class="check-teacher" name="teacher<?php echo $student->id; ?>" id="teacher<?php echo $student->id; ?>">
+										<label for="teacher<?php echo $student->id; ?>"><?php echo $student->name; ?> <i></i></label>
+                                	</span>
+								<?php } ?>
+								<span class="checkbox">
+                                    <input type="checkbox" id="allstudents">
+                                    <label for="allstudents">All Students <i></i></label>
+                                </span>
+
+							</div>
+						</div> <!--/filter-box-->
+						<div type="button" class=" btn btn-main" id="submit-search-by-teachers">
+							Update search
+						</div>
 					</div> <!--/filters-->
 				</div>
 
@@ -598,7 +618,7 @@
 
 					<div class="sort-bar clearfix">
 						<div class="sort-options pull-right">
-							<span class="hidden-xs">List of Exams by student</span>
+							<span class="hidden-xs">List of Exams by students</span>
 							<!--Grid-list view-->
 							<span class="grid-list" hidden>
                                 <a href="products-grid.html" > <i class="fa fa-th-large"></i></a>
@@ -606,55 +626,45 @@
 						</div>
 					</div>
 
-					<div class="row row-clean pagination-container">
+					<div class="row row-clean">
 
 						<!--product-item-->
 
-						<?php foreach($exams_by_student as $exam) { ?>
 						<div class="col-md-12 ">
 
-								<article data-page="<?php echo ($exam->id % 5)+1; ?>"  >
-									<div class="info">
-                                    <!--<span class="add-favorite">
-                                        <a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
-                                    </span>-->
-										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="" data-title="Affect the exam"><i class="icon icon-pointer-right"></i></a>
-                                    </span>
-									</div>
-									<div class="figure-list">
-										<div class="image">
-											<a  target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="mfp-open">
-												<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
-											</a>
-										</div>
-										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title; ?></a></h2>
-											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup>
-<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
--->										</div>
-									</div>
-								</article>
+							<table id="example" class="table table-striped table-bordered" style="width:100%">
+								<thead>
+								<tr>
+									<th>Name</th>
+									<th>Position</th>
+									<th>Office</th>
+									<th>Age</th>
+									<th>Start date</th>
+									<th>Salary</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>Tiger Nixon</td>
+									<td>System Architect</td>
+									<td>Edinburgh</td>
+									<td>61</td>
+									<td>2011-04-25</td>
+									<td>$320,800</td>
+								</tr>
+								<tr>
+									<td>Garrett Winters</td>
+									<td>Accountant</td>
+									<td>Tokyo</td>
+									<td>63</td>
+									<td>2011-07-25</td>
+									<td>$170,750</td>
+								</tr>
 
-
+								</tfoot>
+							</table>
 						</div>
-						<?php } ?>
 
-
-						<br><br><br>
-						<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
-							<ul class="page_control ">
-								<li data-page="-" ><a href="#" >&lt;</a></li>
-								<li class="active" data-page="1">
-									<a href="#" >1</a>
-								</li>
-								<li data-page="2"><a href="#" >2</a></li>
-								<li data-page="3"><a href="#" >3</a></li>
-								<li data-page="4"><a href="#" >4</a></li>
-								<li data-page="5"><a href="#" >5</a></li>
-								<li data-page="+"><a href="#" >&gt;</a></li>
-							</ul>
-						</div>
 					</div><!--/row-->
 					<!--Pagination-->
 					<!--<div class="pagination-wrapper">
@@ -704,9 +714,12 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.min.js"></script>
 
 <script>
 	var paginationHandler = function(){
+		$('#example').DataTable();
 		// store pagination container so we only select it once
 		var $paginationContainer = $(".pagination-container"),
 			$pagination = $paginationContainer.find('.pagination ul');
