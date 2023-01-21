@@ -480,6 +480,10 @@ Common
 	.tawsil-grised{
 		background-color: #D3D3D3 !important;
 	}
+
+	.correct-input{
+		background-color: #90EE90 !important;
+	}
 </style>
 <div class="page-loader"></div>
 
@@ -617,7 +621,7 @@ Common
 					<input type="text"  name="title_exam" required>
 				</div>
 				<div class="form-group">
-					<label style="text-align:left">Duration of the whole exam</label>
+					<label style="text-align:left">Duration of the whole exam (h:m:s)</label>
 					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" step="2" name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
@@ -667,7 +671,7 @@ Common
 						</div>
 
 						<div class="col-md-12" >
-							<label style="text-align:left">Options (Max 6) </label>
+							<label style="text-align:left">Options (Max 6) <a alt="1" title="Show all"  class="btn-floating btn-small waves-effect waves-light red show-all-option-btn" > <i class="fa fa-eye"></i></a></label>
 							<div class="form-group">
 									<div class="col-md-6" >
 										<a class="btn-floating btn-small waves-effect waves-light green correct-option-btn" > <i class="fa fa-check"></i></a>
@@ -828,7 +832,9 @@ Common
 			// options
 			firstActive: 0 // this is the default
 		})*/
-		$('.timepicker').timepicker();
+		$('.timepicker').timepicker({
+			showMeridian: false
+		});
 		var countMultiQuest=1;
 		var countLongQuest=0;
 		var countTawsilQuest=0;
@@ -878,7 +884,7 @@ Common
 							</p>
 						</div>
 						<div class="col-md-12" >
-							<label style="text-align:left">Options (Max 6) </label>
+							<label style="text-align:left">Options (Max 6)  <a alt="${countSteps}"  title="Show all" class="btn-floating btn-small waves-effect waves-light red show-all-option-btn" > <i class="fa fa-eye"></i></a></label>
 							<div class="form-group">
 									<div class="col-md-6" >
 
@@ -1157,7 +1163,6 @@ Common
 		$( ".time-pick" ).focus(function() {
 			this.showPicker();
 		});
-
 		/*$('.correct-option-btn').click(function (){
 
 			var correctInput=$(this).parent().find('.correct-options-list');
@@ -1190,7 +1195,9 @@ Common
 
 		var correctInput=$(this).parent().find('.correct-options-list');
 		var input=$(this).parent().find('.options-list');
-		correctInput.val('correct')
+		correctInput.parent().find('.correct-option-btn').hide();
+		correctInput.val('correct');
+		input.addClass('correct-input');
 	}) ;
 
 	$(document).on('click', '.add-option-btn', function() {
@@ -1204,6 +1211,15 @@ Common
 	$(document).on('click', '.remove-option-btn', function() {
 		var inputs=$(this).parent().hide();
 		inputs.find('.options-list').val('')
+		inputs.find('.options-list').removeClass('correct-input');
+
+	}) ;
+	$(document).on('click', '.show-all-option-btn', function() {
+		var idQuest=$(this).attr('alt');
+		$('.quest-'+idQuest+' .options-list').parent().show();
+		$('.quest-'+idQuest+' .remove-option-btn').show();
+		$('.quest-'+idQuest+' .correct-option-btn').show();
+
 	}) ;
 	$(document).on('keydown', '.tawsil-grised', function() {
 		$(this).removeClass("tawsil-grised");
