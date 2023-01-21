@@ -81,7 +81,7 @@
 				<!-- === icon item  for student === -->
 				<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Student')  : ?>
 					<?php foreach($teachers_by_student as $teacher) { ?>
-					<a href="#">
+					<a target="_blank" href="<?php echo base_url(); ?>index.php/student/list/exam/<?php echo $teacher->id; ?>">
 						<figure>
 							<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $teacher->id % 4; ?>.jpg" alt="Alternate Text" />
 							<figcaption><?php echo $teacher->name; ?></figcaption>
@@ -360,6 +360,12 @@
 					<a href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ?>">Anchor link</a>
 				</li>
 			<?php } ?>
+				<li class="stretcher-item more">
+					<div class="more-icon">
+						<span data-title-show="Show more" data-title-hide="+"></span>
+					</div>
+					<a href="#"></a>
+				</li>
 			<?php  endif ;?>
 			<!-- === if teacher === -->
 			<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Teacher')  : ?>

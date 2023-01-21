@@ -104,6 +104,14 @@ class Student extends CI_Controller {
 		$this->lang->load('ar','arabe');
 		//$this->lang->load('en','english');
 		$data['title'] = 'Student Page';
+
+		//list of categories
+		$this->db->select();
+		$this->db->from('categories');
+		$this->db->limit(6);
+		$query = $this->db->get();
+		$allCategories= $query->result();
+		$data['allCategories'] = $allCategories;
 		// list of teachers by student
 
 		$this->db->select("students.id");
@@ -130,13 +138,18 @@ class Student extends CI_Controller {
 		$this->db->join('student_teacher_junction ue', 'ue.teacher_id = e.id');
 		$this->db->where('ue.teacher_id', 2);
 		$query = $this->db->get();*/
-		$this->db->select('teachers.name,teachers.id');
-		$this->db->from('teachers');
-		$this->db->join('student_teacher_junction', 'student_teacher_junction.teacher_id = teachers.id');
-		$this->db->where_in('student_teacher_junction.teacher_id', $arrayTeachers);
-		$this->db->distinct();
-		$queryTeachersByStudent = $this->db->get()->result();
-		$data['listTeachers']=$queryTeachersByStudent;
+		if(!empty($arrayTeachers)){
+			$this->db->select('teachers.name,teachers.id');
+			$this->db->from('teachers');
+			$this->db->join('student_teacher_junction', 'student_teacher_junction.teacher_id = teachers.id');
+			$this->db->where_in('student_teacher_junction.teacher_id', $arrayTeachers);
+			$this->db->distinct();
+			$queryTeachersByStudent = $this->db->get()->result();
+			$data['listTeachers']=$queryTeachersByStudent;
+		}else{
+			$data['listTeachers']=array();
+		}
+
 
 		if($idTeacher!='' & $idTeacher!='all'){
 			$this->db->select();
@@ -145,11 +158,96 @@ class Student extends CI_Controller {
 			$examByTeacherResult = $this->db->get()->result();
 			$data['listExams']=$examByTeacherResult;
 		}elseif($idTeacher=='all' or $idTeacher=='' ){
-			$this->db->select();
-			$this->db->from('exams');
-			$this->db->where_in('teacher_id', $arrayTeachers);
-			$examByTeacherResult = $this->db->get()->result();
-			$data['listExams']=$examByTeacherResult;
+			if(!empty($arrayTeachers)){
+				$this->db->select();
+				$this->db->from('exams');
+				$this->db->where_in('teacher_id', $arrayTeachers);
+				$examByTeacherResult = $this->db->get()->result();
+				$data['listExams']=$examByTeacherResult;
+			}else{
+				$data['listExams']=array();
+			}
+
+		}
+		$this->load->view('student/studentListExam',$data);
+	}
+	public function studentListExamByCategory($idCategory='')
+	{
+		$this->session->set_userdata('site_lang',  "english");
+		$this->lang->load('ar','arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page';
+
+		//list of categories
+		$this->db->select();
+		$this->db->from('categories');
+		$this->db->limit(6);
+		$query = $this->db->get();
+		$allCategories= $query->result();
+		$data['allCategories'] = $allCategories;
+		// list of teachers by student
+
+		$this->db->select("students.id");
+		$this->db->from('students');
+		$this->db->join('users','students.user_id = users.id');
+		$this->db->where('users.id', $this->session->userdata('id'));
+		$query = $this->db->get();
+		$studentResult= $query->result();
+		$idStudent='';
+		if(!empty($studentResult)){
+			$idStudent=$studentResult[0]->id;
+		}
+		$this->db->where('student_id', $idStudent);
+		$query = $this->db->get('student_teacher_junction');
+		$teacherStudentResult = $query->result();
+		//$data['listTeachers']=$teacherStudentResult;
+		$arrayTeachers=array();
+		foreach ($teacherStudentResult as $teacher){
+			$arrayTeachers[]=$teacher->teacher_id;
+		}
+
+		/*$this->db->select('e.name');
+		$this->db->from('teachers e');
+		$this->db->join('student_teacher_junction ue', 'ue.teacher_id = e.id');
+		$this->db->where('ue.teacher_id', 2);
+		$query = $this->db->get();*/
+		if(!empty($arrayTeachers)){
+			$this->db->select('teachers.name,teachers.id');
+			$this->db->from('teachers');
+			$this->db->join('student_teacher_junction', 'student_teacher_junction.teacher_id = teachers.id');
+			$this->db->where_in('student_teacher_junction.teacher_id', $arrayTeachers);
+			$this->db->distinct();
+			$queryTeachersByStudent = $this->db->get()->result();
+			$data['listTeachers']=$queryTeachersByStudent;
+		}else{
+			$data['listTeachers']=array();
+		}
+
+
+		if($idCategory!='' & $idCategory!='all'){
+
+			if(!empty($arrayTeachers)){
+				$this->db->select();
+				$this->db->from('exams');
+				$this->db->where_in('teacher_id', $arrayTeachers);
+				$this->db->where('categorie_id ', $idCategory);
+				$examByTeacherResult = $this->db->get()->result();
+				$data['listExams']=$examByTeacherResult;
+			}else{
+				$data['listExams']=array();
+			}
+
+		}elseif($idCategory=='all' or $idCategory=='' ){
+			if(!empty($arrayTeachers)){
+				$this->db->select();
+				$this->db->from('exams');
+				$this->db->where_in('teacher_id', $arrayTeachers);
+				$examByTeacherResult = $this->db->get()->result();
+				$data['listExams']=$examByTeacherResult;
+			}else{
+				$data['listExams']=array();
+			}
+
 		}
 		$this->load->view('student/studentListExam',$data);
 	}

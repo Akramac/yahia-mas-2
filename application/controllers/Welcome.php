@@ -105,10 +105,13 @@ class Welcome extends CI_Controller {
 				$data['teachers_by_student'] = $teacherResult;
 
 				//list of exams
+				$data['exams_by_student']=array();
 				foreach ($teacherResult as $teach) {
 					$this->db->select();
 					$this->db->from('exams');
 					$this->db->where('exams.teacher_id',$teach->id);
+					$this->db->limit(4);
+					$this->db->order_by("exams.date_created", "desc");
 					$query = $this->db->get();
 					$examsResult= $query->result();
 					$data['exams_by_student'] = $examsResult;

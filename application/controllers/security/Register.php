@@ -40,9 +40,11 @@ function validation()
 	if(isset($userType) and $userType=='admin'){
 		$userLevel='ROLE_ADMIN';
 	}
+
 	if($this->form_validation->run())
 	{
 		try {
+
 			$verification_key = md5(rand());
 			$encrypted_password = $this->encryption->encrypt($this->input->post('user_password'));
 			$data = array(
@@ -94,7 +96,9 @@ function validation()
 	{
 		$this->session->set_flashdata('error', 'Error Form');
 		$data['title'] = 'Registration';
-		redirect('login');
+		$data['title'] = 'Registration';
+		$this->load->view('security/register',$data);
+		//redirect('login');
 		//$this->load->view('security/register',$data);
 	}
 	}

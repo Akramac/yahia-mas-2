@@ -639,6 +639,32 @@
 						</div>
 
 					</div> <!--/filters-->
+
+
+					<div class="filters">
+						<!--Teachers-->
+							<div class="filter-box active">
+								<div class="title">
+									Categories List
+								</div>
+								<div class="filter-content">
+									<?php foreach($allCategories as $key => $categorie) { ?>
+										<span class="checkbox">
+										<input type="radio" class="check-category" name="category<?php echo $categorie->id; ?>" id="category<?php echo $categorie->id; ?>">
+										<label for="category<?php echo $categorie->id; ?>"><?php echo $categorie->name; ?> <i></i></label>
+                                	</span>
+									<?php } ?>
+
+									<span class="checkbox">
+                                    <input type="checkbox" id="allCategories">
+                                    <label for="allCategories">All Categories <i></i></label>
+									</span>
+								</div>
+							</div> <!--/filter-box-->
+							<!--close filters on mobile / update filters class removed .toggle-filters-close-->
+							<input type="submit" class=" btn btn-main" value="UPDATE CATEGORY" id="submit-category">
+
+					</div> <!--/filters-->
 				</div>
 
 				<!-- === product items === -->
@@ -825,6 +851,26 @@
 
 				if($this.is(":checked")){
 						window.location.href="<?php echo base_url(); ?>index.php/student/list/exam/all";
+				}else{
+					console.log('unchecker');
+				}
+			});
+		});
+
+		$('#submit-category').click(function(){
+			$(".check-category:radio").each(function(){
+				var $this = $(this);
+
+				if($this.is(":checked")){
+					idCategory=$this.attr('id').replace('category','');
+					window.location.href="<?php echo base_url(); ?>index.php/student/list/exam-by-category/"+idCategory;
+				}
+			});
+			$("#allCategories:checkbox").each(function(){
+				var $this = $(this);
+
+				if($this.is(":checked")){
+					window.location.href="<?php echo base_url(); ?>index.php/student/list/exam-by-category/all";
 				}else{
 					console.log('unchecker');
 				}

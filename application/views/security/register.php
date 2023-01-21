@@ -37,24 +37,25 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Register as <?php echo $this->input->get('user') ;?></div>
 		<div class="panel-body">
-			<form method="post" action="<?php echo base_url(); ?>index.php/register/validation">
+			<form method="post" action="<?php echo base_url(); ?>index.php/register/validation"  >
 				<div class="form-group" hidden>
 					<label>Type</label>
 					<input type="text" name="user_type" class="form-control" value="<?php echo  $this->input->get('user'); ?>" />
 				</div>
+
 				<div class="form-group">
-					<label>Enter Your Name</label>
-					<input type="text" name="user_name" class="form-control" value="<?php echo set_value('user_name'); ?>" />
+					<label for="user_name">Enter Your Name</label>
+					<input type="text" name="user_name" class="form-control" autocomplete="off"/>
 					<span class="text-danger" style="color:red;"><?php echo form_error('user_name'); ?></span>
 				</div>
 				<div class="form-group">
 					<label>Enter Your Valid Email Address</label>
-					<input type="email" name="user_email" class="form-control" value="<?php echo set_value('user_email'); ?>" />
+					<input type="email" name="user_email" class="form-control"  autocomplete="off"/>
 					<span class="text-danger" style="color:red;"><?php echo form_error('user_email'); ?></span>
 				</div>
 				<div class="form-group">
 					<label>Enter Password</label>
-					<input type="password" name="user_password" class="form-control" value="<?php echo set_value('user_password'); ?>" />
+					<input type="password" name="user_password" class="form-control" autocomplete="new-password" />
 					<span class="text-danger" style="color:red;"><?php echo form_error('user_password'); ?></span>
 				</div>
 				<div class="form-group">
