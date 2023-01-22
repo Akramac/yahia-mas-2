@@ -984,6 +984,12 @@ Common
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-long-${countLongQuest}">
 							</div>
 						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Correct answer of the question</label>
+								<input type="text" name="correct-question-long-${countLongQuest}" class="form-control"  required="required">
+							</div>
+						</div>
 						<div class="col-md-12" style="text-align: left;" >
 							<div class = "row">
 								<label>Upload Image</label>

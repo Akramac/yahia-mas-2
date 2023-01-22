@@ -141,6 +141,7 @@ class Teacher extends CI_Controller {
 					$result = $this->examModel->add_data_long_text(
 						$this->session->userdata('id'),
 						$this->input->post('title-question-long-'.$i),
+						$this->input->post('correct-question-long-'.$i),
 						$this->input->post('usr_time-long-'.$i),
 						$this->input->post('file-uploaded-long-'.$i),
 						$this->input->post('points-long-'.$i)

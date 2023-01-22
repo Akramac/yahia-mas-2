@@ -372,7 +372,7 @@ class Student extends CI_Controller {
 					$query = $this->db->get();
 					$questLongTextResult= $query->result();
 					if(!empty($questLongTextResult)){
-						$correctOption1=$questLongTextResult[0]->title;
+						$correctOption1=$questLongTextResult[0]->correct_long_text;
 
 
 						$id = $this->responsesModel->insert_long_text(

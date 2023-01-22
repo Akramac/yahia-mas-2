@@ -55,11 +55,12 @@ class ExamModel extends CI_Model
 		return 'ok';
 	}
 
-	function add_data_long_text($userID, $title,$timepick,$fileUrl,$points)
+	function add_data_long_text($userID, $title,$correct,$timepick,$fileUrl,$points)
 	{
 
 		$data['user_id']=$userID;
 		$data['title']=$title;
+		$data['correct_long_text']=$correct;
 		$data['duration']=$timepick;
 		$data['file_url']=$fileUrl;
 		$data['points']=$points;
