@@ -87,6 +87,7 @@
 											<li class="label">Exams</li>
 											<?php if ( $this->session->userdata('user_type') === 'ROLE_TEACHER' ) : ?>
 											<li><a  style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/teacher/teacher-exam">Add Exam</a></li>
+												<li><a style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher/<?php echo $this->session->userdata('idTeacher'); ?>">List Exams</a></li>
 											<?php endif; ?>
 											<?php if ( $this->session->userdata('user_type') === 'ROLE_STUDENT' ) : ?>
 												<li><a style="cursor: pointer;" href="<?php echo base_url(); ?>index.php/student/list/exam">List Exams</a></li>

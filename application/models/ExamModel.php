@@ -156,6 +156,34 @@ class ExamModel extends CI_Model
 		$idCategory=$this->db->insert_id();
 		return $idCategory;
 	}
+
+	function add_affectation($idStudent,$idExam)
+	{
+
+
+		$dataJunction['student_id']=$idStudent;
+		$dataJunction['exam_id']=$idExam;
+		$this->db->insert('student_exam_junction', $dataJunction);
+
+		return $idExam;
+	}
+
+	public function isDuplicateAffectation($data)
+	{
+		$sql = "SELECT student_id, exam_id
+    FROM student_exam_junction
+    WHERE student_id = ? AND exam_id = ? 
+    ";
+		$query = $this->db->query($sql, array($data['student_id'], $data['exam_id']));
+		//$query->result();
+
+		//If there are rows, means this review is duplicated
+		if($query->num_rows() > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }
 
 ?>

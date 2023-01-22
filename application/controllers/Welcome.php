@@ -51,6 +51,8 @@ class Welcome extends CI_Controller {
 				if(!empty($teacherResult)){
 					$idTeacher=$teacherResult[0]->id;
 				}
+				$data['idTeacher'] = $idTeacher;
+				$this->session->set_userdata('idTeacher',  $idTeacher);
 				$this->db->distinct();
 				$this->db->select("students.id,students.name");
 				$this->db->from('students');

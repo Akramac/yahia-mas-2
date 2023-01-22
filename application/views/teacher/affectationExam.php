@@ -643,7 +643,7 @@
 									</div>
 								</div> <!--/filter-box-->
 								<!--close filters on mobile / update filters class removed .toggle-filters-close-->
-								<div type="button" class=" btn btn-main" id="submit-search-by-teachers">
+								<div type="button" class=" btn btn-main" id="submit-affectation-by-student">
 									Affect
 								</div>
 
@@ -679,6 +679,7 @@
 			</div><!--/row-->
 		</div><!--/container-->
 	</section>
+
 
 	<!-- ========================  Stretcher widget ======================== -->
 
@@ -757,7 +758,7 @@
 			}
 
 		});
-		$('#submit-search-by-teachers').click(function(){
+		$('#submit-affectation-by-student').click(function(){
 			var arrayStudentToAffect= [];
 
 			$(".check-teacher:checkbox").each(function(){
@@ -768,6 +769,26 @@
 
 				}
 			});
+
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>index.php/teacher/affectation",
+				data: {
+					'array_students' : arrayStudentToAffect ,
+				    'exam_id':<?php echo $exam->id; ?>},
+				error: function(error){x
+					console.log(error);
+				},
+				success: function(data){
+					console.log(data);
+				},
+			})
+			const myTimeout = setTimeout(affectation, 1000);
+
+			function affectation() {
+				alert('Affectation with success !')
+			}
+
 
 		});
 	};

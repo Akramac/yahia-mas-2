@@ -400,4 +400,28 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/affectationExam.php',$data);
 
 	}
+
+	public function affectation()
+	{
+		$arrayStudents=$this->input->post('array_students');
+		$idExam=$this->input->post('exam_id');
+
+
+		foreach ($arrayStudents as $idStudent){
+			$data['student_id']=$idStudent;
+			$data['exam_id']=$idExam;
+
+			//check duplicate
+			$isDuplicated = $this->examModel->isDuplicateAffectation($data);
+			if(!($isDuplicated)){
+				//Insert data into Review Table
+				$resultAffectation = $this->examModel->add_affectation(
+					$idStudent,
+					$idExam
+				);
+			}
+
+		}
+
+	}
 }
