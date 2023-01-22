@@ -18,7 +18,7 @@ class ExamModel extends CI_Model
 		return $idExam;
 	}
 
-	function add_data_choices($userID, $title,$timepick,$CheckUnique,$option1,$correctOption1,$option2,$correctOption2,$option3,$correctOption3,$option4,$correctOption4,$option5,$option6,$fileUrl)
+	function add_data_choices($userID, $title,$timepick,$CheckUnique,$option1,$correctOption1,$option2,$correctOption2,$option3,$correctOption3,$option4,$correctOption4,$option5,$option6,$fileUrl,$points)
 	{
 
 		$data['user_id']=$userID;
@@ -41,6 +41,7 @@ class ExamModel extends CI_Model
 		$data['option_5']=$option5;
 		$data['option_6']=$option6;
 		$data['file_url']=$fileUrl;
+		$data['points']=$points;
 		$this->db->insert('question_multi_choice', $data);
 		return $this->db->insert_id();
 	}
@@ -54,13 +55,14 @@ class ExamModel extends CI_Model
 		return 'ok';
 	}
 
-	function add_data_long_text($userID, $title,$timepick,$fileUrl)
+	function add_data_long_text($userID, $title,$timepick,$fileUrl,$points)
 	{
 
 		$data['user_id']=$userID;
 		$data['title']=$title;
 		$data['duration']=$timepick;
 		$data['file_url']=$fileUrl;
+		$data['points']=$points;
 		$this->db->insert('question_long_text', $data);
 		return $this->db->insert_id();
 	}
@@ -73,7 +75,7 @@ class ExamModel extends CI_Model
 		$this->db->insert('exam_quest_long_text_junction', $data);
 		return 'ok';
 	}
-	function add_data_tawsil($userID, $title,$timepick,$option1,$linkOption1,$option2,$linkOption2,$option3,$linkOption3,$option4,$linkOption4,$option5,$linkOption5,$option6,$linkOption6,$fileUrl)
+	function add_data_tawsil($userID, $title,$timepick,$option1,$linkOption1,$option2,$linkOption2,$option3,$linkOption3,$option4,$linkOption4,$option5,$linkOption5,$option6,$linkOption6,$fileUrl,$points)
 	{
 
 		$data['user_id']=$userID;
@@ -93,6 +95,7 @@ class ExamModel extends CI_Model
 		$data['option_6']=$option6;
 		$data['link_option_6']=$linkOption6;
 		$data['file_url']=$fileUrl;
+		$data['points']=$points;
 		$this->db->insert('question_tawsil', $data);
 		return $this->db->insert_id();
 	}
@@ -105,7 +108,7 @@ class ExamModel extends CI_Model
 		$this->db->insert('exam_quest_tawsil_junction', $data);
 		return 'ok';
 	}
-	function add_data_tartib($userID, $title,$timepick,$option1,$option2,$option3,$option4,$option5,$option6,$fileUrl)
+	function add_data_tartib($userID, $title,$timepick,$option1,$option2,$option3,$option4,$option5,$option6,$fileUrl,$points)
 	{
 
 		$data['user_id']=$userID;
@@ -119,6 +122,7 @@ class ExamModel extends CI_Model
 		$data['option_to_order_5']=$option5;
 		$data['option_to_order_6']=$option6;
 		$data['file_url']=$fileUrl;
+		$data['points']=$points;
 		$this->db->insert('question_tartib', $data);
 		return $this->db->insert_id();
 	}

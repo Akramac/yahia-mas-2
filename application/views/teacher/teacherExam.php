@@ -646,13 +646,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-1" class="form-control"  required="required">
+								<input type="text" name="title-question-multi-1" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Point of the question</label>
+								<input type="number" class="form-control"  min="0" max="20"   name="points-multi-1" required>
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  name="usr_time-1">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  name="usr_time-multi-1">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -711,7 +717,7 @@ Common
 								<div class = "file-field input-field">
 									<div class = "btn">
 										<span>Browse</span>
-										<input name="file-uploaded-1" type = "file" />
+										<input name="file-uploaded-multi-1" type = "file" />
 									</div>
 
 									<div class = "file-path-wrapper">
@@ -860,13 +866,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-${countMultiQuest}" class="form-control"  required="required">
+								<input type="text" name="title-question-multi-${countMultiQuest}" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Point of the question</label>
+								<input type="number" class="form-control"  min="0" max="20"   name="points-multi-${countMultiQuest}" required>
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  onfocus="this.showPicker()" name="usr_time-${countMultiQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  onfocus="this.showPicker()" name="usr_time-multi-${countMultiQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -934,7 +946,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
+										<input name="file-uploaded-multi-${countSteps}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -957,13 +969,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-${countSteps}" class="form-control"  required="required">
+								<input type="text" name="title-question-long-${countLongQuest}" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Point of the question</label>
+								<input type="number" class="form-control"  min="0" max="20"   name="points-long-${countLongQuest}" required>
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countSteps}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-long-${countLongQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" style="text-align: left;" >
@@ -976,7 +994,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input  name="file-uploaded-${countSteps}" class = "file-path validate" type = "text"
+										<input  name="file-uploaded-long-${countLongQuest}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -999,13 +1017,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-${countTawsilQuest}" class="form-control"  required="required">
+								<input type="text" name="title-question-tawsil-${countTawsilQuest}" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Point of the question</label>
+								<input type="number" class="form-control"  min="0" max="20"   name="points-tawsil-${countTawsilQuest}" required>
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countTawsilQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tawsil-${countTawsilQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1081,7 +1105,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded-${countTawsilQuest}" class = "file-path validate" type = "text"
+										<input name="file-uploaded-tawsil-${countTawsilQuest}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>
@@ -1104,13 +1128,19 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Title of your question</label>
-								<input type="text" name="title-question-${countTartibQuest}" class="form-control"  required="required">
+								<input type="text" name="title-question-tartib-${countTartibQuest}" class="form-control"  required="required">
+							</div>
+						</div>
+						<div class="col-md-12" >
+							<div class="form-group">
+								<label style="text-align:left">Point of the question</label>
+								<input type="number" class="form-control"  min="0" max="20"   name="points-tartib-${countTartibQuest}" required>
 							</div>
 						</div>
 						<div class="col-md-12" >
 							<div class="form-group">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-${countTartibQuest}">
+								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1147,7 +1177,7 @@ Common
 									</div>
 
 									<div class = "file-path-wrapper">
-										<input name="file-uploaded-${countTartibQuest}" class = "file-path validate" type = "text"
+										<input name="file-uploaded-tartib-${countTartibQuest}" class = "file-path validate" type = "text"
 											   placeholder = "Upload file" />
 									</div>
 								</div>

@@ -57,7 +57,7 @@ class Teacher extends CI_Controller {
 	public function addExam()
 	{
 		/*$this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email');*/
-		$this->form_validation->set_rules('title-question-1', 'Title', 'required');
+		$this->form_validation->set_rules('title_exam', 'Title', 'required');
 		if($this->form_validation->run())
 		{
 			/* add to table exam  */
@@ -93,8 +93,8 @@ class Teacher extends CI_Controller {
 
 					$result = $this->examModel->add_data_choices(
 						$this->session->userdata('id'),
-						$this->input->post('title-question-'.$i),
-						$this->input->post('usr_time-'.$i),
+						$this->input->post('title-question-multi-'.$i),
+						$this->input->post('usr_time-multi-'.$i),
 						$this->input->post('indeterminate-checkbox-single-'.$i),
 						$this->input->post('option-multi-1-'.$i),
 						$this->input->post('correct-option-multi-1-'.$i),
@@ -106,7 +106,8 @@ class Teacher extends CI_Controller {
 						$this->input->post('correct-option-multi-4-'.$i),
 						$this->input->post('option-multi-5-'.$i),
 						$this->input->post('option-multi-6-'.$i),
-						$this->input->post('file-uploaded-'.$i)
+						$this->input->post('file-uploaded-multi-'.$i),
+						$this->input->post('points-multi-'.$i)
 					);
 
 					if(isset($result) & $result!='' ){
@@ -139,9 +140,11 @@ class Teacher extends CI_Controller {
 
 					$result = $this->examModel->add_data_long_text(
 						$this->session->userdata('id'),
-						$this->input->post('title-question-'.$i),
-						$this->input->post('usr_time-'.$i),
-						$this->input->post('file-uploaded-'.$i)
+						$this->input->post('title-question-long-'.$i),
+						$this->input->post('usr_time-long-'.$i),
+						$this->input->post('file-uploaded-long-'.$i),
+						$this->input->post('points-long-'.$i)
+
 					);
 					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
@@ -171,8 +174,8 @@ class Teacher extends CI_Controller {
 
 					$result = $this->examModel->add_data_tawsil(
 						$this->session->userdata('id'),
-						$this->input->post('title-question-'.$i),
-						$this->input->post('usr_time-'.$i),
+						$this->input->post('title-question-tawsil-'.$i),
+						$this->input->post('usr_time-tawsil-'.$i),
 						$this->input->post('option-tawsil-1-'.$i),
 						$this->input->post('link-option-tawsil-1-'.$i),
 						$this->input->post('option-tawsil-2-'.$i),
@@ -185,7 +188,9 @@ class Teacher extends CI_Controller {
 						$this->input->post('link-option-tawsil-5-'.$i),
 						$this->input->post('option-tawsil-6-'.$i),
 						$this->input->post('link-option-tawsil-6-'.$i),
-						$this->input->post('file-uploaded-'.$i)
+						$this->input->post('file-uploaded-tawsil-'.$i),
+						$this->input->post('points-tawsil-'.$i)
+
 					);
 					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
@@ -213,15 +218,17 @@ class Teacher extends CI_Controller {
 
 					$result = $this->examModel->add_data_tartib(
 						$this->session->userdata('id'),
-						$this->input->post('title-question-'.$i),
-						$this->input->post('usr_time-'.$i),
+						$this->input->post('title-question-tartib-'.$i),
+						$this->input->post('usr_time-tartib-'.$i),
 						$this->input->post('option-to-order-1-'.$i),
 						$this->input->post('option-to-order-2-'.$i),
 						$this->input->post('option-to-order-3-'.$i),
 						$this->input->post('option-to-order-4-'.$i),
 						$this->input->post('option-to-order-5-'.$i),
 						$this->input->post('option-to-order-6-'.$i),
-						$this->input->post('file-uploaded-'.$i)
+						$this->input->post('file-uploaded-tartib-'.$i),
+						$this->input->post('points-tartib-'.$i)
+
 					);
 					if(isset($result) & $result!='' ){
 						$data['title'] = 'Yahia MAS';
