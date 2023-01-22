@@ -50,8 +50,8 @@ class Student extends CI_Controller {
 		/* get question multi or single choice */
 		$this->db->select();
 		$this->db->from('question_multi_choice');
-		$this->db->join('exam_quest_multi_junction', 'exam_quest_multi_junction.quest_multi_id  = question_multi_choice.id', 'left');
-		$this->db->join('exams', 'exams.id = exam_quest_multi_junction.exam_id', 'left');
+		$this->db->join('exam_quest_multi_junction', 'exam_quest_multi_junction.quest_multi_id  = question_multi_choice.id');
+		$this->db->join('exams', 'exams.id = exam_quest_multi_junction.exam_id');
 		$this->db->where('exams.id', $idExam);
 		$query = $this->db->get();
 		$listQuestionsSingleChoice= $query->result();

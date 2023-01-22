@@ -5,7 +5,7 @@ class ExamModel extends CI_Model
 	function add_exam($titleExam,$teacherID, $categoryId)
 	{
 
-		$data['title']=$titleExam;
+		$data['title_exam']=$titleExam;
 		$data['teacher_id']=$teacherID;
 		$data['categorie_id']=$categoryId;
 		$this->db->insert('exams', $data);

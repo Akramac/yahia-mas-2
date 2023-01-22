@@ -616,7 +616,7 @@
 									</div>
 									<div class="filter-content">
 										<h5>Exam N° : <?php echo $exam->id; ?></h5>
-										<p>Title : <?php echo $exam->title; ?></p>
+										<p>Title : <?php echo $exam->title_exam; ?></p>
 										<p>Date : <?php echo $exam->date_created; ?></p>
 									</div>
 								</div> <!--/filter-box-->

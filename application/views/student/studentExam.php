@@ -966,7 +966,7 @@
 								<div class="row">
 
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1  <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_1; ?>" style="height: 90px;">
+										<div class="card red lighten-2  <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_1; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/square.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_1; ?></p>
 											</div>
@@ -980,14 +980,14 @@
 										</div>
 									</div>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1  <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_3; ?>" style="height: 90px;">
+										<div class="card brown lighten-2  <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_3; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/cercle.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_3; ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_4; ?>" style="height: 90px;">
+										<div class="card  blue lighten-2 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_4; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_4; ?></p>
 											</div>
@@ -995,7 +995,7 @@
 									</div>
 									<?php if($question->option_5) :?>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_5; ?>" style="height: 90px;">
+										<div class="card teal accent-2 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_5; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_5; ?></p>
 											</div>
@@ -1004,7 +1004,7 @@
 									<?php endif ?>
 									<?php if($question->option_6) : ?>
 									<div class="col-md-6 com-xs-12">
-										<div class="card blue-grey darken-1 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_6; ?>" style="height: 90px;">
+										<div class="card  blue-grey lighten-5 <?php if($question->is_single_choice==false) :?>card-options-multiple<?php else : ?>card-options <?php endif ;?>" id="step-4" alt="<?php echo $question->option_6; ?>" style="height: 90px;">
 											<div class="card-content white-text card-4-options">
 												<p><img src="<?php echo base_url(); ?>assets/images/xbox.png" alt="Alternate Text" style="width:25px;margin-right:5%;" /> <?php echo $question->option_6; ?></p>
 											</div>
