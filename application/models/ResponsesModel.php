@@ -85,7 +85,16 @@ class ResponsesModel extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	function mark_exam_as_passed($teacherID,$studentID,$examID)
+	{
 
+		$data['teacher_id']=$teacherID;
+		$data['student_id']=$studentID;
+		$data['exam_id']=$examID;
+
+		$this->db->insert('response_exam', $data);
+		return $this->db->insert_id();
+	}
 
 }
 

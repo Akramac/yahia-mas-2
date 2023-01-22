@@ -72,7 +72,7 @@ class Admin extends CI_Controller {
 		$query = $this->db->get('student_teacher_junction');
 		$teacherStudentResult = $query->result();
 		//$data['listTeachers']=$teacherStudentResult;
-		$arrayTeachers=array();
+		$arrayTeachers=array('0');
 		foreach ($teacherStudentResult as $teacher){
 			$arrayTeachers[]=$teacher->teacher_id;
 		}

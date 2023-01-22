@@ -649,6 +649,33 @@
 
 							</div> <!--/filters-->
 
+							<div class="filters">
+								<!--Teachers-->
+								<div class="filter-box active">
+									<div class="title">
+										Students List who passed the exam
+									</div>
+									<div class="filter-content">
+										<?php foreach($studentsPassedExamResult as $student) { ?>
+											<span class="checkbox">
+										<input type="checkbox" class="check-student" name="student<?php echo $student->student_id; ?>" id="student<?php echo $student->student_id; ?>">
+										<label for="student<?php echo $student->student_id; ?>"><?php echo $student->name; ?> <i></i></label>
+                                	</span>
+										<?php } ?>
+
+										<span class="checkbox">
+                                    <input type="checkbox" id="allStudents">
+                                    <label for="allStudents">All students <i></i></label>
+										</span>
+									</div>
+								</div> <!--/filter-box-->
+								<!--close filters on mobile / update filters class removed .toggle-filters-close-->
+								<div type="button" class=" btn btn-main" id="submit-correction-by-student">
+									Correct their answers
+								</div>
+
+							</div> <!--/filters-->
+
 
 						</div>
 
@@ -758,6 +785,14 @@
 			}
 
 		});
+		$('#allStudents').change(function(){
+			if(this.checked) {
+				$('.check-student').prop('checked',true);
+			}else{
+				$('.check-student').prop('checked',false);
+			}
+
+		});
 		$('#submit-affectation-by-student').click(function(){
 			var arrayStudentToAffect= [];
 
@@ -776,6 +811,40 @@
 				data: {
 					'array_students' : arrayStudentToAffect ,
 				    'exam_id':<?php echo $exam->id; ?>},
+				error: function(error){x
+					console.log(error);
+				},
+				success: function(data){
+					console.log(data);
+				},
+			})
+			const myTimeout = setTimeout(affectation, 1000);
+
+			function affectation() {
+				alert('Affectation with success !')
+			}
+
+
+		});
+
+		$('#submit-correction-by-student').click(function(){
+			var arrayStudentToAffect= [];
+
+			$(".check-student:checkbox").each(function(){
+				var $this = $(this);
+				if($this.is(":checked")){
+					idStudent=$this.attr('id').replace('student','');
+					arrayStudentToAffect.push(idStudent);
+
+				}
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>index.php/teacher/correction",
+				data: {
+					'array_students' : arrayStudentToAffect ,
+					'exam_id':<?php echo $exam->id; ?>},
 				error: function(error){x
 					console.log(error);
 				},

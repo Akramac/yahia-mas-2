@@ -128,7 +128,7 @@ class Student extends CI_Controller {
 		$query = $this->db->get('student_teacher_junction');
 		$teacherStudentResult = $query->result();
 		//$data['listTeachers']=$teacherStudentResult;
-		$arrayTeachers=array();
+		$arrayTeachers=array('0');
 		foreach ($teacherStudentResult as $teacher){
 			$arrayTeachers[]=$teacher->teacher_id;
 		}
@@ -201,7 +201,7 @@ class Student extends CI_Controller {
 		$query = $this->db->get('student_teacher_junction');
 		$teacherStudentResult = $query->result();
 		//$data['listTeachers']=$teacherStudentResult;
-		$arrayTeachers=array();
+		$arrayTeachers=array('0');
 		foreach ($teacherStudentResult as $teacher){
 			$arrayTeachers[]=$teacher->teacher_id;
 		}
@@ -487,6 +487,13 @@ class Student extends CI_Controller {
 
 			}
 		}
+
+		// mark exam as passed
+			$idPassedExam = $this->responsesModel->mark_exam_as_passed(
+				$idTeacher,
+				$idStudent,
+				$this->input->post('idExam')
+			);
 		}else
 		{
 			$this->session->set_flashdata('error', 'Error Form');

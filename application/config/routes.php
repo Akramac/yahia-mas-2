@@ -64,6 +64,7 @@ $route['teacher/list/exam-by-teacher/(:any)'] = 'teacher/studentListExamByTeache
 $route['teacher/result/exam-by-teacher/(:any)/(:any)'] = 'teacher/studentResultExamByTeacher/$1/$2';
 $route['teacher/affect/exam-by-teacher/(:any)'] = 'teacher/affectExamByTeacher/$1';
 $route['teacher/affectation'] = 'teacher/affectation';
+$route['teacher/correction'] = 'teacher/correction';
 
 $route['admin/administration'] = 'admin/administration';
 $route['admin/administration/(:any)'] = 'admin/administration/$1';

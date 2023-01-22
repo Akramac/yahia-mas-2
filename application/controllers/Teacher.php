@@ -296,16 +296,19 @@ class Teacher extends CI_Controller {
 		$query = $this->db->get();
 		$teacherResult= $query->result();
 		$data['teachers_by_student'] = $teacherResult;
+
 		//list of exams
 		$data['exams_by_student']=array();
+		$arrayTeachers=array('0');
 		foreach ($teacherResult as $teach) {
-			$this->db->select();
-			$this->db->from('exams');
-			$this->db->where('exams.teacher_id',$teach->id);
-			$query = $this->db->get();
-			$examsResult= $query->result();
-			$data['exams_by_student'] = $examsResult;
+			$arrayTeachers[]=$teach->id;
 		}
+		$this->db->select();
+		$this->db->from('exams');
+		$this->db->where_in('exams.teacher_id',$arrayTeachers);
+		$query = $this->db->get();
+		$examsResult= $query->result();
+		$data['exams_by_student'] = $examsResult;
 		$this->load->view('teacher/studentListExamByTeacher',$data);
 	}
 
@@ -382,6 +385,32 @@ class Teacher extends CI_Controller {
 		$studentResult= $query->result();
 		$data['students_by_teacher'] = $studentResult;
 
+
+		// get all students by teacher who passed exam
+		$this->db->distinct();
+		$this->db->select();
+		$this->db->from('students');
+		$this->db->join('student_exam_junction','student_exam_junction.student_id = students.id');
+		$this->db->where('student_exam_junction.exam_id',$idExam);
+		$query = $this->db->get();
+		$studentsPassedExamResult= $query->result();
+		$data['studentsPassedExamResult']=array();
+
+		$arrayStudents=array('0');
+		foreach ($studentsPassedExamResult as $stud) {
+			$arrayStudents[]=$stud->id;
+		}
+		$this->db->distinct();
+		$this->db->select();
+		$this->db->from('students');
+		$this->db->join('response_exam','response_exam.student_id = students.id');
+		$this->db->where_in('students.id',$arrayStudents);
+		$query = $this->db->get();
+		$studResult= $query->result();
+
+		$data['studentsPassedExamResult'] = $studResult;
+
+		//$data['studentsPassedExamResult'] = $studentsPassedExamResult;
 		// get data student and exam in one table
 		/*$this->db->distinct();
 		$this->db->select("students.id,students.name");
@@ -427,6 +456,54 @@ class Teacher extends CI_Controller {
 					$idStudent,
 					$idExam
 				);
+			}
+
+		}
+
+	}
+
+	public function correction()
+	{
+		$arrayStudents=$this->input->post('array_students');
+		$idExam=$this->input->post('exam_id');
+
+
+		foreach ($arrayStudents as $idStudent){
+			$data['student_id']=$idStudent;
+			$data['exam_id']=$idExam;
+
+			/*//check duplicate
+			$isDuplicated = $this->examModel->isDuplicateAffectation($data);
+			if(!($isDuplicated)){
+				//Insert data into Review Table
+				$resultAffectation = $this->examModel->add_affectation(
+					$idStudent,
+					$idExam
+				);
+			}*/
+
+			// correct multi choice by new response
+			$listQuestMulti=array();
+			$this->db->select();
+			$this->db->from('exam_quest_multi_junction');
+			$this->db->where('exam_quest_multi_junction.exam_id',$idExam);
+			$query = $this->db->get();
+			$listQuestMulti= $query->result();
+			foreach ($listQuestMulti as $multiQuest){
+
+				$reponseMutliQuest=array();
+				$this->db->select();
+				$this->db->from('response_question_multi_choice');
+				$this->db->where('response_question_multi_choice.exam_id',$idExam);
+				$this->db->where('response_question_multi_choice.question_multi_id',$multiQuest->quest_multi_id);
+				$query = $this->db->get();
+				$reponseMutliQuest= $query->result();
+				var_dump($reponseMutliQuest);exit;
+				if($multiQuest->is_single_choice==true){
+						if($multiQuest->correct_option_1=='correct'){
+
+						}
+				}
 			}
 
 		}

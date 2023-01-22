@@ -108,16 +108,19 @@ class Welcome extends CI_Controller {
 
 				//list of exams
 				$data['exams_by_student']=array();
+
+				$arrayTeachers=array('0');
 				foreach ($teacherResult as $teach) {
-					$this->db->select();
-					$this->db->from('exams');
-					$this->db->where('exams.teacher_id',$teach->id);
-					$this->db->limit(4);
-					$this->db->order_by("exams.date_created", "desc");
-					$query = $this->db->get();
-					$examsResult= $query->result();
-					$data['exams_by_student'] = $examsResult;
+					$arrayTeachers[]=$teach->id;
 				}
+				$this->db->select();
+				$this->db->from('exams');
+				$this->db->where_in('exams.teacher_id',$arrayTeachers);
+				$this->db->limit(4);
+				$this->db->order_by("exams.date_created", "desc");
+				$query = $this->db->get();
+				$examsResult= $query->result();
+				$data['exams_by_student'] = $examsResult;
 
 			}
 			if(isset($userLevel) and $userLevel=='ROLE_ADMIN'){
