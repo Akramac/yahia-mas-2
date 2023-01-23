@@ -401,7 +401,7 @@ class Teacher extends CI_Controller {
 			$arrayStudents[]=$stud->id;
 		}
 		$this->db->distinct();
-		$this->db->select();
+		$this->db->select('students.id,students.name,students.email');
 		$this->db->from('students');
 		$this->db->join('response_exam','response_exam.student_id = students.id');
 		$this->db->where_in('students.id',$arrayStudents);
@@ -496,14 +496,301 @@ class Teacher extends CI_Controller {
 				$this->db->from('response_question_multi_choice');
 				$this->db->where('response_question_multi_choice.exam_id',$idExam);
 				$this->db->where('response_question_multi_choice.question_multi_id',$multiQuest->quest_multi_id);
+				$this->db->order_by("response_question_multi_choice.id", "desc");
+				$this->db->limit(1);
 				$query = $this->db->get();
 				$reponseMutliQuest= $query->result();
-				var_dump($reponseMutliQuest);exit;
-				if($multiQuest->is_single_choice==true){
-						if($multiQuest->correct_option_1=='correct'){
+
+				//get Question
+				$this->db->select();
+				$this->db->from('question_multi_choice');
+				$this->db->where('question_multi_choice.id',$multiQuest->quest_multi_id);
+				$this->db->limit(1);
+				$query = $this->db->get();
+				$questMutliQuest= $query->result();
+
+				//make correction
+				if(!empty($questMutliQuest) & !empty($reponseMutliQuest)){
+					if($questMutliQuest[0]->is_single_choice==false){
+
+						//make array of answers
+						$arrayAnswers=array();
+						if($reponseMutliQuest[0]->response_option_1!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_1;
 
 						}
+						if($reponseMutliQuest[0]->response_option_2!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_2;
+
+						}
+						if($reponseMutliQuest[0]->response_option_3!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_3;
+
+						}
+						if($reponseMutliQuest[0]->response_option_4!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_4;
+
+						}
+						if($reponseMutliQuest[0]->response_option_5!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_5;
+
+						}if($reponseMutliQuest[0]->response_option_6!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_6;
+
+						}
+						// get array correction
+						$arrayCorrectAnswers=array();
+						if($questMutliQuest[0]->correct_option_1=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_1;
+
+						}
+						if($questMutliQuest[0]->correct_option_2=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_2;
+
+						}
+						if($questMutliQuest[0]->correct_option_3=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_3;
+
+						}
+						if($questMutliQuest[0]->correct_option_4=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_4;
+
+						}
+						//add note
+						$diffArrays=array_diff($arrayAnswers,$arrayCorrectAnswers);
+						if(empty($diffArrays)){
+
+							$data = array(
+								'note_by_teacher'  => $questMutliQuest[0]->points
+							);
+							$this->db->where('id', $reponseMutliQuest[0]->id);
+							$this->db->update('response_question_multi_choice', $data);
+
+						}else{
+							$data = array(
+								'note_by_teacher'  => "0"
+							);
+							$this->db->where('id', $reponseMutliQuest[0]->id);
+							$this->db->update('response_question_multi_choice', $data);
+						}
+					}else{
+
+
+						//make array of answers
+						$arrayAnswers=array();
+						if($reponseMutliQuest[0]->response_option_1!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_1;
+
+						}
+						if($reponseMutliQuest[0]->response_option_2!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_2;
+
+						}
+						if($reponseMutliQuest[0]->response_option_3!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_3;
+
+						}
+						if($reponseMutliQuest[0]->response_option_4!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_4;
+
+						}
+						if($reponseMutliQuest[0]->response_option_5!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_5;
+
+						}if($reponseMutliQuest[0]->response_option_6!=null){
+							$arrayAnswers[]=$reponseMutliQuest[0]->response_option_6;
+
+						}
+						// get array correction
+						$arrayCorrectAnswers=array();
+						if($questMutliQuest[0]->correct_option_1=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_1;
+
+						}
+						if($questMutliQuest[0]->correct_option_2=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_2;
+
+						}
+						if($questMutliQuest[0]->correct_option_3=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_3;
+
+						}
+						if($questMutliQuest[0]->correct_option_4=='correct'){
+							$arrayCorrectAnswers[]=$questMutliQuest[0]->option_4;
+
+						}
+						//add note
+						$diffArrays=array_diff($arrayAnswers,$arrayCorrectAnswers);
+						if(empty($diffArrays)){
+
+							$data = array(
+								'note_by_teacher'  => $questMutliQuest[0]->points
+							);
+							$this->db->where('id', $reponseMutliQuest[0]->id);
+							$this->db->update('response_question_multi_choice', $data);
+
+						}else{
+							$data = array(
+								'note_by_teacher'  => "0"
+							);
+							$this->db->where('id', $reponseMutliQuest[0]->id);
+							$this->db->update('response_question_multi_choice', $data);
+						}
+					}
 				}
+
+			}
+			// correct long text
+			// correct tawsil
+			$listQuestTawsil=array();
+			$this->db->select();
+			$this->db->from('exam_quest_tawsil_junction');
+			$this->db->where('exam_quest_tawsil_junction.exam_id',$idExam);
+			$query = $this->db->get();
+			$listQuestTawsil= $query->result();
+
+			foreach ($listQuestTawsil as $tawsilQuest){
+				$reponseTawsilQuest=array();
+				$this->db->select();
+				$this->db->from('response_question_tawsil');
+				$this->db->where('response_question_tawsil.exam_id',$idExam);
+				$this->db->where('response_question_tawsil.question_tawsil_id',$tawsilQuest->quest_tawsil_id);
+				$this->db->order_by("response_question_tawsil.id", "desc");
+				$this->db->limit(1);
+				$query = $this->db->get();
+				$reponseTawsilQuest= $query->result();
+
+				//get Question
+				$this->db->select();
+				$this->db->from('question_tawsil');
+				$this->db->where('question_tawsil.id',$tawsilQuest->quest_tawsil_id);
+				$this->db->limit(1);
+				$query = $this->db->get();
+				$questTawsilQuest= $query->result();
+
+				//make correction
+				if(!empty($questTawsilQuest) & !empty($reponseTawsilQuest)){
+
+						//make array of answers
+						$isAnsweredWrong=true;
+						if($reponseTawsilQuest[0]->response_option_1!=$reponseTawsilQuest[0]->correct_option_1){
+							$isAnsweredWrong=false;
+
+						}
+						if($reponseTawsilQuest[0]->response_option_2!=$reponseTawsilQuest[0]->correct_option_2){
+							$isAnsweredWrong=false;
+
+						}
+						if($reponseTawsilQuest[0]->response_option_3!=$reponseTawsilQuest[0]->correct_option_3){
+							$isAnsweredWrong=false;
+
+						}
+						if($reponseTawsilQuest[0]->response_option_4!=$reponseTawsilQuest[0]->correct_option_4){
+							$isAnsweredWrong=false;
+
+						}
+						if($reponseTawsilQuest[0]->response_option_5!=$reponseTawsilQuest[0]->correct_option_5){
+							$isAnsweredWrong=false;
+
+						}
+						if($reponseTawsilQuest[0]->response_option_6!=$reponseTawsilQuest[0]->correct_option_6){
+							$isAnsweredWrong=false;
+
+						}
+						if($isAnsweredWrong==true){
+
+							$data = array(
+								'note_by_teacher'  => $questTawsilQuest[0]->points
+							);
+							$this->db->where('id', $reponseTawsilQuest[0]->id);
+							$this->db->update('response_question_tawsil', $data);
+
+						}else{
+							$data = array(
+								'note_by_teacher'  => "0"
+							);
+							$this->db->where('id', $reponseTawsilQuest[0]->id);
+							$this->db->update('response_question_tawsil', $data);
+						}
+				}
+
+			}
+
+
+			// correct TARTIB
+			$listQuestTartib=array();
+			$this->db->select();
+			$this->db->from('exam_quest_tartib_junction');
+			$this->db->where('exam_quest_tartib_junction.exam_id',$idExam);
+			$query = $this->db->get();
+			$listQuestTartib= $query->result();
+
+			foreach ($listQuestTartib as $tartibQuest){
+				$reponseTartibQuest=array();
+				$this->db->select();
+				$this->db->from('response_question_tartib');
+				$this->db->where('response_question_tartib.exam_id',$idExam);
+				$this->db->where('response_question_tartib.question_tartib_id',$tartibQuest->quest_tartib_id);
+				$this->db->order_by("response_question_tartib.id", "desc");
+				$this->db->limit(1);
+				$query = $this->db->get();
+				$reponseTartibQuest= $query->result();
+
+				//get Question
+				$this->db->select();
+				$this->db->from('question_tartib');
+				$this->db->where('question_tartib.id',$tartibQuest->quest_tartib_id);
+				$this->db->limit(1);
+				$query = $this->db->get();
+				$questTartibQuest= $query->result();
+
+				//make correction
+				if(!empty($questTartibQuest) & !empty($reponseTartibQuest)){
+
+					//make array of answers
+					$isAnsweredWrong=true;
+					if($reponseTartibQuest[0]->reponse_option_to_order_1!=$reponseTartibQuest[0]->correct_order_1){
+						$isAnsweredWrong=false;
+
+					}
+					if($reponseTartibQuest[0]->reponse_option_to_order_2!=$reponseTartibQuest[0]->correct_order_2){
+						$isAnsweredWrong=false;
+
+					}
+					if($reponseTartibQuest[0]->reponse_option_to_order_3!=$reponseTartibQuest[0]->correct_order_3){
+						$isAnsweredWrong=false;
+
+					}
+					if($reponseTartibQuest[0]->reponse_option_to_order_4!=$reponseTartibQuest[0]->correct_order_4){
+						$isAnsweredWrong=false;
+
+					}
+					if($reponseTartibQuest[0]->reponse_option_to_order_5!=$reponseTartibQuest[0]->correct_order_5){
+						$isAnsweredWrong=false;
+
+					}
+					if($reponseTartibQuest[0]->reponse_option_to_order_6!=$reponseTartibQuest[0]->correct_order_6){
+						$isAnsweredWrong=false;
+
+					}
+
+					if($isAnsweredWrong==true){
+
+						$data = array(
+							'note_by_teacher'  => $questTartibQuest[0]->points
+						);
+						$this->db->where('id', $reponseTartibQuest[0]->id);
+						$this->db->update('response_question_tartib', $data);
+
+					}else{
+						$data = array(
+							'note_by_teacher'  => "0"
+						);
+						$this->db->where('id', $reponseTartibQuest[0]->id);
+						$this->db->update('response_question_tartib', $data);
+					}
+				}
+
 			}
 
 		}

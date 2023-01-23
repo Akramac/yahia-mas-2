@@ -359,7 +359,6 @@ class Student extends CI_Controller {
 							$reponse6);
 					}
 
-
 					break;
 				case 'long-text-':
 					$pieces = explode("-", $key);

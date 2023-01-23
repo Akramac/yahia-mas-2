@@ -658,8 +658,8 @@
 									<div class="filter-content">
 										<?php foreach($studentsPassedExamResult as $student) { ?>
 											<span class="checkbox">
-										<input type="checkbox" class="check-student" name="student<?php echo $student->student_id; ?>" id="student<?php echo $student->student_id; ?>">
-										<label for="student<?php echo $student->student_id; ?>"><?php echo $student->name; ?> <i></i></label>
+										<input type="checkbox" class="check-student" name="student<?php echo $student->id; ?>" id="student<?php echo $student->id; ?>">
+										<label for="student<?php echo $student->id; ?>"><?php echo $student->name; ?> <i></i></label>
                                 	</span>
 										<?php } ?>
 
@@ -821,7 +821,8 @@
 			const myTimeout = setTimeout(affectation, 1000);
 
 			function affectation() {
-				alert('Affectation with success !')
+				alert('Affectation with success !');
+				location.reload();
 			}
 
 
