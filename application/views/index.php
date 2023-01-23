@@ -92,7 +92,7 @@
 
 				<?php if(array_key_exists('user_type_role',$_SESSION) and $_SESSION['user_type_role']=='Teacher')  : ?>
 					<?php foreach($students_by_teacher as $student) { ?>
-						<a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher/<?php echo $student->id; ?>">
+						<a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-student/<?php echo $student->id; ?>">
 							<figure>
 								<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $student->id % 4; ?>.jpg" alt="Alternate Text" />
 								<figcaption><?php echo $student->name; ?></figcaption>
@@ -383,7 +383,7 @@
 							<h4>Exam <?php echo $exam->exam_id ?></h4>
 						</figure>
 						<!--anchor-->
-						<a href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher/<?php echo $exam->id ?>">Anchor link</a>
+						<a href="#">Anchor link</a>
 					</li>
 				<?php } ?>
 				<!-- === stretcher exams more=== -->
@@ -392,7 +392,7 @@
 					<div class="more-icon">
 						<span data-title-show="Show more" data-title-hide="+"></span>
 					</div>
-					<a href="<?php echo base_url(); ?>index.php/teacher/list/exam-by-teacher"></a>
+					<a href="#"></a>
 				</li>
 			<?php  endif ;?>
 

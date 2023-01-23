@@ -235,6 +235,11 @@
 		.fab:hover {
 			top: -5px;
 		}
+
+		/* style modal */
+		.modal {
+			max-height: 56% !important;
+		}
 	</style>
 </head>
 

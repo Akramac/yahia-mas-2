@@ -265,7 +265,28 @@ class Teacher extends CI_Controller {
 			redirect('teacher/teacher-exam');
 		}
 	}
-	public function studentListExamByTeacher($idStudent='')
+	public function studentListExamByTeacher($idTeacher='')
+	{
+		$this->session->set_userdata('site_lang',  "english");
+		$this->lang->load('ar','arabe');
+		//$this->lang->load('en','english');
+		$data['title'] = 'Student Page By Teacher';
+
+		// id teachers
+		// list of exams by teacher
+
+
+
+		$this->db->select();
+		$this->db->from('exams');
+		$this->db->where('exams.teacher_id',$idTeacher);
+		$query = $this->db->get();
+		$examsResult= $query->result();
+		$data['exams_by_student'] = $examsResult;
+		$this->load->view('teacher/studentListExamByTeacher',$data);
+	}
+
+public function studentListExamByStudent($idStudent='')
 	{
 		$this->session->set_userdata('site_lang',  "english");
 		$this->lang->load('ar','arabe');

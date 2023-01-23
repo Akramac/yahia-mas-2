@@ -58,9 +58,11 @@ $route['student/list/exam-by-category'] = 'student/studentListExamByCategory';
 $route['student/list/exam/(:any)'] = 'student/studentListExam/$1';
 $route['student/list/exam-by-category/(:any)'] = 'student/studentListExamByCategory/$1';
 $route['student/add-exam'] = 'student/studentaddExamToDB';
+
 $route['teacher/teacher-exam'] = 'teacher/teacherExam';
 $route['teacher/exam'] = 'teacher/exam';
 $route['teacher/list/exam-by-teacher/(:any)'] = 'teacher/studentListExamByTeacher/$1';
+$route['teacher/list/exam-by-student/(:any)'] = 'teacher/studentListExamByStudent/$1';
 $route['teacher/result/exam-by-teacher/(:any)/(:any)'] = 'teacher/studentResultExamByTeacher/$1/$2';
 $route['teacher/affect/exam-by-teacher/(:any)'] = 'teacher/affectExamByTeacher/$1';
 $route['teacher/affectation'] = 'teacher/affectation';
@@ -70,7 +72,6 @@ $route['admin/administration'] = 'admin/administration';
 $route['admin/administration/(:any)'] = 'admin/administration/$1';
 $route['admin/edit/exam/(:any)'] = 'admin/editExam/$1';
 $route['admin/update/teachers-by-exam'] = 'admin/updateTeachersByExam';
-
 $route['admin/add-category'] = 'admin/addCategory';
 
 $route['register'] = 'security/register';

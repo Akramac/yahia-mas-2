@@ -632,7 +632,7 @@ Common
 				</div>
 				<div class="form-group" id="whole-duration-pick">
 					<label style="text-align:left">Duration of the whole exam <a style="color:black;">(h:m:s)</a></label>
-					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" step="2" name="usr_time_exam">
+					<input type="text" class="time-pick" id="timepicker" value="00:15:00"  name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
 					<select class="browser-default" name="select-category" style="margin-top:7%;" required>
@@ -668,7 +668,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  name="usr_time-multi-1">
+								<input type="text" class="time-pick" value="00:05:00"   name="usr_time-multi-1">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -848,8 +848,20 @@ Common
 			// options
 			firstActive: 0 // this is the default
 		})*/
-		$('.timepicker').timepicker({
-			showMeridian: false
+		$('.time-pick').timepicker({
+
+			showSeconds: true,
+			twelveHour: false,
+			onOpenEnd:function(){
+				$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+			}
+		});
+
+
+
+		$('.time-pick').on('change', function() {
+			let receivedVal = $(this).val();
+			$(this).val(receivedVal + ":00");
 		});
 		var countMultiQuest=1;
 		var countLongQuest=0;
@@ -888,7 +900,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  onfocus="this.showPicker()" name="usr_time-multi-${countMultiQuest}">
+								<input type="text" class="time-pick"  value="00:05:00"   name="usr_time-multi-${countMultiQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -976,6 +988,21 @@ Common
 							$('.duration-each-input .time-pick').val('00:00:00');
 							$('#whole-duration-pick').show();
 						}
+						$('.time-pick').timepicker({
+
+							showSeconds: true,
+							twelveHour: false,
+							onOpenEnd:function(){
+								$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+							}
+						});
+
+
+
+						$('.time-pick').on('change', function() {
+							let receivedVal = $(this).val();
+							$(this).val(receivedVal + ":00");
+						});
 						break;
 					case "3":
 						countLongQuest++;
@@ -1002,7 +1029,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-long-${countLongQuest}">
+								<input type="text" class="time-pick" value="00:05:00" name="usr_time-long-${countLongQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1042,6 +1069,21 @@ Common
 							$('.duration-each-input .time-pick').val('00:00:00');
 							$('#whole-duration-pick').show();
 						}
+						$('.time-pick').timepicker({
+
+							showSeconds: true,
+							twelveHour: false,
+							onOpenEnd:function(){
+								$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+							}
+						});
+
+
+
+						$('.time-pick').on('change', function() {
+							let receivedVal = $(this).val();
+							$(this).val(receivedVal + ":00");
+						});
 						break;
 					case "4":
 						countTawsilQuest++;
@@ -1068,7 +1110,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tawsil-${countTawsilQuest}">
+								<input type="text" class="time-pick" value="00:05:00"   name="usr_time-tawsil-${countTawsilQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1164,6 +1206,30 @@ Common
 							$('.duration-each-input .time-pick').val('00:00:00');
 							$('#whole-duration-pick').show();
 						}
+						$('.time-pick').timepicker({
+
+							showSeconds: true,
+							twelveHour: false,
+							onOpenEnd:function(){
+								$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+							}
+						});
+
+						$('.time-pick').timepicker({
+
+							showSeconds: true,
+							twelveHour: false,
+							onOpenEnd:function(){
+								$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+							}
+						});
+
+
+
+						$('.time-pick').on('change', function() {
+							let receivedVal = $(this).val();
+							$(this).val(receivedVal + ":00");
+						});
 						break;
 					case "5":
 						countTartibQuest++;
@@ -1190,7 +1256,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
+								<input type="text" class="time-pick" value="00:05:00"  onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1247,6 +1313,22 @@ Common
 							$('.duration-each-input .time-pick').val('00:00:00');
 							$('#whole-duration-pick').show();
 						}
+						$('.time-pick').timepicker({
+
+							showSeconds: true,
+							twelveHour: false,
+							onOpenEnd:function(){
+								$('.timepicker-span-hours').prepend( "<p>h:m</p>" );
+							}
+						});
+
+
+
+						$('.time-pick').on('change', function() {
+							let receivedVal = $(this).val();
+							$(this).val(receivedVal + ":00");
+						});
+
 						break;
 				}
 			}
