@@ -675,7 +675,28 @@
 								</div>
 
 							</div> <!--/filters-->
+							<div class="filters">
+								<!--Teachers-->
+								<div class="filter-box active">
+									<div class="title">
+										See results by student
+									</div>
+									<div class="filter-content">
+										<?php foreach($studentsPassedExamResult as $student) { ?>
+											<span class="checkbox">
+										<input type="radio" class="check-student-result" name="student-result<?php echo $student->id; ?>" id="student-result<?php echo $student->id; ?>">
+										<label for="student-result<?php echo $student->id; ?>"><?php echo $student->name; ?> <i></i></label>
+                                	</span>
+										<?php } ?>
 
+									</div>
+								</div> <!--/filter-box-->
+								<!--close filters on mobile / update filters class removed .toggle-filters-close-->
+								<div type="button" class=" btn btn-main" id="see-correction">
+									See results
+								</div>
+
+							</div> <!--/filters-->
 
 						</div>
 
@@ -732,43 +753,6 @@
 
 <script>
 	var paginationHandler = function(){
-		// store pagination container so we only select it once
-		var $paginationContainer = $(".pagination-container"),
-			$pagination = $paginationContainer.find('.pagination ul');
-
-
-		// click event
-		$pagination.find("li a").on('click.pageChange',function(e){
-			e.preventDefault();
-			// get parent li's data-page attribute and current page
-			var parentLiPage = $(this).parent('li').data("page"),
-				currentPage = parseInt( $(".pagination-container article[data-page]:visible").data('page') ),
-				numPages = $paginationContainer.find("article[data-page]").length;
-
-			// make sure they aren't clicking the current page
-			if ( parseInt(parentLiPage) !== parseInt(currentPage) ) {
-				// hide the current page
-				$paginationContainer.find("article[data-page]:visible").hide();
-
-				if ( parentLiPage === '+' ) {
-					// next page
-					$paginationContainer.find("article[data-page="+( currentPage+1>numPages ? numPages : currentPage+1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else if ( parentLiPage === '-' ) {
-					// previous page
-					$paginationContainer.find("article[data-page="+( currentPage-1<1 ? 1 : currentPage-1 )+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				} else {
-					// specific page
-					$paginationContainer.find("article[data-page="+parseInt(parentLiPage)+"]").show();
-					$pagination.find("li").removeClass('active');
-					$(this).parent().addClass('active');
-				}
-
-			}
-		});
 /*
 		$('.check-teacher').change(function(){
 			if(this.checked) {
@@ -793,9 +777,17 @@
 			}
 
 		});
+
+		$('#see-correction').click(function(){
+
+			idStudent=$(this).parent().find(".check-student-result:checked").attr('id').replace('student-result','');
+			window.location.href='<?php echo base_url(); ?>index.php/teacher/result/exam-by-teacher/'+idStudent+'/<?php echo $exam->id; ?>';
+
+
+
+		});
 		$('#submit-affectation-by-student').click(function(){
 			var arrayStudentToAffect= [];
-
 			$(".check-teacher:checkbox").each(function(){
 				var $this = $(this);
 				if($this.is(":checked")){
@@ -861,6 +853,8 @@
 
 
 		});
+
+
 	};
 	$( document ).ready( paginationHandler );
 

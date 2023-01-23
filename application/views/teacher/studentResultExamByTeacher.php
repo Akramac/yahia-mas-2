@@ -635,32 +635,37 @@
 							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 								<tr>
-									<th>Name</th>
-									<th>Position</th>
-									<th>Office</th>
-									<th>Age</th>
-									<th>Start date</th>
-									<th>Salary</th>
+									<th>ID</th>
+									<th>Type</th>
+									<th>Note</th>
+									<th>Date</th>
 								</tr>
 								</thead>
 								<tbody>
+								<?php foreach($respones_multi_quest as $mutli) { ?>
 								<tr>
-									<td>Tiger Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>61</td>
-									<td>2011-04-25</td>
-									<td>$320,800</td>
+									<td><?php echo  $mutli->id;?></td>
+									<td>Multi Question</td>
+									<td><?php echo  $mutli->note_by_teacher;?></td>
+									<td><?php echo  $mutli->date_created;?></td>
 								</tr>
-								<tr>
-									<td>Garrett Winters</td>
-									<td>Accountant</td>
-									<td>Tokyo</td>
-									<td>63</td>
-									<td>2011-07-25</td>
-									<td>$170,750</td>
-								</tr>
-
+								<?php } ?>
+								<?php foreach($respones_tawsil_quest as $tawsil) { ?>
+									<tr>
+										<td><?php echo  $tawsil->id;?></td>
+										<td>Tawsil</td>
+										<td><?php echo  $tawsil->note_by_teacher;?></td>
+										<td><?php echo  $tawsil->date_created;?></td>
+									</tr>
+								<?php } ?>
+								<?php foreach($respones_tartib_quest as $tartib) { ?>
+									<tr>
+										<td><?php echo  $tartib->id;?></td>
+										<td>Tartib</td>
+										<td><?php echo  $tartib->note_by_teacher;?></td>
+										<td><?php echo  $tartib->date_created;?></td>
+									</tr>
+								<?php } ?>
 								</tfoot>
 							</table>
 						</div>

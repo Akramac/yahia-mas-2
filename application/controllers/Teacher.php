@@ -341,18 +341,74 @@ class Teacher extends CI_Controller {
 		$data['students_by_teacher'] = $studentResult;
 
 		// get data student and exam in one table
-		/*$this->db->distinct();
-		$this->db->select("students.id,students.name");
-		$this->db->from('students');
-		$this->db->join('student_teacher_junction','student_teacher_junction.teacher_id = students.id');
-		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
-		$this->db->where('teachers.id',$idTeacher);
+
+		$listQuestMulti=array();
+		$this->db->select();
+		$this->db->from('exam_quest_multi_junction');
+		$this->db->where('exam_quest_multi_junction.exam_id',$idExam);
 		$query = $this->db->get();
-		$studentResult= $query->result();
-		foreach ($studentResult as $student){
+		$listQuestMulti= $query->result();
+		$data['respones_multi_quest']=array();
+		foreach ($listQuestMulti as $multiQuest){
+			$reponseMutliQuest=array();
+			$this->db->select();
+			$this->db->from('response_question_multi_choice');
+			$this->db->where('response_question_multi_choice.exam_id',$idExam);
+			$this->db->where('response_question_multi_choice.question_multi_id',$multiQuest->quest_multi_id);
+			$this->db->order_by("response_question_multi_choice.id", "desc");
+			$this->db->limit(1);
+			$query = $this->db->get();
+			$reponseMutliQuest= $query->result();
+			if(!empty($reponseMutliQuest)){
+				$data['respones_multi_quest'][]=$reponseMutliQuest[0];
+			}
 
 		}
-		$data['students_by_teacher'] = $studentResult;*/
+
+		$listQuestTawsil=array();
+		$this->db->select();
+		$this->db->from('exam_quest_tawsil_junction');
+		$this->db->where('exam_quest_tawsil_junction.exam_id',$idExam);
+		$query = $this->db->get();
+		$listQuestTawsil= $query->result();
+		$data['respones_tawsil_quest']=array();
+		foreach ($listQuestTawsil as $tawsilQuest){
+			$reponseTawsilQuest=array();
+			$this->db->select();
+			$this->db->from('response_question_tawsil');
+			$this->db->where('response_question_tawsil.exam_id',$idExam);
+			$this->db->where('response_question_tawsil.question_tawsil_id',$tawsilQuest->quest_tawsil_id);
+			$this->db->order_by("response_question_tawsil.id", "desc");
+			$this->db->limit(1);
+			$query = $this->db->get();
+			$reponseTawsilQuest= $query->result();
+			if(!empty($reponseTawsilQuest)){
+				$data['respones_tawsil_quest'][]=$reponseTawsilQuest[0];
+			}
+		}
+
+
+		$listQuestTartib=array();
+		$this->db->select();
+		$this->db->from('exam_quest_tartib_junction');
+		$this->db->where('exam_quest_tartib_junction.exam_id',$idExam);
+		$query = $this->db->get();
+		$listQuestTartib= $query->result();
+		$data['respones_tartib_quest']=array();
+		foreach ($listQuestTartib as $key => $tartibQuest) {
+			$reponseTartibQuest = array();
+			$this->db->select();
+			$this->db->from('response_question_tartib');
+			$this->db->where('response_question_tartib.exam_id', $idExam);
+			$this->db->where('response_question_tartib.question_tartib_id', $tartibQuest->quest_tartib_id);
+			$this->db->order_by("response_question_tartib.id", "desc");
+			$this->db->limit(1);
+			$query = $this->db->get();
+			$reponseTartibQuest = $query->result();
+			if(!empty($reponseTartibQuest)){
+				$data['respones_tartib_quest'][]=$reponseTartibQuest[0];
+			}
+		}
 		$this->load->view('teacher/studentResultExamByTeacher.php',$data);
 
 	}
@@ -432,8 +488,11 @@ class Teacher extends CI_Controller {
 		$this->db->where('exams.id', $idExam);
 		$query = $this->db->get();
 		$examResult= $query->result();
+		$data['exam']=array();
+		if(!empty($examResult)){
+			$data['exam'] = $examResult[0];
+		}
 
-		$data['exam'] = $examResult[0];
 		$this->load->view('teacher/affectationExam.php',$data);
 
 	}

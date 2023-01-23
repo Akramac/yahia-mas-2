@@ -619,17 +619,17 @@
                                         <a href="javascript:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list"><i class="icon icon-heart"></i></a>
                                     </span>-->
 										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="" data-title="Affect the exam"><i class="icon icon-pointer-right"></i></a>
+                                        <a  href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="" data-title="Affect the exam"><i class="icon icon-pointer-right"></i></a>
                                     </span>
 									</div>
 									<div class="figure-list">
 										<div class="image">
-											<a  target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="mfp-open">
+											<a   href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>" class="mfp-open">
 												<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
 											</a>
 										</div>
 										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title_exam; ?></a></h2>
+											<h2 class="title h4"><a  href="<?php echo base_url(); ?>index.php/teacher/affect/exam-by-teacher/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title_exam; ?></a></h2>
 											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup>
 <!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
 -->										</div>
