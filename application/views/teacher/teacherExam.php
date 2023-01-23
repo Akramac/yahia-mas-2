@@ -620,8 +620,18 @@ Common
 					<label style="text-align:left">Title of the exam</label>
 					<input type="text"  name="title_exam" required>
 				</div>
-				<div class="form-group">
-					<label style="text-align:left">Duration of the whole exam (h:m:s)</label>
+				<div class="input-field col s12">
+					<label style="text-align:left;margin-top: -6%;">Choose the time option</label>
+					<select class="browser-default" name="select-time-option" id="select-time-option" style="margin-top:7%;" required>
+						<option value=""  disabled selected>Choose the time option</option>
+							<option value="whole-time"  id="whole-time" selected>Time for Whole exam</option>
+							<option value="each-question-time" id="each-question-time" >Time for each question</option>
+
+					</select>
+
+				</div>
+				<div class="form-group" id="whole-duration-pick">
+					<label style="text-align:left">Duration of the whole exam <a style="color:black;">(h:m:s)</a></label>
 					<input type="time" class="time-pick"  value="15:00" min="00:00" max="23:59" step="2" name="usr_time_exam">
 				</div>
 				<div class="input-field col s12">
@@ -656,7 +666,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<div class="form-group">
+							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  name="usr_time-multi-1">
 							</div>
@@ -876,7 +886,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<div class="form-group">
+							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2"  onfocus="this.showPicker()" name="usr_time-multi-${countMultiQuest}">
 							</div>
@@ -955,6 +965,17 @@ Common
 					</div>
 				</div>
 				</div>`);
+						if($('#select-time-option option:selected').attr('id')=='each-question-time'){
+
+							$('#whole-duration-pick').hide();
+							$('#whole-duration-pick .time-pick').val('00:00:00');
+							$('.duration-each-input').show();
+						}else{
+							
+							$('.duration-each-input').hide();
+							$('.duration-each-input .time-pick').val('00:00:00');
+							$('#whole-duration-pick').show();
+						}
 						break;
 					case "3":
 						countLongQuest++;
@@ -979,7 +1000,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<div class="form-group">
+							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-long-${countLongQuest}">
 							</div>
@@ -1009,6 +1030,18 @@ Common
 					</div>
 				</div>
 				</div>`);
+
+						if($('#select-time-option option:selected').attr('id')=='each-question-time'){
+
+							$('#whole-duration-pick').hide();
+							$('#whole-duration-pick .time-pick').val('00:00:00');
+							$('.duration-each-input').show();
+						}else{
+
+							$('.duration-each-input').hide();
+							$('.duration-each-input .time-pick').val('00:00:00');
+							$('#whole-duration-pick').show();
+						}
 						break;
 					case "4":
 						countTawsilQuest++;
@@ -1033,7 +1066,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<div class="form-group">
+							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tawsil-${countTawsilQuest}">
 							</div>
@@ -1120,6 +1153,17 @@ Common
 					</div>
 				</div>
 				</div>`);
+						if($('#select-time-option option:selected').attr('id')=='each-question-time'){
+
+							$('#whole-duration-pick').hide();
+							$('#whole-duration-pick .time-pick').val('00:00:00');
+							$('.duration-each-input').show();
+						}else{
+
+							$('.duration-each-input').hide();
+							$('.duration-each-input .time-pick').val('00:00:00');
+							$('#whole-duration-pick').show();
+						}
 						break;
 					case "5":
 						countTartibQuest++;
@@ -1144,7 +1188,7 @@ Common
 							</div>
 						</div>
 						<div class="col-md-12" >
-							<div class="form-group">
+							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
 								<input type="time" class="time-pick" value="00:05:00" min="00:00" max="23:59" step="2" onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
 							</div>
@@ -1192,12 +1236,38 @@ Common
 					</div>
 				</div>
 				</div>`);
+						if($('#select-time-option option:selected').attr('id')=='each-question-time'){
+
+							$('#whole-duration-pick').hide();
+							$('#whole-duration-pick .time-pick').val('00:00:00');
+							$('.duration-each-input').show();
+						}else{
+
+							$('.duration-each-input').hide();
+							$('.duration-each-input .time-pick').val('00:00:00');
+							$('#whole-duration-pick').show();
+						}
 						break;
 				}
 			}
 		});
 		$( ".time-pick" ).focus(function() {
 			this.showPicker();
+		});
+		$('.duration-each-input').hide();
+		$('.duration-each-input .time-pick').val('00:00:00');
+		$('#select-time-option').change(function (){
+			if($('#select-time-option option:selected').attr('id')=='each-question-time'){
+				console.log('each');
+				$('#whole-duration-pick').hide();
+				$('#whole-duration-pick .time-pick').val('00:00:00');
+				$('.duration-each-input').show();
+			}else{
+				console.log("all")
+				$('.duration-each-input').hide();
+				$('.duration-each-input .time-pick').val('00:00:00');
+				$('#whole-duration-pick').show();
+			}
 		});
 		/*$('.correct-option-btn').click(function (){
 
@@ -1260,6 +1330,7 @@ Common
 	$(document).on('keydown', '.tawsil-grised', function() {
 		$(this).removeClass("tawsil-grised");
 	}) ;
+
 </script>
 
 </html>
