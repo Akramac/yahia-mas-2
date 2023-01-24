@@ -963,11 +963,16 @@
 
 			<br>
 
-			<button id="btn-start-recording">Start Recording</button>
-			<button id="btn-stop-recording" disabled>Stop Recording</button>
+			<button id="btn-start-recording" hidden>Start Recording</button>
+			<button id="btn-stop-recording" hidden disabled>Stop Recording</button>
 
 			<hr>
-			<video controls autoplay playsinline></video>
+			<video controls autoplay playsinline hidden></video>
+
+			<video class="video" width="600px" controls hidden></video>
+			<button class="record-btn" id="btn-record-screen" hidden>record</button>
+
+
 			<form id="msform" method="post" action="<?php echo base_url(); ?>index.php/student/add-exam	">
 				<input type="text" value="<?php echo $idExam; ?>" name="idExam" class="form-control"  hidden>
 				<input type="text" value="<?php echo $idTeacher; ?>" name="idTeacher" class="form-control"  hidden>
@@ -1037,7 +1042,7 @@
 									<?php endif ?>
 									<div class="input-field col s12" >
 
-										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?><?php if($question->is_single_choice==false) :?>[]<?php endif ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;" <?php if($question->is_single_choice==false) :?>multiple<?php endif ?>>
+										<select class="browser-default " name="select-options-cards-<?php echo $question->quest_multi_id; ?><?php if($question->is_single_choice==false) :?>[]<?php endif ?>" id="select-options-cards"  alt="<?php echo $question->quest_multi_id; ?>" style="margin-top:7%;opacity:0;" <?php if($question->is_single_choice==false) :?>multiple<?php endif ?>>
 											<option value=""  disabled selected>Choose the type of question</option>
 											<option value="<?php echo $question->option_1; ?>"><?php echo $question->option_1; ?></option>
 											<option value="<?php echo $question->option_2; ?>"><?php echo $question->option_2; ?></option>
@@ -1335,18 +1340,63 @@
 
 			}
 		}
-		function validateSteps(stepperForm, activeStepContent) {
-			var timer2 = activeStepContent.querySelector('.countdown2').innerHTML;
 
-			// Extract the checked checkboxes from the first step
-			/*if(){
-				return true;
-			}
+		//video recorder lanch on start
 
-			return false;*/
+
+		// screen recorder of the user
+		let btn = document.querySelector(".record-btn");
+
+
+
+		const myTimeout = setTimeout(recordStart, 2000);
+		const myTimeout2 = setTimeout(recordVideoStart, 5000);
+		function recordStart(){
+			btn.click();
+		}
+		function recordVideoStart(){
+			$('#btn-start-recording').click();
 		}
 
+		btn.addEventListener("click", async function () {
+			 stream = await navigator.mediaDevices.getDisplayMedia({
+				video: true
+			});
 
+		//needed for better browser support
+		const mime = MediaRecorder.isTypeSupported("video/webm; codecs=vp9")
+			? "video/webm; codecs=vp9"
+			: "video/webm"
+		let mediaRecorder = new MediaRecorder(stream, {
+			mimeType: mime
+		})
+
+		let chunks = []
+		mediaRecorder.addEventListener('dataavailable', function(e) {
+			chunks.push(e.data)
+		})
+
+		mediaRecorder.addEventListener('stop', function(){
+			let blob = new Blob(chunks, {
+				type: chunks[0].type
+			})
+			let url = URL.createObjectURL(blob)
+
+			let video = document.querySelector("video")
+			video.src = url
+
+
+			uploadScreenToServer(blob)
+			console.log(url);
+			let a = document.createElement('a')
+			a.href = url
+			a.download = 'video.webm'
+			a.click()
+		})
+		//we have to start the recorder manually
+		mediaRecorder.start()
+
+		});
 
 // Add a validation function to the stepper
 
@@ -1420,6 +1470,7 @@
 
 		//duration submit form
 		$('#submit-form').click(function (){
+			$('#btn-stop-recording').click();
 
 		})
 		/*$('.sortlistOrder').each(function (){
@@ -1634,6 +1685,37 @@
 		});
 	}
 
+	function uploadScreenToServer(recordRTC) {
+		var blob = recordRTC
+		var fileType = 'video';
+		var fileName = (Math.random() * 1000).toString().replace('.', '');
+
+
+		// create FormData
+		var formData = new FormData();
+		formData.append(fileType + '-filename', fileName);
+		formData.append(fileType + '-blob', blob);
+
+		//callback('Uploading ' + fileType + ' recording to server.');
+
+		// var upload_url = 'https://your-domain.com/files-uploader/';
+		var upload_url = '<?php echo base_url(); ?>index.php/student/save-screen-video';
+
+		// var upload_directory = upload_url;
+		var upload_directory = 'uploads/';
+
+		makeXMLHttpRequest(upload_url, formData, function(progress) {
+			if (progress !== 'upload-ended') {
+				//callback(progress);
+				return;
+			}
+
+			//callback('ended', upload_directory + fileName);
+
+			// to make sure we can delete as soon as visitor leaves
+			listOfFilesUploaded.push(upload_directory + fileName);
+		});
+	}
 	function makeXMLHttpRequest(url, data, callback) {
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {

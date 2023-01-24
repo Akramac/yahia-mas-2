@@ -59,6 +59,7 @@ $route['student/list/exam/(:any)'] = 'student/studentListExam/$1';
 $route['student/list/exam-by-category/(:any)'] = 'student/studentListExamByCategory/$1';
 $route['student/add-exam'] = 'student/studentaddExamToDB';
 $route['student/save-video'] = 'student/saveVideo';
+$route['student/save-screen-video'] = 'student/saveScreenVideo';
 
 $route['teacher/teacher-exam'] = 'teacher/teacherExam';
 $route['teacher/exam'] = 'teacher/exam';

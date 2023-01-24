@@ -540,4 +540,18 @@ class Student extends CI_Controller {
 		$arrayStudents = $this->input->post('array_students');
 
 	}
+
+	public function saveScreenVideo()
+	{
+		$fileName = $_POST["video-filename"];
+		$uploadDirectory = "assets/uploads/$fileName.webm";
+
+		if (!move_uploaded_file($_FILES["video-blob"]["tmp_name"], $uploadDirectory)) {
+			echo("problem moving uploaded file");
+		}
+
+		echo($uploadDirectory);
+		$arrayStudents = $this->input->post('array_students');
+
+	}
 }
