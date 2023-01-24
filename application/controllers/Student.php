@@ -154,6 +154,8 @@ class Student extends CI_Controller {
 		if($idTeacher!='' & $idTeacher!='all'){
 			$this->db->select();
 			$this->db->from('exams');
+			$this->db->join('student_exam_junction', 'student_exam_junction.exam_id = exams.id');
+			$this->db->where('student_exam_junction.student_id', $idStudent);
 			$this->db->where('teacher_id', $idTeacher);
 			$examByTeacherResult = $this->db->get()->result();
 			$data['listExams']=$examByTeacherResult;
@@ -161,6 +163,8 @@ class Student extends CI_Controller {
 			if(!empty($arrayTeachers)){
 				$this->db->select();
 				$this->db->from('exams');
+				$this->db->join('student_exam_junction', 'student_exam_junction.exam_id = exams.id');
+				$this->db->where('student_exam_junction.student_id', $idStudent);
 				$this->db->where_in('teacher_id', $arrayTeachers);
 				$examByTeacherResult = $this->db->get()->result();
 				$data['listExams']=$examByTeacherResult;

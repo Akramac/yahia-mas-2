@@ -1330,6 +1330,9 @@
 		});
 
 		htmlShuffle('.sortlist');*/
+		//convert date exam to seconds
+		<?php echo $newDate;?>
+
 		<?php
 		$date = date("m/d/Y H:i:s");
 		$newDate = date('m/d/Y H:i:s', strtotime($date. ' +3600 seconds'));
@@ -1341,7 +1344,7 @@
 			days: 'Days',
 			hideOnComplete: true
 		}, function (container) {
-			alert('Done!');
+
 		});
 		$('#example2').countdown({
 			date: '07/27/2025 17:00:00',
@@ -1350,7 +1353,7 @@
 			days: 'Days',
 			hideOnComplete: true
 		}, function (container) {
-			alert('Done!');
+
 		});
 	});
 

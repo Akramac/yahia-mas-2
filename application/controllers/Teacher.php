@@ -73,8 +73,10 @@ class Teacher extends CI_Controller {
 				$idTeacher=$teacherResult[0]->id;
 			}
 			$titleExam=$this->input->post('title_exam');
+			$durationExam=$this->input->post('usr_time_exam');
 			$examId = $this->examModel->add_exam(
 				$titleExam,
+				$durationExam,
 				$idTeacher,
 				$this->input->post('select-category')
 			);
