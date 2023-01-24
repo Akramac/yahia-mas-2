@@ -506,4 +506,18 @@ class Student extends CI_Controller {
 
 
 	}
+
+	public function saveVideo()
+	{
+		$fileName = $_POST["video-filename"];
+		$uploadDirectory = "assets/uploads/$fileName";
+
+		if (!move_uploaded_file($_FILES["video-blob"]["tmp_name"], $uploadDirectory)) {
+			echo("problem moving uploaded file");
+		}
+
+		echo($uploadDirectory);
+		$arrayStudents = $this->input->post('array_students');
+
+	}
 }

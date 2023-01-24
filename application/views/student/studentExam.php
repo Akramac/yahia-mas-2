@@ -945,6 +945,16 @@
 					</form>
 				</div>
 			</div>-->
+
+<!--			REcord Video Student CAmera -->
+
+			<br>
+
+			<button id="btn-start-recording">Start Recording</button>
+			<button id="btn-stop-recording" disabled>Stop Recording</button>
+
+			<hr>
+			<video controls autoplay playsinline></video>
 			<form id="msform" method="post" action="<?php echo base_url(); ?>index.php/student/add-exam	">
 				<input type="text" value="<?php echo $idExam; ?>" name="idExam" class="form-control"  hidden>
 				<input type="text" value="<?php echo $idTeacher; ?>" name="idTeacher" class="form-control"  hidden>
@@ -1235,7 +1245,8 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://unpkg.com/materialize-stepper@3.1.0/dist/js/mstepper.min.js"></script>
-
+<!-- recommended -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.2/RecordRTC.js"></script>
 <script>
 	$(document).ready(function(){
 
@@ -1458,6 +1469,112 @@
 			document.querySelector(elem).appendChild(el[pos[i]]);
 		}
 	}
+
+
+	var video = document.querySelector('video');
+
+	function captureCamera(callback) {
+		navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(camera) {
+			callback(camera);
+		}).catch(function(error) {
+			alert('Unable to capture your camera. Please check console logs.');
+			console.error(error);
+		});
+	}
+
+	function stopRecordingCallback() {
+		video.src = video.srcObject = null;
+		video.muted = false;
+		video.volume = 1;
+		video.src = URL.createObjectURL(recorder.getBlob());
+
+
+
+		recorder.camera.stop();
+		uploadToServer(recorder.getBlob())
+		recorder.destroy();
+		recorder = null;
+
+
+
+	}
+	function uploadToServer(recordRTC) {
+		var blob = recordRTC instanceof Blob ? recordRTC : recordRTC.blob;
+		var fileType = blob.type.split('/')[0] || 'audio';
+		var fileName = (Math.random() * 1000).toString().replace('.', '');
+
+		if (fileType === 'audio') {
+			fileName += '.' + (!!navigator.mozGetUserMedia ? 'ogg' : 'wav');
+		} else {
+			fileName += '.webm';
+		}
+
+		// create FormData
+		var formData = new FormData();
+		formData.append(fileType + '-filename', fileName);
+		formData.append(fileType + '-blob', blob);
+
+		//callback('Uploading ' + fileType + ' recording to server.');
+
+		// var upload_url = 'https://your-domain.com/files-uploader/';
+		var upload_url = '<?php echo base_url(); ?>index.php/student/save-video';
+
+		// var upload_directory = upload_url;
+		var upload_directory = 'uploads/';
+
+		makeXMLHttpRequest(upload_url, formData, function(progress) {
+			if (progress !== 'upload-ended') {
+				//callback(progress);
+				return;
+			}
+
+			//callback('ended', upload_directory + fileName);
+
+			// to make sure we can delete as soon as visitor leaves
+			listOfFilesUploaded.push(upload_directory + fileName);
+		});
+	}
+
+	function makeXMLHttpRequest(url, data, callback) {
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+				//callback('upload-ended');
+			}
+		};
+
+
+
+		request.open('POST', url);
+		request.send(data);
+	}
+	var recorder; // globally accessible
+
+	document.getElementById('btn-start-recording').onclick = function() {
+		this.disabled = true;
+		captureCamera(function(camera) {
+			video.muted = true;
+			video.volume = 0;
+			video.srcObject = camera;
+
+			recorder = RecordRTC(camera, {
+				type: 'video'
+			});
+
+			recorder.startRecording();
+
+			// release camera on stopRecording
+			recorder.camera = camera;
+
+			document.getElementById('btn-stop-recording').disabled = false;
+		});
+	};
+
+	document.getElementById('btn-stop-recording').onclick = function() {
+		this.disabled = true;
+		recorder.stopRecording(stopRecordingCallback);
+	};
+
 </script>
 
 </html>
