@@ -802,8 +802,9 @@
 				url: "<?php echo base_url(); ?>index.php/teacher/affectation",
 				data: {
 					'array_students' : arrayStudentToAffect ,
+					'id_teacher' : <?php echo $_SESSION['idTeacher']?> ,
 				    'exam_id':<?php echo $exam->id; ?>},
-				error: function(error){x
+				error: function(error){
 					console.log(error);
 				},
 				success: function(data){
@@ -848,7 +849,8 @@
 			const myTimeout = setTimeout(affectation, 1000);
 
 			function affectation() {
-				alert('Affectation with success !')
+				alert('Affectation with success !');
+				location.reload();
 			}
 
 

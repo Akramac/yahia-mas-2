@@ -376,6 +376,7 @@ public function studentListExamByStudent($idStudent='')
 			$this->db->from('response_question_multi_choice');
 			$this->db->where('response_question_multi_choice.exam_id',$idExam);
 			$this->db->where('response_question_multi_choice.question_multi_id',$multiQuest->quest_multi_id);
+			$this->db->where('response_question_multi_choice.student_id',$idStudent);
 			$this->db->order_by("response_question_multi_choice.id", "desc");
 			$this->db->limit(1);
 			$query = $this->db->get();
@@ -422,6 +423,7 @@ public function studentListExamByStudent($idStudent='')
 			$this->db->from('response_question_tartib');
 			$this->db->where('response_question_tartib.exam_id', $idExam);
 			$this->db->where('response_question_tartib.question_tartib_id', $tartibQuest->quest_tartib_id);
+			$this->db->where('response_question_tartib.student_id',$idStudent);
 			$this->db->order_by("response_question_tartib.id", "desc");
 			$this->db->limit(1);
 			$query = $this->db->get();
@@ -452,12 +454,16 @@ public function studentListExamByStudent($idStudent='')
 			$idTeacher=$teacherResult[0]->id;
 		}
 		// get all students by teacher connected
-		$this->db->distinct();
+		/*$this->db->distinct();
 		$this->db->select("students.id,students.name");
 		$this->db->from('students');
 		$this->db->join('student_teacher_junction','student_teacher_junction.student_id = students.id');
 		$this->db->join('teachers', 'teachers.id = student_teacher_junction.teacher_id');
 		$this->db->where('teachers.id',$idTeacher);
+		$query = $this->db->get();
+		$studentResult= $query->result();*/
+		$this->db->select("students.id,students.name");
+		$this->db->from('students');
 		$query = $this->db->get();
 		$studentResult= $query->result();
 		$data['students_by_teacher'] = $studentResult;
@@ -522,19 +528,28 @@ public function studentListExamByStudent($idStudent='')
 	{
 		$arrayStudents=$this->input->post('array_students');
 		$idExam=$this->input->post('exam_id');
+		$idTeacher=$this->input->post('id_teacher');
 
 
 		foreach ($arrayStudents as $idStudent){
 			$data['student_id']=$idStudent;
 			$data['exam_id']=$idExam;
-
+			$data['id_teacher']=$idTeacher;
 			//check duplicate
-			$isDuplicated = $this->examModel->isDuplicateAffectation($data);
+			$isDuplicated = $this->examModel->isDuplicateAffectationStudentExam($data);
 			if(!($isDuplicated)){
 				//Insert data into Review Table
-				$resultAffectation = $this->examModel->add_affectation(
+				$resultAffectation = $this->examModel->add_affectation_student_exam(
 					$idStudent,
 					$idExam
+				);
+			}
+			$isDuplicated2 = $this->examModel->isDuplicateAffectationStudentTeacher($data);
+			if(!($isDuplicated2)){
+				//Insert data into Review Table
+				$resultAffectation = $this->examModel->add_affectation_student_teacher(
+					$idStudent,
+					$idTeacher
 				);
 			}
 

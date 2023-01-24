@@ -162,7 +162,7 @@ class ExamModel extends CI_Model
 		return $idCategory;
 	}
 
-	function add_affectation($idStudent,$idExam)
+	function add_affectation_student_exam($idStudent,$idExam)
 	{
 
 
@@ -170,16 +170,43 @@ class ExamModel extends CI_Model
 		$dataJunction['exam_id']=$idExam;
 		$this->db->insert('student_exam_junction', $dataJunction);
 
+
 		return $idExam;
 	}
 
-	public function isDuplicateAffectation($data)
+	function add_affectation_student_teacher($idStudent,$idTeacher)
+	{
+
+		$dataJunction2['student_id']=$idStudent;
+		$dataJunction2['teacher_id']=$idTeacher;
+		$this->db->insert('student_teacher_junction', $dataJunction2);
+		return $idTeacher;
+	}
+
+	public function isDuplicateAffectationStudentExam($data)
 	{
 		$sql = "SELECT student_id, exam_id
     FROM student_exam_junction
     WHERE student_id = ? AND exam_id = ? 
     ";
 		$query = $this->db->query($sql, array($data['student_id'], $data['exam_id']));
+		//$query->result();
+
+		//If there are rows, means this review is duplicated
+		if($query->num_rows() > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function isDuplicateAffectationStudentTeacher($data)
+	{
+		$sql = "SELECT student_id, teacher_id
+    FROM student_teacher_junction
+    WHERE student_id = ? AND teacher_id = ? 
+    ";
+		$query = $this->db->query($sql, array($data['student_id'], $data['id_teacher']));
 		//$query->result();
 
 		//If there are rows, means this review is duplicated
