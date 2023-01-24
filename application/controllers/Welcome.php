@@ -115,6 +115,8 @@ class Welcome extends CI_Controller {
 				}
 				$this->db->select();
 				$this->db->from('exams');
+				$this->db->join('student_exam_junction', 'student_exam_junction.exam_id = exams.id');
+				$this->db->where('student_exam_junction.student_id', $idStudent);
 				$this->db->where_in('exams.teacher_id',$arrayTeachers);
 				$this->db->limit(4);
 				$this->db->order_by("exams.date_created", "desc");

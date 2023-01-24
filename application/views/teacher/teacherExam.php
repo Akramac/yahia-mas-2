@@ -668,7 +668,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="text" class="time-pick" value="00:05:00"   name="usr_time-multi-1">
+								<input type="text" class="time-pick" value="00:00:00"   name="usr_time-multi-1">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -900,7 +900,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="text" class="time-pick"  value="00:05:00"   name="usr_time-multi-${countMultiQuest}">
+								<input type="text" class="time-pick"  value="00:00:00"   name="usr_time-multi-${countMultiQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -985,7 +985,9 @@ Common
 						}else{
 							
 							$('.duration-each-input').hide();
-							$('.duration-each-input .time-pick').val('00:00:00');
+							$('.duration-each-input .time-pick').each(function (){
+								$(this).val('00:00:00');
+							});
 							$('#whole-duration-pick').show();
 						}
 						$('.time-pick').timepicker({
@@ -1029,7 +1031,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="text" class="time-pick" value="00:05:00" name="usr_time-long-${countLongQuest}">
+								<input type="text" class="time-pick" value="00:00:00" name="usr_time-long-${countLongQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1110,7 +1112,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="text" class="time-pick" value="00:05:00"   name="usr_time-tawsil-${countTawsilQuest}">
+								<input type="text" class="time-pick" value="00:00:00"   name="usr_time-tawsil-${countTawsilQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >
@@ -1256,7 +1258,7 @@ Common
 						<div class="col-md-12" >
 							<div class="form-group duration-each-input">
 								<label style="text-align:left">Duration of the question</label>
-								<input type="text" class="time-pick" value="00:05:00"  onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
+								<input type="text" class="time-pick" value="00:00:00"  onfocus="this.showPicker()" name="usr_time-tartib-${countTartibQuest}">
 							</div>
 						</div>
 						<div class="col-md-12" >

@@ -93,8 +93,24 @@ class Student extends CI_Controller {
 		$this->db->where('exams.id', $idExam);
 		$query = $this->db->get();
 		$idTeacher= $query->result();
-		$idTeacher=$idTeacher[0]->teacher_id;
-		$data['idTeacher'] =$idTeacher;
+		$data['idTeacher']='';
+		if(!empty($idTeacher)){
+			$idTeacher=$idTeacher[0]->teacher_id;
+			$data['idTeacher'] =$idTeacher;
+		}
+
+
+		$this->db->select('exams.duration_exam');
+		$this->db->from('exams');
+		$this->db->where('exams.id', $idExam);
+		$query = $this->db->get();
+		$durationExam= $query->result();
+		$data['durationExam']='';
+		if(!empty($durationExam)){
+			$data['durationExam'] =$durationExam[0]->duration_exam;
+		}
+
+
 		$this->load->view('student/studentExam',$data);
 	}
 

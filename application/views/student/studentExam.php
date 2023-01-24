@@ -2,7 +2,8 @@
 <?php $this->view('partials/header')?>
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" media="all" href="https://unpkg.com/materialize-stepper@3.1.0/dist/css/mstepper.min.css" />
-    <style>
+
+<style>
 		@import url("<?php echo base_url(); ?>assets/css/materialize.css");
 		@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 		@import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -585,6 +586,15 @@
 			color: #a7abb1;
 			font-size: 25px;
 		}
+
+		/* timer  */
+		.countdown::after{
+			display:none !important;
+		}
+
+		.step-title {
+			pointer-events: none;
+		}
 	</style>
 <div class="page-loader"></div>
 
@@ -604,6 +614,9 @@
 		<header class="hidden">
 			<h2>Product categories</h2>
 		</header>
+		<?php
+		if($durationExam!='00:00:00'){
+		?>
 		<ul id="global" >
 			<li><span class="days">00</span><p class="days_text">Days</p></li>
 			<li class="seperator">:</li>
@@ -614,7 +627,7 @@
 			<li><span class="seconds">00</span><p class="seconds_text">Seconds</p></li>
 		</ul>
 
-
+		<?php } ?>
 		<!--
 				<div class="clearfix">
 
@@ -971,6 +984,7 @@
 										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 									</svg>
 								</div>
+								<div class="countdown2" alt="<?php echo $question->duration; ?>" style="text-align: center"></div>
 								<h5><?php echo $question->title; ?></h5>
 								<label>Select the correct answer</label>
 								<div class="row">
@@ -1038,7 +1052,7 @@
 								<div class="step-actions">
 									<!--								<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction">CONTINUE</button>
 									-->
-									<button class="waves-effect waves-dark btn blue next-step">CONTINUE</button>
+									<button class="waves-effect waves-dark btn blue next-step" >CONTINUE</button>
 									<button class="waves-effect waves-dark btn-flat previous-step">BACK</button>
 								</div>
 							</div>
@@ -1054,6 +1068,8 @@
 										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 									</svg>
 								</div>
+								<div class="countdown2" alt="<?php echo $question->duration; ?>" style="text-align: center"></div>
+
 								<div class="row">
 									<div class="input-field col s12">
 										<div class="col-md-12" >
@@ -1081,6 +1097,8 @@
 										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 									</svg>
 								</div>
+								<div class="countdown2" alt="<?php echo $question->duration; ?>" style="text-align: center"></div>
+
 								<div class="row" >
 									<div class="input-field col s12">
 										<label >Link the correct options</label>
@@ -1162,6 +1180,8 @@
 										<circle r="45" stroke-dasharray="282.7433388230814" stroke-dashoffset="282.7433388230814px"></circle>
 									</svg>
 								</div>
+								<div class="countdown2" alt="<?php echo $question->duration; ?>" style="text-align: center"></div>
+
 								<h5><?php echo $question->title; ?></h5>
 								<label>Oder this cards correctly :</label>
 								<div class="row justify-content-center"><img src="<?php echo base_url(); ?>assets/images/dragg.png" alt="Alternate Text" style="width:45px;float:right;"/>
@@ -1213,7 +1233,7 @@
 						<div class="step-content">
 							Finish!
 							<div class="step-actions">
-								<button class="waves-effect waves-dark btn blue" type="submit">SUBMIT</button>
+								<button class="waves-effect waves-dark btn blue" id="submit-form" type="submit">SUBMIT</button>
 							</div>
 						</div>
 					</li>
@@ -1253,8 +1273,82 @@
 		var stepper = document.querySelector('.stepper');
 		var stepperInstace = new MStepper(stepper, {
 			// options
-			firstActive: 0 // this is the default
+			firstActive: 0, // this is the default
 		})
+
+			var timer2 = $('.step').first().find('.countdown2').attr('alt');
+			var interval = setInterval(function() {
+
+				var timer = timer2.split(':');
+				//by parsing integer, I avoid all extra string processing
+				var minutes = parseInt(timer[1], 10);
+				var seconds = parseInt(timer[2], 10);
+				--seconds;
+				minutes = (seconds < 0) ? --minutes : minutes;
+				if (minutes < 0) clearInterval(interval);
+				seconds = (seconds < 0) ? 59 : seconds;
+				seconds = (seconds < 10) ? '0' + seconds : seconds;
+				//minutes = (minutes < 10) ?  minutes : minutes;
+				$('.active .countdown2').html(minutes + ':' + seconds);
+				timer2 = '00:'+minutes + ':' + seconds;
+				if(timer2=='00:0:00'){
+					clearInterval(interval);
+					var currentSteps = stepperInstace.getSteps();
+					var nextStep=currentSteps['active']['index'];
+					stepperInstace.nextStep(nextStep+1);
+
+				}
+			}, 1000);
+
+		stepper.addEventListener('stepopen', myFunction, true);
+
+		function myFunction() {
+			console.log('inside stepopen')
+			var currentSteps = stepperInstace.getSteps();
+			console.log(currentSteps['active']['step'])
+			if(currentSteps['active']['step'].querySelector('.countdown2')){
+				clearInterval(interval);
+
+			var timer2 = currentSteps['active']['step'].querySelector('.countdown2').getAttribute('alt');
+			console.log(timer2)
+			var interval2 = setInterval(function() {
+
+				var timer = timer2.split(':');
+				//by parsing integer, I avoid all extra string processing
+				var minutes = parseInt(timer[1], 10);
+				var seconds = parseInt(timer[2], 10);
+				--seconds;
+				minutes = (seconds < 0) ? --minutes : minutes;
+				if (minutes < 0) clearInterval(interval2);
+				seconds = (seconds < 0) ? 59 : seconds;
+				seconds = (seconds < 10) ? '0' + seconds : seconds;
+				//minutes = (minutes < 10) ?  minutes : minutes;
+				$('.active .countdown2').html(minutes + ':' + seconds);
+				timer2 = '00:'+minutes + ':' + seconds;
+				if(timer2=='00:0:00'){
+					clearInterval(interval2);
+					var currentSteps = stepperInstace.getSteps();
+					var nextStep=currentSteps['active']['index'];
+					stepperInstace.nextStep(nextStep+1);
+				}
+			}, 1000);
+
+			}
+		}
+		function validateSteps(stepperForm, activeStepContent) {
+			var timer2 = activeStepContent.querySelector('.countdown2').innerHTML;
+
+			// Extract the checked checkboxes from the first step
+			/*if(){
+				return true;
+			}
+
+			return false;*/
+		}
+
+
+
+// Add a validation function to the stepper
 
 		$('.sortlist > li').mouseleave(function() {
 			var inputTawsil=$(this).parent().parent().find('.tawsil-input');
@@ -1323,6 +1417,11 @@
 			$('.'+id+' #select-options-cards option[value='+orderValue+']').attr('selected','selected');
 		});
 
+
+		//duration submit form
+		$('#submit-form').click(function (){
+
+		})
 		/*$('.sortlistOrder').each(function (){
 			id=$(this).attr('id');
 			console.log(id);
@@ -1331,11 +1430,16 @@
 
 		htmlShuffle('.sortlist');*/
 		//convert date exam to seconds
-		<?php echo $newDate;?>
 
 		<?php
+			if($durationExam!='00:00:00'){
+
+
+		$pieces = explode(":", $durationExam);
+		$durationSeconds= $pieces[0]*3600+$pieces[1]*60+$pieces[2];
+		$durationSeconds= '10';
 		$date = date("m/d/Y H:i:s");
-		$newDate = date('m/d/Y H:i:s', strtotime($date. ' +3600 seconds'));
+		$newDate = date('m/d/Y H:i:s', strtotime($date. ' +'.$durationSeconds.' seconds'));
 		?>
 		$('#global').countdown({
 			date: '<?php echo $newDate;?>',
@@ -1344,17 +1448,9 @@
 			days: 'Days',
 			hideOnComplete: true
 		}, function (container) {
-
+			$('#submit-form').click();
 		});
-		$('#example2').countdown({
-			date: '07/27/2025 17:00:00',
-			offset: +2,
-			day: 'Day',
-			days: 'Days',
-			hideOnComplete: true
-		}, function (container) {
-
-		});
+		<?php } ?>
 	});
 
 	function onDragStart(event) {
