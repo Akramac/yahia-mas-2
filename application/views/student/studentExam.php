@@ -969,13 +969,17 @@
 			<hr>
 			<video controls autoplay playsinline hidden></video>
 
+			<!--start section record screen-->
 			<video class="video" width="600px" controls hidden></video>
 			<button class="record-btn" id="btn-record-screen" hidden>record</button>
 
-
+			<!--end screen-->
 			<form id="msform" method="post" action="<?php echo base_url(); ?>index.php/student/add-exam	">
 				<input type="text" value="<?php echo $idExam; ?>" name="idExam" class="form-control"  hidden>
 				<input type="text" value="<?php echo $idTeacher; ?>" name="idTeacher" class="form-control"  hidden>
+
+				<input type="text" value="--s" name="video-url-input"  id="video-url-input" class="form-control video-url-input"  hidden>
+				<input type="text" value="" name="screen-url-input"  id="screen-url-input" class="form-control screen-url-input"  hidden>
 
 				<ul class="stepper horizontal " id="horizontal">
 
@@ -1155,7 +1159,7 @@
 													<?php endif;?>
 												</ul>
 
-												<input type="text" value="1,2,3,4,5,6" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  style="opacity:0;">
+												<input type="text" value="1;2;3;4;5;6" name="tawsil-input-<?php echo $question->quest_tawsil_id	; ?>" class="form-control tawsil-input"  style="opacity:0;">
 
 											</div>
 
@@ -1220,7 +1224,7 @@
 										</li>
 										<?php endif ;?>
 									</ul>
-									<input type="text" value="1,2,3,4,5,6" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  style="opacity:0;">
+									<input type="text" value="1;2;3;4;5;6" name="tartib-input-<?php echo $question->quest_tartib_id; ?>" class="form-control tartib-input"  style="opacity:0;">
 
 								</div>
 								<div class="step-actions">
@@ -1232,18 +1236,17 @@
 							</div>
 						</li>
 					<?php } ?>
-
 					<li class="step ">
 						<div class="step-title waves-effect waves-dark">Finish</div>
 						<div class="step-content">
 							Finish!
 							<div class="step-actions">
-								<button class="waves-effect waves-dark btn blue" id="submit-form" type="submit">SUBMIT</button>
+								<a class="waves-effect waves-dark btn blue" type="button" id="submit-form-shown" >SUBMIT</a>
+								<button class="waves-effect waves-dark btn blue" id="submit-form" type="submit" style="opacity: 0;">SUBMIT Reeel</button>
 							</div>
 						</div>
 					</li>
 				</ul>
-
 			</form>
 
 		</div><!--/container-->
@@ -1367,7 +1370,7 @@
 		const mime = MediaRecorder.isTypeSupported("video/webm; codecs=vp9")
 			? "video/webm; codecs=vp9"
 			: "video/webm"
-		let mediaRecorder = new MediaRecorder(stream, {
+		 mediaRecorder = new MediaRecorder(stream, {
 			mimeType: mime
 		})
 
@@ -1388,10 +1391,12 @@
 
 			uploadScreenToServer(blob)
 			console.log(url);
-			let a = document.createElement('a')
-			a.href = url
-			a.download = 'video.webm'
-			a.click()
+
+
+			//let a = document.createElement('a')
+			//a.href = url
+			//a.download = 'video.webm'
+			//a.click()
 		})
 		//we have to start the recorder manually
 		mediaRecorder.start()
@@ -1469,9 +1474,13 @@
 
 
 		//duration submit form
-		$('#submit-form').click(function (){
+		$('#submit-form-shown').click(function (){
 			$('#btn-stop-recording').click();
-
+			mediaRecorder.stop()
+			const myTimeout = setTimeout(waitME, 5000);
+			function waitME (){
+			$('#submit-form').click();
+			}
 		})
 		/*$('.sortlistOrder').each(function (){
 			id=$(this).attr('id');
@@ -1658,7 +1667,7 @@
 		} else {
 			fileName += '.webm';
 		}
-
+		$('#video-url-input').val(fileName);
 		// create FormData
 		var formData = new FormData();
 		formData.append(fileType + '-filename', fileName);
@@ -1690,7 +1699,7 @@
 		var fileType = 'video';
 		var fileName = (Math.random() * 1000).toString().replace('.', '');
 
-
+		$('#screen-url-input').val(fileName+'.webm');
 		// create FormData
 		var formData = new FormData();
 		formData.append(fileType + '-filename', fileName);

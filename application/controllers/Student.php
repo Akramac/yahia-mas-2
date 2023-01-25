@@ -430,7 +430,11 @@ class Student extends CI_Controller {
 						$option3=$pieces[3];
 						$option4=$pieces[4];
 						$option5=$pieces[5];
-						$option6=$pieces[6];
+						$option6='';
+						if(array_key_exists('6',$pieces)){
+							$option6=$pieces[6];
+						}
+
 
 					$id = $this->responsesModel->insert_tawsil(
 						$this->session->userdata('id'),
@@ -479,7 +483,11 @@ class Student extends CI_Controller {
 						$option3=$pieces[3];
 						$option4=$pieces[4];
 						$option5=$pieces[5];
-						$option6=$pieces[6];
+						$option6='';
+						if(array_key_exists('6',$pieces)){
+							$option6=$pieces[6];
+						}
+
 
 						$id = $this->responsesModel->insert_tartib(
 							$this->session->userdata('id'),
@@ -506,12 +514,13 @@ class Student extends CI_Controller {
 
 			}
 		}
-
 		// mark exam as passed
 			$idPassedExam = $this->responsesModel->mark_exam_as_passed(
 				$idTeacher,
 				$idStudent,
-				$this->input->post('idExam')
+				$this->input->post('idExam'),
+				$this->input->post('screen-url-input'),
+				$this->input->post('video-url-input')
 			);
 		}else
 		{
